@@ -1,0 +1,23 @@
+!!! 5
+%html
+  %head
+    %meta{ :charset => 'utf-8' }
+    %title
+      = "Rukh | #{yield :title}"
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true 
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    = favicon_link_tag(asset_path('favicon.ico'))
+    %style
+      [class^="icon-"],[class*=" icon-"]{
+      = "background-image: url(#{asset_path 'glyphicons-halflings.png'});};" 
+  %body  
+    %p{class: "notice"}
+      = notice 
+    %p{class: "alert"}
+      = alert 
+    - flash.each do |k, v|
+      %div{:class => "alert alert-#{k}"}= v
+    =yield
+    =debug(params) if Rails.env.development?
+
