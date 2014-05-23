@@ -16,6 +16,13 @@ describe User do
     end
   end
   
+  describe "Invalidations" do
+    describe "when password is not present" do
+      it 'user without password should not be valid' do
+        expect(happy_user.password = '').to raise_error RecordInvalid
+      end
+    end 
+  end
   
 end
 
