@@ -1,0 +1,28 @@
+%header{ :class => 'navbar navbar-fixed-top navbar-inverse' }
+  .navbar-inner
+    .container
+      =link_to "Rukh", home_path, id: "logo"
+      %nav
+        %ul{ :class => 'nav pull-right' }
+          / %li= link_to "Home", home_path
+          / %li= link_to "Ayuda", help_path
+          -if signed_in?
+            / %li= link_to "Lista de Deudores", debtors_path
+            / %li= link_to "Deudor Nuevo", new_debtor_path
+            / %li= link_to "Buscar Deudor", search_path
+            %li= link_to "Log out", destroy_user_session_path, method: "delete"    
+            %li#fat-menu.dropdown
+              %a{:href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
+                Usuario
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to "#{@user.email if @user}", '#'
+                %li.divider
+                -# %li= link_to "Información del Usuario", current_user #Unavailabe in Devise
+                -# %li= link_to "Los Usuarios", users_path              #Unavailabe in Devise
+                %li= link_to "Actualizar Información", edit_user_registration_path(current_user)
+                %li.divider
+                %li= link_to "Log Out", destroy_user_session_path, method: "delete"
+          -else
+            %li= link_to "Log in", new_user_session_path #'/login'
+          /
