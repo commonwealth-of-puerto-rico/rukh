@@ -51,6 +51,12 @@ class Debtor < ActiveRecord::Base
     end
   end
   
+  # def self.api_search(search_term)
+  #   #reject format xxx-xx-xxxx 
+  #   #accecpt only string or xx-xxxxxxxx
+  #   Debtor.search(search_term)
+  # end
+  
   def self.clean_up_search_term(search_term) 
     #if name keep string, if ein turn to int, if ss turn to hexstring else string
     #'-' is checked.
