@@ -34,3 +34,6 @@ config/database.yml
 #Ignore Sample Data
 /spec/factories/*.csv
 
+#Ignoring Mail settings
+/config/initializers/mail.rb
+

@@ -1,0 +1,7 @@
+<%= image_tag attachments['logo.png'].url, alt: 'LOGO', class: 'photo' -%>
+
+Hola <%= @debtor.name %>,
+<br>
+Hemos encontrado esta deuda: <%= @debt.amount_owed_pending_balance %>
+<br>
+Gracias.

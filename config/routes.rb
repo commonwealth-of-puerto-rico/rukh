@@ -2,15 +2,25 @@ Rails.application.routes.draw do
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  get "static_pages/home"
-  get "static_pages/help"
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'static_pages#home'
   
   match '/help',          to: 'static_pages#help',  via: 'get'
   match '/home',          to: 'static_pages#home',  via: 'get'
+  match 'debtor/search',  to: 'debtors#search',     via: 'get', as: 'search'
+  match '/import',        to: 'import#create',      via: 'post'
+  match '/import',        to: 'import#new',         via: 'get'
 
+  resources :debtors 
+  resources :debts
+
+  
+  # get "static_pages/home"
+  # get "static_pages/help"
+  
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

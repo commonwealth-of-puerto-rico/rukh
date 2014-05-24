@@ -1,0 +1,17 @@
+-if false && @user.errors.any?
+  #error_explanation
+    %div{:class => "alert alert-error"}
+      %i.icon-warning-sign
+      ="Hay #{ pluralize(@user.errors.count, 'error')}"
+    %ul
+      - @user.errors.full_messages.each do |msg|
+        %li= "* #{msg}"
+/
+-if !object.nil? && object.errors.any?
+  #error_explanation
+    %div{:class => "alert alert-error"}
+      ="Hay #{ pluralize(object.errors.count, 'error')}"
+    %ul
+      - object.errors.full_messages.each do |msg|
+        %li= "* #{msg}"
+/

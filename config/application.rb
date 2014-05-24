@@ -47,5 +47,21 @@ module Rukh
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
     
+    # Email Preview path 
+    config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews/"
+    
+    console do
+      require 'pry'
+      config.console = Pry
+      # Below seems unneccesary left for just in case.
+      # unless defined? Pry::ExtendCommandBundle
+      #   Pry::ExtendCommandBundle = Module.new
+      # end
+      # require "rails/console/app"
+      # require "rails/console/helpers"
+      # TOPLEVEL_BINDING.eval('self').extend ::Rails::ConsoleMethods
+    end
+    
+    
   end
 end

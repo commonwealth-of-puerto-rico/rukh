@@ -1,0 +1,48 @@
+- provide(:title, "Crear Factura Nueva")
+%h1 Crear Una Nueva Factura
+.row
+  -if @debt.errors.any?
+    %p
+      Problemas con:
+    - @debt.errors.full_messages.each do |msg|
+      %li{:class => 'alert alert-error'}
+        = msg
+  /
+  %h3.span6.offset3
+    = "Añadir una factura a: "
+    - if @debtor 
+      .grey
+        !="<em> &bull;"
+        = @debtor.name
+      = @debtor.tel
+      = "  |  "
+      = @debtor.contact_person
+      %br
+      = "EIN: #{@debtor.employer_id_number}"
+      %br
+      = "Ultimos 4 de SS: #{@debtor.ss_last_four}"
+      !="</em>"
+    / 
+  %br
+  %div{:class => "span6 offset3"}
+    - if @debtor.blank?
+      -#Searchform
+    -else     
+      =form_for(@debt, url: {params: {debtor_id: @debtor.id}, controller: :debts, action: :create} ) do |f|
+        -#render partial: 'layouts/error_messages', :locals => { :object => f.object }
+        =f.label :permit_infraction_number, "Número de Permisno o Multa"
+        =f.text_field :permit_infraction_number
+        =f.label :amount_owed_pending_balance, "Cantidad debida"
+        =f.number_field :amount_owed_pending_balance   
+        =f.label :original_debt_date, "Fecha de la deuda originadora"
+        =f.date_field :original_debt_date 
+        =#f.label :bounced_check_bank, "Nombre del banco del cheque devuelto"
+        =#f.text_field :bounced_check_bank
+        =f.label :bounced_check_number, "Número del cheque devuelto"
+        =f.number_field :bounced_check_number
+        =f.label :notes, "Notas"
+        =f.text_field :notes
+        =#hidden_field(:debtor_id,@debtor.id)
+        =#check_box_tag "en plan de pago?", "0", @debt.payment_plan?
+        =f.submit "Crear Factura", class: "btn btn-large btn-primary"
+    /end  

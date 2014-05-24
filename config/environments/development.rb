@@ -38,4 +38,7 @@ Rails.application.configure do
   # Mailer for Devise User Authentication
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   
+  # Email Preview path
+  config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
+  
 end

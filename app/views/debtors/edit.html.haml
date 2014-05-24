@@ -1,0 +1,36 @@
+-#coding: utf-8
+- provide(:title, "Editar Record del Deudor")
+%h1 Editar Record del Deudor 
+.row
+  -if @debtor.errors.any?
+    %p
+      Problemas con:
+    - @debtor.errors.full_messages.each do |msg|
+      %li{:class => "alert alert-error"}
+        = msg
+  /
+  %div{:class => "span6 offset3"}
+    =form_for(@debtor, :method => 'patch') do |f|
+      -# Is this partial below duplicating errors?
+      =# render partial: 'layouts/error_messages', :locals => { :object => f.object }
+      =f.label :name, "Nombre"
+      =f.text_field :name
+      =f.label :email, "Email"
+      =f.email_field :email
+      =f.label :tel, "Teléfono"
+      =f.telephone_field :tel
+      =f.label :ext, "Extención"
+      =f.telephone_field :ext
+      =f.label :address, "Dirección Postal"
+      =f.text_field :address
+      =f.label :location, "Dirección Física"
+      =f.text_field :location
+      =f.label :contact_person, "Persona Contácto"
+      =f.text_field :contact_person
+      =f.label :contact_person_email, "Email de la Persona Contácto"
+      =f.email_field :contact_person_email
+      =f.label :employer_id_number, "Numbero de SS Patronal"
+      =f.text_field :employer_id_number
+      =f.label :ss_hex_digest, "Numbero de SS Personal"
+      =f.text_field :ss_hex_digest
+      =f.submit "Actualizar Record del Deudor", class: "btn btn-large btn-primary"

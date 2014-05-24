@@ -1,0 +1,50 @@
+- provide(:title, "Record del Deudor")
+%h1 Record del Deudor:
+.row
+  %aside.span6
+    %section
+      %h1
+        = @debtor.name
+        %br
+    %section
+      .table-responsive
+        %table.table-bordered
+          %thead
+            %tr
+              %td.span6
+                %p.grey
+                  = @debtor.email
+                  ="    ||   "
+                  = "tel. #{@debtor.tel}"
+                %p
+                  = "Persona Contácto: #{@debtor.contact_person}"
+                  %br
+                  = "EIN: #{@debtor.employer_id_number}"
+                  %br
+                %p
+                  = link_to "<span class='glyphicon glyphicon-pencil'></span> Editar Record del Deudor".html_safe, edit_debtor_path
+      %br   
+      %p
+        -#DONE added params[:id] to request
+        = button_to "Añadir Factura", new_debt_path, :class => "btn btn-large btn-primary", :method => 'get', params: {debtor_id: @debtor.id}
+  %aside.span4
+    %section
+      .table-responsive
+        %table.table-bordered
+          %thead
+            %tr
+              %th.span2
+                Dirección Postal
+              %td.span4
+                = @debtor.address
+          %tbody  
+            %tr
+            %tr
+              %th.grey
+                Dirección Física
+              %td.grey
+                = @debtor.location
+%div
+  %h5
+    = "Facturas:" #(email should be sent to the user's email at firts)
+  = render @debtor.debts

@@ -27,9 +27,7 @@ Rukh was originally 'RucPoc -- registro único de cuentas por cobrar' but now it
 
 
 __License:__
-Part of this code is from Ruby Tutorial book by M. Hartl 
-his code can be found at his [site](http://ruby.railstutorial.org/) and was originally under an MIT license.
-Rest of the code is under GPL v3.
+The code is under GPL v3.
 
 
 image: [wikimedia commons](http://en.wikipedia.org/wiki/File:Edward_Julius_Detmold49.jpg): Charles Maurice Detmold (1883-1908)

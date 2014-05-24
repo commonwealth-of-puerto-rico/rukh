@@ -1,0 +1,21 @@
+-#coding: utf-8
+- provide(:title, "Facturas")
+%h1 Facturas:
+.row
+  %aside.span6
+    %section
+      /Use a table here
+      %table{:class => "table table-bordered table-hover table-condensed"}
+        %thead
+        -@debts_all.each do |debt_item|
+          = render partial: 'list_all_debts', :locals => { :debt => debt_item }
+        /  
+.row
+  %aside.span6
+    %section
+      %h3
+        Archivos de todas las facturas:
+      %a{:href => "#{url_for debts_path(format: 'xls')}", :class => "btn btn-large btn-info"}
+        Bajar datos en Excel
+      %a{:href => "#{url_for debts_path(format: 'csv')}", :class => "btn btn-large btn-info disabled"}
+        Bajar datas en CSV

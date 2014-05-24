@@ -26,7 +26,7 @@ platforms :jruby do
 end
 
 # Puma as server
-gem 'puma', '~> 2.8.0'
+gem 'puma', '~> 2.8.2'
 
 # For CSV importing
 gem 'smarter_csv', '~> 1.0.17'
@@ -34,7 +34,7 @@ gem 'cmess', '~> 0.4.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
-gem 'bootstrap-sass', '~> 2.3.2.2' #3 is available
+gem 'bootstrap-sass', '~> 3.1.1.1' #'~> 2.3.2.2' #'~> 3.1.1.1' is available
 gem 'haml-rails'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -70,11 +70,15 @@ gem 'tzinfo-data'
 # Markdown
 gem 'kramdown' 
 
+# Pagination
+gem 'will_paginate', '~> 3.0.5'
+gem 'bootstrap-will_paginate'
+
+# Console
+gem 'pry'
+
 group :development do
   gem 'localeapp', require: false
-  gem 'pry', require: false
-  # Remember to turn pagination off (for Jruby) on .pryrc file: 
-  # Pry.config.pager = false
   gem 'guard-rspec', '~> 4.2.8'
   gem 'guard-spork', '~> 1.5.1'
   gem 'spork-rails', github: 'sporkrb/spork-rails'
@@ -98,7 +102,7 @@ end
 platforms :ruby do
   group :development do
     gem 'sqlite3'
-    gem 'github-pages', require: false #Jekyll Integration
+    gem 'github-pages', require: false  # Jekyll Integration
   end
   group :production do
     gem 'therubyracer'    # JavaScript library

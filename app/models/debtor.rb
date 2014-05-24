@@ -1,6 +1,8 @@
 require 'HexString'
 class Debtor < ActiveRecord::Base
   
+  has_many :debts
+  
   ## Hooks
   before_save {self.email = email.downcase}
   before_save {self.contact_person_email = email.downcase}
@@ -9,7 +11,7 @@ class Debtor < ActiveRecord::Base
   # before_save record_transaction
   
   ## REGEX
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A(\z|[\w+\-.]+@[a-z\d\-.]+\.[a-z]+)\z/i
   VALID_TEL_REGEX = /\A(\z|([0-9]{3}-?[0-9]{3}-?[0-9]{4}))\z/
   VALID_EIN_REGEX = /\A(\z|([0-9]{2})-?([0-9]{7}))\z/ 
   VALID_SS_REGEX = /\A(\z|([0-9]{3}-?[0-9]{2}-?[0-9]{4}))\z/ 

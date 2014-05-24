@@ -1,0 +1,15 @@
+%li.red
+  =debt.amount_owed_pending_balance
+  %span
+    %li.light-grey.round-top-corners  
+      %em Banco emitidor del cheque:
+      = '#{debt.bounced_check_bank}'
+    %li.light-grey
+      %em Número del cheque devuelto: 
+      = '#{debt.bounced_check_number}'
+    %li.light-grey
+      %em Notas: 
+      = " #{debt.notes}"
+    %li{:class => '#{red_green_yellow_grey_tag(@collection)} round-bottom-corners'}
+      %em Pagada?
+      = " #{debt.paid_in_full? ? 'si' : 'no'} "
