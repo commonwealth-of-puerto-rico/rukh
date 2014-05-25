@@ -2,7 +2,9 @@
   %nav
     %ul
       %li
-        = "usuario actual: #{current_user.nil? ? 'ninguno' : current_user.email }"
+        = "rol: #{ current_user.nil? ? 'ninguno' : current_user.user_role_id }"
+      %li
+        = "usuario actual: #{ current_user.nil? ? 'ninguno' : current_user.email }"
       %li
         = link_to '<i class="icon-info-sign"></i>Ayuda'.html_safe, help_path
       %li
