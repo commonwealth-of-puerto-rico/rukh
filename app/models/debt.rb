@@ -5,9 +5,12 @@ class Debt < ActiveRecord::Base
   #has_many :payment_plans
   
   ## REGEX
-  VALID_PERMIT_NUM_REGEX = //
-  VALID_INFRACTION_NUM_REGEX = //
   VALID_NUM_REGEX = /\A[[:digit:]]+\.?[[:digit:]]*\z/
+  VALID_PERMIT_REGEX = \
+    /\A[[:alpha:]]{2}-?[[:alpha:]]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{1}\z/i
+  VALID_INFRACTION_REGEX = /\A[[:alpha:]]-?[0-9]{2}-?[0-9]{2}-?[0-9]{3}-?[[:alpha:]]{2}\z/i
+  VALID_PERMIT_OR_INFRACTION_REGEX = \
+    /\A([[:alpha:]]{2}-?[[:alpha:]]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{1})|([[:alpha:]]-?[0-9]{2}-?[0-9]{2}-?[0-9]{3}-?[[:alpha:]]{2})\z/i
   
   
   ## Validations
@@ -17,7 +20,9 @@ class Debt < ActiveRecord::Base
             message: "Debe ser un número."}
   validates :bounced_check_number, format: { with: /\A[[:digit:]]*\z/i, 
             message: "Debe ser un número."}
-  
+  validates :permit_infraction_number, format: { with: VALID_PERMIT_OR_INFRACTION_REGEX, 
+            message: "Debe ser un número de multa o permiso."}, 
+            unless: Proc.new { |debt_ex| debt_ex.permit_infraction_number.blank? }
   
   ## Methods
   def find_debtor_name(debtor_id)

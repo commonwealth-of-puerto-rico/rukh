@@ -1,7 +1,9 @@
 %tr
   %td
-    =number_to_currency debt.amount_owed_pending_balance, :unit => "$"
+    =link_to debt.id, debt_path(debt.id)
+  %td
+    =link_to "#{number_to_currency debt.amount_owed_pending_balance, :unit => '$'}", debt_path(debt.id)
   %td
     =debt.original_debt_date
   %td
-    =debt.debtor.name
+    =link_to debt.debtor.name, debtor_path(debt.debtor.id)

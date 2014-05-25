@@ -1,15 +1,16 @@
-%li.red
-  =debt.amount_owed_pending_balance
+%li.grey
+  %strong
+    =link_to "#{number_to_currency debt.amount_owed_pending_balance, :unit => '$'}", debt_path(debt.id)
   %span
     %li.light-grey.round-top-corners  
       %em Banco emitidor del cheque:
-      = '#{debt.bounced_check_bank}'
+      = "#{debt.bank_name}"
     %li.light-grey
       %em Número del cheque devuelto: 
-      = '#{debt.bounced_check_number}'
+      = "#{debt.bounced_check_number}"
     %li.light-grey
       %em Notas: 
       = " #{debt.notes}"
-    %li{:class => '#{red_green_yellow_grey_tag(@collection)} round-bottom-corners'}
+    %li{:class => '#{red_green_yellow_grey_tag(@debt)} round-bottom-corners'}
       %em Pagada?
       = " #{debt.paid_in_full? ? 'si' : 'no'} "
