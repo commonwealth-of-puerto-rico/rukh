@@ -18,9 +18,10 @@ A further goal is:
 
 Due to the expertise found on the EQB (Environmental Quality Board) was limited to Windows this app needed to run on Windows, thus a jruby/java/tomcat7 stack was used.
 
-Instructions for setting up the server machine will be found in the Github Pages.
+Instructions for setting up the server machine will be found in the Github Pages for RucPoc.
+Eventually they will be migrated here as well.
 
-[Github Pages](http://rebelwarrior.github.io/rucpoc/)
+
 
 __Name__
 Rukh was originally 'RucPoc -- registro único de cuentas por cobrar' but now it's just a meaningless-name associated with the [Rukh](http://en.wikipedia.org/wiki/Roc_(mythology)) from Arabian Nights. 
