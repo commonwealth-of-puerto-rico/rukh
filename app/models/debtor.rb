@@ -5,6 +5,8 @@ class Debtor < ActiveRecord::Base
   
   ## Hooks
   before_save {self.email = email.downcase}
+  before_save {self.ss_last_four = last_four(ss_hex_digest) unless ss_hex_digest.blank?}
+  before_save {self.uses_personal_ss = true unless ss_hex_digest.blank?}
   before_save {self.contact_person_email = email.downcase}
   before_save {self.ss_hex_digest = Debtor.encrypt(ss_hex_digest)}
   #TODO before save clean up telephone number and ss
@@ -24,8 +26,12 @@ class Debtor < ActiveRecord::Base
     message: "Email invalido"  }
   validates :contact_person_email, format: { with: VALID_EMAIL_REGEX,
     message: "Email invalido"  }  
+  validates :employer_id_number, absence: true, 
+    unless: Proc.new { |debtor_ex| debtor_ex.ss_hex_digest.blank? }
+  validates :ss_hex_digest, absence: true, 
+    unless: Proc.new { |debtor_ex| debtor_ex.employer_id_number.blank? }
   validates :employer_id_number,  uniqueness: true, 
-    unless: Proc.new { |debtor_ex| debtor_ex.employer_id_number.blank?  }
+    unless: Proc.new { |debtor_ex| debtor_ex.employer_id_number.blank? }
   validates :ss_hex_digest,       uniqueness: true, 
     unless: Proc.new { |debtor_ex| debtor_ex.ss_hex_digest.blank?  }
   validates :tel, format: { with: VALID_TEL_REGEX, 
@@ -66,7 +72,7 @@ class Debtor < ActiveRecord::Base
     when /\A([[:digit:]]{3}-[[:digit:]]{2}-[[:digit:]]{4})\z/
       HexString.new(Debtor.encrypt(search_term)) #or Encrypt(search_term)
     when /\A([0-9]{2}-[0-9]{7})\z/  #REGEX for EIN
-      remove_hyphens(search_term).to_i
+      Debtor.remove_hyphens(search_term).to_i
     when /\A[[:xdigit:]]+\z/i
       HexString.new search_term.to_s.downcase
     else
@@ -75,11 +81,14 @@ class Debtor < ActiveRecord::Base
   end
   
   private
+  def last_four(ss_num)
+    Debtor.remove_hyphens(ss_num).split('')[-4..-1].join('')
+  end
   def Debtor.remove_hyphens(term)
     term.to_s.each_char.select{|x| x.match /[0-9]/}.join('')
   end
   def Debtor.encrypt(token)
-    Digest::SHA1.hexdigest(Debtor.salt(remove_hyphens token ).to_s)
+    Digest::SHA1.hexdigest(Debtor.salt(Debtor.remove_hyphens token ).to_s)
   end
   def Debtor.salt(token, salt=Rails.application.secrets.salt) #salt stored in secrets.yml
     token.to_i + salt

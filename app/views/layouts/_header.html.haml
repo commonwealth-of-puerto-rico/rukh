@@ -23,7 +23,7 @@
                 -# %li= link_to "Los Usuarios", users_path              #Unavailabe in Devise
                 %li= link_to "Actualizar Información", edit_user_registration_path(current_user)
                 %li.divider
-                %li= link_to "Salir", destroy_user_session_path, method: "delete"
+                %li= link_to "Log out", destroy_user_session_path, method: "delete"
           -else
             %li= link_to "Log in", new_user_session_path #'/login'
           /

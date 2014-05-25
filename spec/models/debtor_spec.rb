@@ -31,7 +31,9 @@ describe Debtor do
       expect(happy_zombie_debtor).to be_valid
     end
     
-    it "contains either an ein or a ss but not both"
+    it "contains either an ein or a ss but not both" do
+      expect(unhappy_zombie_debtor.errors_on(:employer_id_number).size).to eq 1
+    end
     
     it "returns false for uses_personal_ss if ien present" do
       expect(happy_zombie_debtor.employer_id_number.nil?).to eq false

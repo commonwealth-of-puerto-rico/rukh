@@ -1,5 +1,7 @@
 %tr
   %td
-    =debt.amount_owed_pending_balance
+    =number_to_currency debt.amount_owed_pending_balance, :unit => "$"
   %td
     =debt.original_debt_date
+  %td
+    =debt.debtor.name

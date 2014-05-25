@@ -11,6 +11,11 @@ class DebtsController < ApplicationController
   def index
     assign_current_user
     @debts_all = Debt.all()
+    respond_to do |format|
+      format.html
+      format.csv { send_data @debts_all.to_csv}
+      format.xls
+    end
   end
   
   def create

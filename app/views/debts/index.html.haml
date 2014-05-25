@@ -4,18 +4,25 @@
 .row
   %aside.span6
     %section
-      /Use a table here
-      %table{:class => "table table-bordered table-hover table-condensed"}
-        %thead
-        -@debts_all.each do |debt_item|
-          = render partial: 'list_all_debts', :locals => { :debt => debt_item }
-        /  
+      %h3
+        Archivos de todas las facturas:
+      %a{:href => "#{url_for debts_path(format: 'xls')}", :class => "btn btn-info"}
+        Bajar datos en Excel
+      %a{:href => "#{url_for debts_path(format: 'csv')}", :class => "btn btn-info"}
+        Bajar datas en CSV
 .row
   %aside.span6
     %section
       %h3
-        Archivos de todas las facturas:
-      %a{:href => "#{url_for debts_path(format: 'xls')}", :class => "btn btn-large btn-info"}
-        Bajar datos en Excel
-      %a{:href => "#{url_for debts_path(format: 'csv')}", :class => "btn btn-large btn-info disabled"}
-        Bajar datas en CSV
+        Listado:
+      /Use a table here
+      %table{:class => "table table-bordered table-striped table-hover table-condensed"}
+        %th{:class => "table-header" } 
+          Cantidad
+        %th
+          Fecha
+        %th
+          Nombre
+        -@debts_all.each do |debt_item|
+          = render partial: 'list_all_debts', :locals => { :debt => debt_item }
+        /  

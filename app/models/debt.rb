@@ -30,7 +30,6 @@ class Debt < ActiveRecord::Base
       csv << column_names + [:debtor_name]
       all.each do |debt_record|
         debtor_name = debt_record.find_debtor_name(debt_record.attributes["debtor_id"])
-        # csv << collection.attributes.values_at(*column_names)
         csv << (debt_record.attributes.values_at(*column_names) << debtor_name)
       end
     end
