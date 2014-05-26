@@ -8,7 +8,11 @@ class Debtor < ActiveRecord::Base
   before_save {self.ss_last_four = last_four(ss_hex_digest) unless ss_hex_digest.blank?}
   before_save {self.uses_personal_ss = true unless ss_hex_digest.blank?}
   before_save {self.contact_person_email = email.downcase}
-  before_save {self.ss_hex_digest = Debtor.encrypt(ss_hex_digest)}
+  before_save do
+    unless self.ss_hex_digest.blank?
+      self.ss_hex_digest = Debtor.encrypt(ss_hex_digest)
+    end
+  end
   #TODO before save clean up telephone number and ss
   # before_save record_transaction
   

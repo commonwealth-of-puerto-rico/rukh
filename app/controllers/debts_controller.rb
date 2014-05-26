@@ -10,7 +10,9 @@ class DebtsController < ApplicationController
   end
   def index
     assign_current_user
-    @debts_all = Debt.all()
+    @debts_all = Debt.paginate(page: params[:page], per_page: 10)
+    # @debts_all = Debt.all()
+    
     respond_to do |format|
       format.html
       format.csv { send_data @debts_all.to_csv}

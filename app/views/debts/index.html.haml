@@ -24,7 +24,9 @@
         %th
           Fecha
         %th
-          Nombre
+          Nombre  
         -@debts_all.each do |debt_item|
           = render partial: 'list_all_debts', :locals => { :debt => debt_item }
-        /  
+        = will_paginate(@debts_all)
+        /
+          

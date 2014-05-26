@@ -10,14 +10,14 @@
 =# "Search Params? #{!params[:search].nil?}"
 =# "Debtor #{@debtors.empty?}"
 %h1 Lista de Deudores
--if params[:search].nil?
+-if params[:search].blank?
   = will_paginate
 
   %ul.debtors
     = render @debtors
     /
 
-  = will_paginate
+  = will_paginate @debtors
 -elsif @debtors.empty?
   %h4="No hay resultados para: #{params[:search]}" 
 -else
