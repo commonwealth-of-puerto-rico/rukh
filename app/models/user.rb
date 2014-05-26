@@ -4,6 +4,5 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable
          
-  # has_one :role
-  # belongs_to :user_role       
+  # has_one :user_role #, -> {readonly}    
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140525225208) do
+ActiveRecord::Schema.define(version: 20140526140959) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 20140525225208) do
     t.boolean  "developer",  default: false
     t.integer  "user_id"
   end
+
+  add_index "user_roles", ["role_name"], name: "index_user_roles_on_role_name", unique: true
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

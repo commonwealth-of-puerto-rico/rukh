@@ -2,7 +2,8 @@
   %nav
     %ul
       %li
-        = "rol: #{ current_user.nil? ? 'ninguno' : UserRole.find_by_id(current_user.user_role_id).role_name } REFACTOR"
+        -#TODO REFACTOR##########################
+        = "rol: #{ current_user.nil? ? 'ninguno' : UserRole.find_by_id(current_user.user_role_id).role_name }"
       %li
         = "usuario actual: #{ current_user.nil? ? 'ninguno' : current_user.email }"
       %li

@@ -1,8 +1,10 @@
 class Debt < ActiveRecord::Base
   
   ## Hooks
-  belongs_to :debtor, touch: true
+  belongs_to :debtor, touch: true #,dependent: :destroy
   #has_many :payment_plans
+  #Dependend Destroy means:
+  # if Debtor is erase so are all the debts associeated with.
   
   ## REGEX
   VALID_NUM_REGEX = /\A[[:digit:]]+\.?[[:digit:]]*\z/

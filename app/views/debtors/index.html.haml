@@ -11,7 +11,7 @@
 =# "Debtor #{@debtors.empty?}"
 %h1 Lista de Deudores
 -if params[:search].blank?
-  = will_paginate
+  - #will_paginate
 
   %ul.debtors
     = render @debtors
