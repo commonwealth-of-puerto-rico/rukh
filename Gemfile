@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-heroku = false
+server = ['sql', 'mysql', 'heroku'][1] #remember to change db.yml
 
 #ruby=jruby-1.7.12
 ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.12' 
@@ -11,17 +11,20 @@ gem 'rails', '4.1.1'
 
 platforms :jruby do
   group :development do
-    gem 'activerecord-jdbcsqlite3-adapter'#, '~> 1.3.0'
+    gem 'activerecord-jdbcsqlite3-adapter'#, '~> 1.3.7'
   end
   group :production do
-    if heroku 
-      #Procfile for heroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.0'
-    else
-      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.2'
+    #Procfileheroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
+    case server
+    when 'heroku' 
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.7'
+    when 'sql'
+      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.7'
+    when 'mysql'
+      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.7'
     end
   end 
-  gem 'activerecord-jdbc-adapter', '~> 1.3.0' 
+  gem 'activerecord-jdbc-adapter', '~> 1.3.7' 
   gem 'therubyrhino' #JavaScript library
 end
 
@@ -75,10 +78,11 @@ gem 'will_paginate', '~> 3.0.5'
 gem 'bootstrap-will_paginate'
 
 # Console
-gem 'pry'
+# gem 'pry', require: false
 
 group :development do
   gem 'localeapp', require: false
+  gem 'pry'
   gem 'guard-rspec', '~> 4.2.8'
   gem 'guard-spork', '~> 1.5.1'
   gem 'spork-rails', github: 'sporkrb/spork-rails'

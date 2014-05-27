@@ -51,8 +51,11 @@ module Rukh
     config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews/"
     
     console do
-      require 'pry'
-      config.console = Pry
+      begin
+        require 'pry'
+        config.console = Pry if defined? Pry
+      rescue LoadError
+      end
       # Below seems unneccesary left for just in case.
       # unless defined? Pry::ExtendCommandBundle
       #   Pry::ExtendCommandBundle = Module.new

@@ -11,6 +11,8 @@ class Debtor < ActiveRecord::Base
   before_save do
     unless self.ss_hex_digest.blank?
       self.ss_hex_digest = Debtor.encrypt(ss_hex_digest)
+    else
+      self.ss_hex_digest = nil #'NULL'
     end
   end
   #TODO before save clean up telephone number and ss

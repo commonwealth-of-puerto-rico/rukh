@@ -8,9 +8,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = favicon_link_tag(asset_path('favicon.ico'))
-    %style
-      [class^="icon-"],[class*=" icon-"]{
-      = "background-image: url(#{asset_path 'glyphicons-halflings.png'});};" 
+    / %style
+    /   [class^="icon-"],[class*=" icon-"]{
+    /   = "background-image: url(#{asset_path 'glyphicons-halflings.png'});};" 
     = render 'layouts/shim'
   %body  
     = render 'layouts/header'

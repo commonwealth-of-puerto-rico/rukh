@@ -80,4 +80,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  
+  # For Warbler added by David Acevedo (also ssl)
+  config.assets.precompile = config.assets.precompile + %w( *.png *.js *.scss *.coffee *.css )
+  config.force_ssl = false # Changed for Warbler to false
 end

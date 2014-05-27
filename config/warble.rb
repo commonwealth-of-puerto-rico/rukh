@@ -5,7 +5,8 @@
 
 # Warbler web application assembly configuration file
 Warbler::Config.new do |config|
-  config.jar_name = "rucpocver#{Time.now.to_i}"
+  config.jar_name = "rukhpre#{Time.now.to_i}"
+  # config.jar_name = "rukh"
   # The double ## does versioning in Tomcat but kills the war in windows
   # config.features = %w(executable)
   config.excludes = FileList["**/*/*.box"]
@@ -139,7 +140,7 @@ Warbler::Config.new do |config|
   # config.webxml.booter = :rails
 
   # Set JRuby to run in 1.9 mode.
-  # config.webxml.jruby.compat.version = "2.0" #"1.9"
+  # config.webxml.jruby.compat.version = "2.0" #"1.9" #set now in web.xml
 
   # When using the :rack booter, "Rackup" script to use.
   # - For 'rackup.path', the value points to the location of the rackup
