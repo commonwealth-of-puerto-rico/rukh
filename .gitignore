@@ -37,3 +37,7 @@ config/database.yml
 #Ignoring Mail settings
 /config/initializers/mail.rb
 
+#Ignoring Pre-compiled Assets
+/public/assets/*.png
+/public/assets/*.jpg
+

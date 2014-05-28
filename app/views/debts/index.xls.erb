@@ -4,7 +4,7 @@
   xmlns:x="urn:schemas-microsoft-com:office:excel"
   xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
   xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Sheet1">
+  <Worksheet ss:Name="Facturas">
     <Table>
       <Row>
         <Cell><Data ss:Type="String">ID</Data></Cell>
@@ -26,11 +26,11 @@
       <Row>
         <Cell><Data ss:Type="Number"><%= factura.id %></Data></Cell>
         <Cell><Data ss:Type="String"><%= factura.permit_infraction_number %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= factura.amount_owed_pending_balance %></Data></Cell>
+        <Cell><Data ss:Type="Currency"><%= factura.amount_owed_pending_balance %></Data></Cell>
         <Cell><Data ss:Type="String"><%= factura.paid_in_full %></Data></Cell>
         <Cell><Data ss:Type="String"><%= factura.type_of_debt %></Data></Cell>
         <Cell><Data ss:Type="Date"><%= factura.original_debt_date %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= factura.originating_debt_amount %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= factura.originating_debt_amount  %></Data></Cell>
         <Cell><Data ss:Type="Number"><%= factura.debtor_id %></Data></Cell>
         <Cell><Data ss:Type="String"><%= factura.find_debtor_name(factura.debtor_id) %></Data></Cell>
         <Cell><Data ss:Type="String"><%= factura.in_payment_plan %></Data></Cell>

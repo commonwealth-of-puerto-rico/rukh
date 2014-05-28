@@ -22,7 +22,8 @@ class Debtor < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A(\z|[\w+\-.]+@[a-z\d\-.]+\.[a-z]+)\z/i
   VALID_TEL_REGEX = /\A(\z|([0-9]{3}-?[0-9]{3}-?[0-9]{4}))\z/
   VALID_EIN_REGEX = /\A(\z|([0-9]{2})-?([0-9]{7}))\z/ 
-  VALID_SS_REGEX = /\A(\z|([0-9]{3}-?[0-9]{2}-?[0-9]{4}))\z/ 
+  VALID_SS_REGEX = /\A(\z|([0-9]{3}-?[0-9]{2}-?[0-9]{4}))\z/
+  VALID_DATE_REGEX = // 
 
   
   ## Validations
