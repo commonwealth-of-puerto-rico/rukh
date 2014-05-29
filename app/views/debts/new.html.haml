@@ -31,7 +31,7 @@
       =form_for(@debt, url: {params: {debtor_id: @debtor.id}, controller: :debts, action: :create} ) do |f|
         -#render partial: 'layouts/error_messages', :locals => { :object => f.object }
         =f.label :permit_infraction_number, "Número de Permisno o Multa"
-        =f.text_field :permit_infraction_number
+        =f.text_field :permit_infraction_number, placeholder: 'ex. PG-GE-71-12-10-4 o M-12-12-050-RC'
         =f.label :amount_owed_pending_balance, "Cantidad debida"
         =f.number_field :amount_owed_pending_balance   
         =f.label :original_debt_date, "Fecha de la deuda originadora"

@@ -29,8 +29,9 @@ class ImportLogic
   
   def self.process_CSV_file(file, total_lines = 0, charset="bom|utf-8")
     begin 
-      start_time = Time.now
-      counter = []
+      # setting up time keeing 
+      start_time, counter = Time.now, []
+
       ActiveRecord::Base.transaction do
         SmarterCSV.process(file, {:chunk_size => 10, verbose: true, file_encoding: "#{charset}" } ) do |file_chunk|
           file_chunk.each do |record_row|
@@ -39,11 +40,11 @@ class ImportLogic
             counter << 1
           end
         end
-        total_count = counter.size #progress_bar.read
-        end_time = Time.now
+        total_count, end_time = counter.size, Time.now  #finishing up time keeping
         total_count_hash = { total_lines: total_count, time: ((end_time - start_time) / 60 ).round(2) }
         puts "\033[32m#{total_count_hash}\033[0m\n"
       end
+      
     ensure
       # CSV::MalformedCSVError
       #something gets said

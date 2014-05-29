@@ -18,7 +18,7 @@
       =f.label :email, "Email"
       =f.email_field :email
       =f.label :tel, "Teléfono"
-      =f.telephone_field :tel
+      =f.telephone_field :tel, placeholder: 'ex. 787-555-1234'
       =f.label :ext, "Extención"
       =f.telephone_field :ext
       =f.label :address, "Dirección Postal"
@@ -30,7 +30,7 @@
       =f.label :contact_person_email, "Email de la Persona Contácto"
       =f.email_field :contact_person_email
       =f.label :employer_id_number, "Numbero de SS Patronal"
-      =f.text_field :employer_id_number
+      =f.text_field :employer_id_number, placeholder: 'ex. 12-1234567'
       =f.label :ss_hex_digest, "Numbero de SS Personal"
-      =f.text_field :ss_hex_digest
+      =f.text_field :ss_hex_digest, placeholder: 'ex. 123-12-1234'
       =f.submit "Actualizar Record del Deudor", class: "btn btn-large btn-primary"
