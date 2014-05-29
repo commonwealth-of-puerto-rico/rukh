@@ -80,6 +80,9 @@ gem 'bootstrap-will_paginate'
 # Console
 # gem 'pry', require: false
 
+# Email Previews
+gem 'rails_email_preview', '~> 0.2.20'
+
 group :development do
   gem 'localeapp', require: false
   gem 'pry'

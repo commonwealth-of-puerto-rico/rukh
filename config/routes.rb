@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   match 'debtor/search',  to: 'debtors#search',     via: 'get', as: 'search'
   match '/import',        to: 'import#create',      via: 'post'
   match '/import',        to: 'import#new',         via: 'get'
+  match '/email/send',    to: 'emails#send',        via: 'get'
 
   resources :debtors 
   resources :debts

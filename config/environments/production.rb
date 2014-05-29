@@ -81,7 +81,21 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
+  # SMTP configuration
+  config.action_mailer.default_url_options = { host: 'jca.pr.gov'}
+  config.action_mailer.delivery_method = :smtp 
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true # should be false
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+    address: Rails.application.secrets.smpt, 
+    port: '25'
+  }
+  # :address, :port, :domain, :user_name, :password, 
+  # :authentication {:plain, :login, :cram_md5}
+  
   # For Warbler added by David Acevedo (also ssl)
   config.assets.precompile = config.assets.precompile + %w( *.png *.js *.scss *.coffee *.css )
   config.force_ssl = false # Changed for Warbler to false
+  
 end
