@@ -23,4 +23,4 @@
       %span{:class => 'glyphicon glyphicon-envelope'}
         = button_to "Generar Primer Aviso", email_send_path, :class => "btn btn-large btn-primary", :method => :get, params: {email: current_user.email, mailer: 'first_notification'}
     %p
-      = link_to "Vista preliminar de Emails", "/rails/mailers/"
+      = link_to "Vista preliminar de Emails", rails_email_preview.rep_emails_url(email_locale: 'es')

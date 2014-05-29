@@ -1,0 +1,34 @@
+es:
+  rep:
+    base:
+      email:
+        one: "1 email"
+        other: "%{count} emails"
+      mailer:
+        one: "1 grupo de cartas"
+        other: "%{count} grupos de cartas"
+      in: "en"
+      loading: "Cargando..."
+    test_deliver:
+      no_delivery_method: "Please set 'config.action_mailer.delivery_method' to send emails in '%{environment}' environment"
+      provide_email: "¿Enviar a cual dirección?"
+      sent_notice: "Enviado a %{address} via %{delivery_method}"
+  layouts:
+    rails_email_preview:
+      application:
+        head_title: "Emails - REP"
+  rails_email_preview:
+    emails:
+      index:
+        list_title: "Listado de Emails"
+      show:
+        breadcrumb_list: "Emails"
+      send_form:
+        send_are_you_sure: "Esto eviará este email immediatamente. ¿De acuerdo?"
+        send_btn: "Enviar a:"
+        send_recipient_placeholder: "Email"
+  integrations:
+    cms:
+      customize_cms_for_rails_email_preview:
+        edit_email: "Editando email"
+        view_link: "Prever"

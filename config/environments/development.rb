@@ -37,17 +37,17 @@ Rails.application.configure do
   
   # Mailer for Devise User Authentication
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: "smtp.mail.yahoo.com",
-    port: '465', 
-    domain: Rails.application.secrets.mdom,
-    authentication: 'plain'
-    enable_starttls_auto: true,
-    user_name: Rails.application.secrets.muser,
-    password: ENV["YAHOOO_PASSWORD"]
-  }
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.mail.yahoo.com",
+  #   port: '465', 
+  #   domain: Rails.application.secrets.mdom,
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true,
+  #   user_name: Rails.application.secrets.muser,
+  #   password: ENV["YAHOOO_PASSWORD"]
+  # }
   
   # Email Preview path
   config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
