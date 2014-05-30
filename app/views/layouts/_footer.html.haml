@@ -7,7 +7,8 @@
       %li
         = "usuario actual: #{ current_user.nil? ? 'ninguno' : current_user.email }"
       %li
-        = link_to '<i class="icon-info-sign"></i>Ayuda'.html_safe, help_path
+        %span.gplyhicon.glyphicon-question-sign
+        = link_to '<span class="glyphicon glyphicon-question-sign"></span> Ayuda'.html_safe, help_path
       %li
         = link_to "Usuario Nuevo", new_user_registration_path
       

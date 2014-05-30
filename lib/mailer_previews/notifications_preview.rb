@@ -13,3 +13,5 @@ end
 # Note: It is very important that this file be named in Underscores. Otherwise ActionMailer will miss it
 # Configuration is in config/environments/development.rb (because previews tend to only be used in development.)
 #TODO see if it will work in production
+
+#TODO is this file needed??
