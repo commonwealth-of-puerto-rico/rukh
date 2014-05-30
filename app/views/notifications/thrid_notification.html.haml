@@ -1,0 +1,22 @@
+!!!5
+=#render(markdown:'/_top')
+
+= Date.today.humanize
+
+%br
+%br
+
+= recipient.address unless recipient.blank?
+
+
+%h3
+  = "ASUNTO       :" + "/TERCER AVISO"
+  = "FACTURA NUM. :"
+  = "IMPORTE      :"
+  
+  
+  
+%body
+
+
+  =#render(markdown:'/_third_notice_body')
