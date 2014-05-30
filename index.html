@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content=" Blog Archives Recent Posts ">
+  <meta name="description" content="Procedure for a tomcat7 deploy on Windows &amp; Ubuntu Procedimiento para hacer un tomcat7/Rails4 deploy en windows &amp; ubuntu Server: Download &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,123 @@
       <div class="blog-index">
   
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/github/blog/2014/05/30/tomcat-instructions/">Tomcat-instructions</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-30T09:31:43-04:00" pubdate data-updated="true">May 30<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Procedure for a tomcat7 deploy on Windows &amp; Ubuntu</h2>
+
+<h3>Procedimiento para hacer un tomcat7/Rails4 deploy en windows &amp; ubuntu</h3>
+
+<h2>Server:</h2>
+
+<ol>
+<li>Download <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK7</a> + <a href="http://tomcat.apache.org/download-70.cgi">tomcat7</a> + <a href="http://www.jruby.org/download">JRuby 1.7.5 or later</a> + <a href="https://downloads.mariadb.org/">Mariadb5.5</a> (or MySQL db)</li>
+<li>Bajar el Java Development Kit 7 (mas reciente), tomcat 7, JRuby 1.7.5 o mas reciente (1.7.10 es el mas reciente) y Mariadb 5.5 (o MySQL).</li>
+<li>Set <code>JRUBY_OPTS --2.0</code> in the Environmental Variables.</li>
+<li>En &lsquo;Control Panel > System > Advanced system settings >> Environmental Variables&hellip;&rsquo; cree una nueva variable <code>JRUBY_OPTS</code> y en su valor ponga <code>--2.0</code>.  Este paso posiblemente no sea necesario con JRuby 9K en adelante.  <img src="environmental_variables.png" title="Environmental Variables" alt="Environmental Variables" /></li>
+<li>Download and install Java Cryptographic Extensions (JCE) security files for Java7 and  on your <code>jre7/lib/security</code> folder overwrite the <code>local_policy.jar</code> and <code>US_export_policy.jar</code>. In windows the JRE is located usually in <code>Program Files</code>.<img src="JCE_replace_files.png" title="JCE replace files" alt="Files to Replace" /></li>
+<li>Bajar e instalar los JCE (Java Cryptographic Exentsions) para windows del website de Oracle.</li>
+<li><strong>NO SPACES</strong> on path for tomcat!!! (no # either) (windows limitation)</li>
+<li>El path para la instalacion de tomcat no puede tener espacios ni caracteres especiales.</li>
+<li>At the WEB-INF dir do <code>jruby -S rake db:migrate RAILS_ENV=production</code></li>
+<li>Corra el commando <code>jruby -S rake db:migrate RAILS_ENV=production</code> para crear la base de datos. El commando debe correr del archivo localizado en <code>&lt;tomcat location&gt;/webapps/&lt;app name&gt;/WEB-INF/</code></li>
+<li>Set Tomcat server Heap memory up on the Java tab in windows (Rails 4 requirement) or in <code>/etc/default/tomcat7</code> in Ubuntu Linux.<img src="tomcat_config_windows.png" title="Tomcat Windows Java Config" alt="Tomcat Windows Java Config" /><br/>
+Windows requires only the first two options set while Ubuntu requires all three.
+
+<ul>
+<li><code>-XX:MaxPermSize=256M</code></li>
+<li><code>-XX:PermSize=256M</code></li>
+<li><code>-Xmx1024m</code> (possibly can be lower, like 512m)</li>
+<li>Located in <code>/etc/default/tomcat7</code> in Ubuntu
+
+<ul>
+<li>Cambiar el setting de &lsquo;Heap Memory&rsquo; en el tab de Java en la aplicación para el monitoreo de Tomcat (Windows) o en la configuración de Java. La ultima opción es particularmente importante para Rails 4.1 y Ubuntu. En Windows solo las primeras dos son requisito</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Set up the admin user for Tomcat. In tomcat/conf/tomcat-users.xml set up the following lines: <img src="tomcatuserssettings.png" title="Tomcat User Settings" alt="Tomcat User Settings" /></p></li>
+<li><p>Increase tomcat7 manager&rsquo;s war deploy size if you want to deploy form the admin gui.
+ <code>tomcat7/webapps/manager/WEB-INF/web.xml</code>
+ Ubuntu: <code>/etc/share/tomcat7-admin/</code></p></li>
+<li><p>Run <code>bundle exec rake db:create db:schema:load RAILS_ENV=production</code> (this command can be run from the dev computer if it&rsquo;s in the same network and can connect to the database.)</p></li>
+</ol>
+
+
+<h2>En la maquina de deploy</h2>
+
+<ol>
+<li>Utilize Warble 1.4.0.beta1 o mas reciente</li>
+<li>Cree un web.xml para que se copie &mdash; no lo deje autogenerar.</li>
+<li>Run JRuby Lint to find issues</li>
+<li>Flip heroku settins en:</li>
+<li>Gemfile</li>
+<li>config/application.rb:<br/>
+&#8220;`
+
+<h1>For Warble</h1>
+
+<p>config.assets.enabled = true
+config.assets.initialize_on_precompile = false
+&#8220;`</p></li>
+<li>file</li>
+</ol>
+
+
+<p>Notas:</p>
+
+<p>Ubuntu: <code>sudo service tomcat7 {stop|start|restart}</code>
+Ubuntu: ROOT is in <code>/var/lib/tomcat7/ROOT</code>
+Ubuntu: Logs are in <code>/var/log/tomcat7/</code></p>
+
+<h2>Usando tomcat en Mac con Homebrew</h2>
+
+<p><code>hombrew install tomcat</code></p>
+
+<p>Verifica con
+<code>catalina -h</code> &amp; <code>catalina run</code>
+To start/stop the server from the command line you use the catalina shell script:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ /usr/local/Cellar/tomcat/7.0.53/bin/catalina run
+</span><span class='line'>$ /usr/local/Cellar/tomcat/7.0.53/bin/catalina stop</span></code></pre></td></tr></table></div></figure>
+
+
+<p>¿Donde esta el directorio webapps?
+<code>/usr/local/Cellar/tomcat/7.0.53/libexec/webapps/</code></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
     <a href="/github/blog/archives">Blog Archives</a>
@@ -77,6 +194,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/github/blog/2014/05/30/tomcat-instructions/">Tomcat-instructions</a>
+      </li>
     
   </ul>
 </section>
