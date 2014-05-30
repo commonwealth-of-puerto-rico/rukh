@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://commonwealth-of-puerto-rico.github.io//github/atom.xml" rel="self"/>
   <link href="http://commonwealth-of-puerto-rico.github.io//github/"/>
-  <updated>2014-05-30T09:38:39-04:00</updated>
+  <updated>2014-05-30T09:42:00-04:00</updated>
   <id>http://commonwealth-of-puerto-rico.github.io//github/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,123 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Deployment-instructions]]></title>
+    <link href="http://commonwealth-of-puerto-rico.github.io//github/blog/2014/05/30/deployment-instructions/"/>
+    <updated>2014-05-30T09:41:27-04:00</updated>
+    <id>http://commonwealth-of-puerto-rico.github.io//github/blog/2014/05/30/deployment-instructions</id>
+    <content type="html"><![CDATA[<h1>Deploying</h1>
+
+<blockquote><p>In order to be able to deploy on both Windows and Linux a Tomcat7 deploy was selected. Heroku was used as a test bed.</p></blockquote>
+
+<p>Para hacer el deploy que pueda funcionar en Windows y en Linux se selecionó JRuby/Java/Tomcat7 y como prueba Heroku.</p>
+
+<p>Para hacer el deploy a tomcat primero este tiene que estar ready para un aplicación Rails 4.</p>
+
+<p>Sigua las instruciones en <a href="tomcat_instructions.md" title="Instruciones para Tomcat">Instruciones para Tomcat</a> las cuales sirven para Linux o Windows.</p>
+
+<p>Despues de preparada la maquina para el deploy en la maquina de &lsquo;development&rsquo; corra los comandos para generar el war file.</p>
+
+<p>Translade el war file al file &lt;TOMCAT_HOME>/webapps y corra el tomcat server.</p>
+
+<blockquote><p>Ubuntu: <code>sudo service tomcat7 {stop|start|restart}</code><br/>
+Windows: Apache Tomcat>Monitor Tomcat &mdash; General Tab >> Start</p></blockquote>
+
+<p>Esto debe crear y poblar un folder en en webapps con el mismo nombre del warfile.
+Esto puede tomar bastante tiempo&hellip;</p>
+
+<h1>War file</h1>
+
+<p>La generación automatica del warfile es usando el gem Warble version 1.4.0 o mas reciente. Pero esta gema tiene ciertos &lsquo;gotchas&rsquo; entre ellos que los file como web.xml que auto genera pueden contener caracteres chatarra al final, por lo tantos deben ser incluidos manualmente en el projecto para que Warble los cópie en vez de generarlos.</p>
+
+<p>Warble utiliza el file <code>config/warble.rb</code> si existe para su configuración.
+Se utilizan las siguientes configuraciones:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>config.jar_name = "rucpocver#{Time.now.to_i}"
+</span><span class='line'>config.excludes = FileList["**/*/*.box"]
+</span><span class='line'>config.includes = FileList["Rakefile"]
+</span><span class='line'>config.webserver = 'jenkins-ci.winstone'
+</span><span class='line'>config.dirs = %w(app config db lib log vendor tmp bin public)
+</span><span class='line'>config.bundle_without = []
+</span><span class='line'>  #config.features = %w(executable)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>La primera crea la el nombre del jar con la añadidura del tiempo para evitar conflictos de nombre.<br/>
+La segunda remueve cualquier file .box para deploys de torquebox.</p>
+
+<p>Todas las opciones <code>config.webxml</code> son removidas para crearlas en el web.xml ya hecho. Pero si fuera a generar el primero (siempre y cuando chequeé que el file este bien) estas son las opciones:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>config.webxml.rails.env = 'production'
+</span><span class='line'>config.webxml.jruby.compat.version = "2.0"
+</span><span class='line'>config.webxml.jruby.min.runtimes = 1
+</span><span class='line'>config.webxml.jruby.max.runtimes = 1 </span></code></pre></td></tr></table></div></figure>
+
+
+<p>Tambien se le puede añadir esta linea al <code>web.xml</code> para darle un nombre a la aplicación en el dashboard de Tomcat
+<code>&lt;display-name&gt;Registro de Cuentas por Cobrar&lt;/display-name&gt;</code></p>
+
+<ul>
+<li><p>Para crear el war file vaya al directorio del app y corra:<br/>
+  <code>warble</code></p></li>
+<li><p>Para ver las opciones de warble use <code>warble -T</code></p></li>
+</ul>
+
+
+<h4>Cambios a config/initializers/production.rb y config/application.rb</h4>
+
+<p>-Añadir esto a <code>config/initializers/production.rb</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>  # For Warbler
+</span><span class='line'>  config.assets.precompile = config.assets.precompile + %w( *.js *.scss *.coffee *.css )
+</span><span class='line'>  config.force_ssl = false # Changed for Warbler to false</span></code></pre></td></tr></table></div></figure>
+
+
+<p>-Añadir esto a <code>config/application.rb</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   # For Warble
+</span><span class='line'>    config.assets.enabled = true
+</span><span class='line'>    config.assets.initialize_on_precompile = false</span></code></pre></td></tr></table></div></figure>
+
+
+<p>-Correr <code>rake assets:precompile</code>?</p>
+
+<h1>Trouble shooting</h1>
+
+<ol>
+<li><p>Me sale un error de JRuby version&hellip;<img src="NewVersionofJRUBY.png" alt="Error Page for JRuby version" /></p>
+
+<blockquote><p>Este error es probablemente porque un gem llamado jruby-jars que contiene el runtime de jruby esta en la version pasada corra <code>bundle update jruby-jars</code> en la maquina de development y corra warble again.</p></blockquote></li>
+<li><p>No corre Tomcat7 en Windows pero funciona en Linux</p>
+
+<blockquote><p>Asegurese que no haya ningún tipo de espacio (&lsquo; &rsquo;) o caracter especial (como #) en el PATH de tomcat. Por ejemplo el sugerido es <code>C:\ApacheTomcat\</code> pero este que funciona el Linux no funciona en windows: &lsquo;ApacheTomcta#7&rsquo; o uno con espacios &lsquo;Apache Tomcat&rsquo;.</p></blockquote></li>
+<li><p>Apache Tomcat sube pero la aplicación no corre</p>
+
+<blockquote><p>Creaste la base de datos? Corre <code>jruby -S rake db:migrate RAILS_ENV=production</code> por si acaso.</p></blockquote></li>
+<li><p>Algo raro con los war files&hellip;</p>
+
+<blockquote><p>Warble tiene un bug que genera caracteres chatarra al final de files como: <code>web.xml</code> si ese el caso puede eliminar estos caracteres chatarra o mejor y sugerido crear un web.xml file en el directorio en la maquina &lsquo;development&rsquo; para que Warble lo copie y no lo genere.</p></blockquote></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Installation-instructions]]></title>
