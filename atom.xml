@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://commonwealth-of-puerto-rico.github.io//github/atom.xml" rel="self"/>
   <link href="http://commonwealth-of-puerto-rico.github.io//github/"/>
-  <updated>2014-05-30T09:34:23-04:00</updated>
+  <updated>2014-05-30T09:38:39-04:00</updated>
   <id>http://commonwealth-of-puerto-rico.github.io//github/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Installation-instructions]]></title>
+    <link href="http://commonwealth-of-puerto-rico.github.io//github/blog/2014/05/30/installation-instructions/"/>
+    <updated>2014-05-30T09:38:07-04:00</updated>
+    <id>http://commonwealth-of-puerto-rico.github.io//github/blog/2014/05/30/installation-instructions</id>
+    <content type="html"><![CDATA[<h1>Instalación en Windows (solo Deploy)</h1>
+
+<ol>
+<li><a href="">JavaSDK</a></li>
+<li><a href="">Java JCE</a></li>
+<li><a href="">Tomcat7</a></li>
+<li><a href="www.jruby.org">JRuby</a> opcional necesario para las migraciones del db.</li>
+<li><a href="">Mariadb</a></li>
+</ol>
+
+
+<p>Hmmm&hellip; Maybe I should create a SaltStack script for this&hellip;</p>
+
+<h1>Instalación en Mac/Linux (para Development)</h1>
+
+<h3>Mac</h3>
+
+<ol>
+<li><p><a href="www.rvm.io">RVM</a> (opcional puedes usar homebrew tambien pero RVM es mejor.)
+commando: <code>\curl -sSL https://get.rvm.io | bash -s stable</code></p></li>
+<li><p><a href="http://brew.sh/">Homebrew</a> comando:
+<code>ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"</code></p></li>
+<li><p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JavaSDK</a> (puede ser la 6 o 7)</p></li>
+<li><p>Maria DB: <code>brew install mariadb</code></p></li>
+<li><p>Tomcat7: <code>brew install tomcat</code></p></li>
+<li><p>JRuby: <code>brew install jruby</code> o mejor <code>rvm install jruby</code></p></li>
+</ol>
+
+
+<h3>Ubuntu</h3>
+
+<p>(comming soon&hellip;)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Tomcat-instructions]]></title>

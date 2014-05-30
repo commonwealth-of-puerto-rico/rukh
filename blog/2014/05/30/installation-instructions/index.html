@@ -5,13 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - My Octopress Blog</title>
+  <title>Installation-instructions - My Octopress Blog</title>
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content=" Blog Archive 2014 Installation-instructions
-May 30 2014 Tomcat-instructions
-May 30 2014 Recent Posts Installation-instructions Tomcat-instructions ">
+  <meta name="description" content="Instalación en Windows (solo Deploy) JavaSDK
+Java JCE
+Tomcat7
+JRuby opcional necesario para las migraciones del db.
+Mariadb Hmmm&hellip; Maybe I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +22,7 @@ May 30 2014 Recent Posts Installation-instructions Tomcat-instructions ">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://commonwealth-of-puerto-rico.github.io//github/blog/archives">
+  <link rel="canonical" href="http://commonwealth-of-puerto-rico.github.io//github/blog/2014/05/30/installation-instructions">
   <link href="/github/favicon.png" rel="icon">
   <link href="/github/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/github/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
@@ -66,41 +68,109 @@ May 30 2014 Recent Posts Installation-instructions Tomcat-instructions ">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Installation-instructions</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-30T09:38:07-04:00" pubdate data-updated="true">May 30<span>th</span>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><h1>Instalación en Windows (solo Deploy)</h1>
 
-  
-  <h2>2014</h2>
-
-<article>
-  
-<h1><a href="/github/blog/2014/05/30/installation-instructions/">Installation-instructions</a></h1>
-<time datetime="2014-05-30T09:38:07-04:00" pubdate><span class='month'>May</span> <span class='day'>30</span> <span class='year'>2014</span></time>
-
-
-</article>
+<ol>
+<li><a href="">JavaSDK</a></li>
+<li><a href="">Java JCE</a></li>
+<li><a href="">Tomcat7</a></li>
+<li><a href="www.jruby.org">JRuby</a> opcional necesario para las migraciones del db.</li>
+<li><a href="">Mariadb</a></li>
+</ol>
 
 
+<p>Hmmm&hellip; Maybe I should create a SaltStack script for this&hellip;</p>
 
-<article>
-  
-<h1><a href="/github/blog/2014/05/30/tomcat-instructions/">Tomcat-instructions</a></h1>
-<time datetime="2014-05-30T09:31:43-04:00" pubdate><span class='month'>May</span> <span class='day'>30</span> <span class='year'>2014</span></time>
+<h1>Instalación en Mac/Linux (para Development)</h1>
+
+<h3>Mac</h3>
+
+<ol>
+<li><p><a href="www.rvm.io">RVM</a> (opcional puedes usar homebrew tambien pero RVM es mejor.)
+commando: <code>\curl -sSL https://get.rvm.io | bash -s stable</code></p></li>
+<li><p><a href="http://brew.sh/">Homebrew</a> comando:
+<code>ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"</code></p></li>
+<li><p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JavaSDK</a> (puede ser la 6 o 7)</p></li>
+<li><p>Maria DB: <code>brew install mariadb</code></p></li>
+<li><p>Tomcat7: <code>brew install tomcat</code></p></li>
+<li><p>JRuby: <code>brew install jruby</code> o mejor <code>rvm install jruby</code></p></li>
+</ol>
 
 
-</article>
+<h3>Ubuntu</h3>
 
+<p>(comming soon&hellip;)</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-30T09:38:07-04:00" pubdate data-updated="true">May 30<span>th</span>, 2014</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://commonwealth-of-puerto-rico.github.io//github/blog/2014/05/30/installation-instructions/" data-via="" data-counturl="http://commonwealth-of-puerto-rico.github.io//github/blog/2014/05/30/installation-instructions/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/github/blog/2014/05/30/tomcat-instructions/" title="Previous Post: tomcat-instructions">&laquo; tomcat-instructions</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

@@ -9,7 +9,11 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Procedure for a tomcat7 deploy on Windows &amp; Ubuntu Procedimiento para hacer un tomcat7/Rails4 deploy en windows &amp; ubuntu Server: Download &hellip;">
+  <meta name="description" content="Instalación en Windows (solo Deploy) JavaSDK
+Java JCE
+Tomcat7
+JRuby opcional necesario para las migraciones del db.
+Mariadb Hmmm&hellip; Maybe I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +69,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/github/blog/2014/05/30/installation-instructions/">Installation-instructions</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-30T09:38:07-04:00" pubdate data-updated="true">May 30<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>Instalación en Windows (solo Deploy)</h1>
+
+<ol>
+<li><a href="">JavaSDK</a></li>
+<li><a href="">Java JCE</a></li>
+<li><a href="">Tomcat7</a></li>
+<li><a href="www.jruby.org">JRuby</a> opcional necesario para las migraciones del db.</li>
+<li><a href="">Mariadb</a></li>
+</ol>
+
+
+<p>Hmmm&hellip; Maybe I should create a SaltStack script for this&hellip;</p>
+
+<h1>Instalación en Mac/Linux (para Development)</h1>
+
+<h3>Mac</h3>
+
+<ol>
+<li><p><a href="www.rvm.io">RVM</a> (opcional puedes usar homebrew tambien pero RVM es mejor.)
+commando: <code>\curl -sSL https://get.rvm.io | bash -s stable</code></p></li>
+<li><p><a href="http://brew.sh/">Homebrew</a> comando:
+<code>ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"</code></p></li>
+<li><p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JavaSDK</a> (puede ser la 6 o 7)</p></li>
+<li><p>Maria DB: <code>brew install mariadb</code></p></li>
+<li><p>Tomcat7: <code>brew install tomcat</code></p></li>
+<li><p>JRuby: <code>brew install jruby</code> o mejor <code>rvm install jruby</code></p></li>
+</ol>
+
+
+<h3>Ubuntu</h3>
+
+<p>(comming soon&hellip;)</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -194,6 +265,10 @@ To start/stop the server from the command line you use the catalina shell script
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/github/blog/2014/05/30/installation-instructions/">Installation-instructions</a>
+      </li>
     
       <li class="post">
         <a href="/github/blog/2014/05/30/tomcat-instructions/">Tomcat-instructions</a>
