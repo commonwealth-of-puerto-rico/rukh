@@ -18,6 +18,12 @@ class Notifications < ActionMailer::Base
     end
   end
   
+  def modeloSC_724
+    mail(to: "watcher@example.com", bcc: "watcher@example.com") do |format|
+      format.html
+    end
+  end
+  
   private
   def add_inline_logo! 
     attachments.inline['logo.png'] = File.read("app/assets/images/57.png")

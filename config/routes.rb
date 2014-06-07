@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :debtors 
   resources :debts
 
-  
+  match '/letter',        to: 'static_pages#modeloSC_724', via: 'get'
   # get "static_pages/home"
   # get "static_pages/help"
   

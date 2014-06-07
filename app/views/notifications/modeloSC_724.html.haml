@@ -1,0 +1,147 @@
+#aside
+  :markdown
+    Modelo sc 724  
+    31-Jan-01  
+    PRIFAS  
+ 
+%h1
+  ESTADO LIBRE ASOCIADO DE PUERTO RICO
+
+%h6
+  Agencia
+%h6   
+  Dirección 
+ 
+%table.table.table-bordered 
+  :markdown
+     Original - Deudor  
+     1ra Copla Director de Finanzas  
+     2da Copia - Recaudador Oficial  
+     3ra Copia - Deudor  
+     4ta Copia - Unidad Origen  
+%br
+%h4.centered
+  FACTURA AL COBRO
+  
+:markdown
+   Nombre  ____  
+   Dirección y  
+   Núm. de Cuenta o  
+   Seguro Social  
+
+%br
+%table.table.table-striped 
+  %thead.grey
+    %tr
+      %td 
+        DESCRIPCION
+      %td   
+        CUENTA
+      %td 
+        FONDO
+      %td   
+        ORG
+      %td 
+        PROG
+      %td 
+        ASIG
+      %td 
+        AP 
+      %td
+        APORT FEDERAL 
+      %td
+        IMPORTE
+  %tbody
+    -[0].each do |i|
+      %tr
+        %td 
+          = i
+        %td   
+          = i
+        %td 
+          = i
+        %td   
+          = i
+        %td 
+          = i
+        %td 
+          = i
+        %td 
+          = i 
+        %td
+          = i 
+        %td
+          = i
+    /
+%table.table.table-striped         
+  %thead.grey
+    %tr
+      %td
+        FECHA DE LA TRANSACCION
+      %td
+        FECHA DE VENCIMEINTO
+      %td 
+        DESCRIPCION DE LA DEUDA
+      %td
+        IMPORTE
+  %tbody
+    - [1,2].each do |i|
+      %tr
+        %td 
+          = i
+        %td 
+          = i
+        %td 
+          = i
+        %td 
+          = i
+    /
+    %tr
+      %td
+      %td
+      %td
+        A PARTIR DEL __ SE LE CONCEDERAN 30 DIAS PARA REALIZAR SU PAGO.
+          
+      %td      
+%table.table.table-striped  
+  %tbody
+    %tr 
+      :markdown 
+         CERTIFICO que los datos arriba indicados son correctos y que el pago de la deuda no se ha recibido. Usted tiene hasta 15 días laborables 
+         después de recibida esta factura para objetar la misma. Dicha notificación puede hacerla por teléfono al o por 
+         escrito a la dirección que se indica arriba. De no recibir notificación alguna se continuara con el tramite del caso. 
+%table.table.table-striped  
+  %tbody
+    - [3].each do |i|
+      %tr
+        %td
+          = Date.today
+        %td
+          = i
+        %td 
+          = i
+    /
+    %tr
+      %td
+        Fecha
+      %td
+        Nombre y Firma del Jefe o su Representate Autorizado
+      %td
+        Teléfono
+%table.table.table-striped  
+  %tbody
+    %tr
+      %td 
+        = 'Debe efectuar el pago con un cheque certificado o giro a nombre del Secretario de Hacienda y enviarlo a:'
+    %tr
+      %td
+        = ''
+    %tr
+      %td.centered
+        RETENGA EL ORIGINAL DE LA FACTURA Y ACOMPAÑE LA COPIA CON SU PAGO 
+         
+/
+%br
+:markdown        
+   Conservación: Seis años después de recibido el pago o declarada la deuda incobrable o una intervención del Contralor, lo que ocurra primero.
+ 

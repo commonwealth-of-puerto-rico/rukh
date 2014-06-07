@@ -3,7 +3,6 @@ require 'cmess/guess_encoding'
 require 'smarter_csv' 
 
 #TODO it's done half way due to change requirements
-#TODO postponed to do export
 
 class ImportLogic
   def self.import_csv(file)
@@ -56,8 +55,9 @@ class ImportLogic
     cleaned_record = {}
     record.each_pair do |k,v| #this might remove too much info...
       cleaned_record.store(k, 
-        v.to_s.gsub(/\//i, '-').gsub(/[^[[:word:]]\-\.[[:blank:]]]/i, '') )  
-        #put sql problem chars here only.gsub(/\W+/, ""))
+        v.to_s.gsub(/\//i, '-').gsub(/[^ [:word:]\-\. ]/i, '') )
+        # first exchanges \ for - then removes everything not[^ ] :word or - or . or space
+        # put sql problem chars here only.gsub(/\W+/, ""))
     end
     cleaned_record
   end
@@ -80,8 +80,11 @@ class ImportLogic
   end
   
   def self.blank_out_fields(record, fields)
+    # blank out fields if record[field] is nil
     fields.to_a.each do |field|
-      record[field.to_sym] = '' if record[field.to_sym].nil?
+      if record[field.to_sym].nil?
+        record[field.to_sym] = '' 
+      end
     end
     record
   end

@@ -1,12 +1,16 @@
 class NotificationsPreview
   
-  def first_notification
+  def primera_notificacion
     Notifications.first_notification mock_user('Ciudadano','ciudadano@example.com')
   end
 
 
-  def second_notification
+  def segunda_notificacion
     Notifications.second_notification mock_user('Ciudadano', 'ciudadano@example.com')
+  end
+  
+  def modelo_SC_724
+    Notifications.modeloSC_724
   end
   
   private
