@@ -187,7 +187,7 @@
         %td 
           = @debt.type_of_debt
         %td 
-          = @debt.amount_owed_pending_balance
+          = number_to_currency @debt.amount_owed_pending_balance
     /
     %tr
       %td

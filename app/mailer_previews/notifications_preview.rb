@@ -10,7 +10,7 @@ class NotificationsPreview
   end
   
   def modelo_SC_724
-    Notifications.modeloSC_724
+    Notifications.modeloSC_724(params[:debt_id])
   end
   
   private

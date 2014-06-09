@@ -24,6 +24,15 @@ require 'rails_email_preview'
 # require 'rails_email_preview/integrations/comfortable_mexica_sofa'
 
 Rails.application.config.to_prepare do
+  RailsEmailPreview::ApplicationController.module_eval do
+    before_filter :check_permissions
+    
+    private 
+    def check_permissions
+      render status 403 unless current_user
+    end
+  end
+  
   # Render REP inside a custom layout (set to 'application' to use app layout, default is REP's own layout)
   # This will also make application routes accessible from within REP:
   # RailsEmailPreview.layout = 'application' #'admin'

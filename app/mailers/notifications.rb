@@ -19,8 +19,8 @@ class Notifications < ActionMailer::Base
     end
   end
   
-  def modeloSC_724 #(user, debt)
-    @debt = Debt.first
+  def modeloSC_724(debt_id) #(user, debt)
+    @debt = Debt.find_by_id(debt_id)
     @user = User.first #current_user
     
     mail(from: @user.email,
