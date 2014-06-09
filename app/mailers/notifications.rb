@@ -1,5 +1,6 @@
 class Notifications < ActionMailer::Base
-  default from: "from@example.com"
+  # before_action :authenticate_user! ## for DEVISE #TODO Figure out how to call :authenticate_user from here
+  # default from: 
   # before_action :add_inline_logo! #use only for notifications
   
   def first_notification(recipient)
@@ -18,8 +19,14 @@ class Notifications < ActionMailer::Base
     end
   end
   
-  def modeloSC_724
-    mail(to: "watcher@example.com", bcc: "watcher@example.com") do |format|
+  def modeloSC_724 #(user, debt)
+    @debt = Debt.first
+    @user = User.first #current_user
+    
+    mail(from: @user.email,
+         to:   @debt.debtor.email, 
+         cc:   @debt.debtor.contact_person_email, 
+         bcc:  "davidacevedo@jca.pr.gov") do |format|
       format.html
     end
   end

@@ -1,55 +1,148 @@
-#aside
+:scss
+  table.table {
+    border: 1px solid black; 
+    font-family: Verdana, Verdana, Geneva, sans-serif;
+    font-size: 12px;
+    border-collapse:collapse; 
+    margin-left: 10px;
+  }
+  table.margin {
+    margin-left: 100px;
+  }
+  td { 
+    border: 1px solid #CCC; 
+    margin: 0; 
+    padding: 6px; 
+  }
+  .narrow {
+    width:30px;
+  }
+  .midwide {
+    width:200px;
+  }
+  .wide {
+    width:800px;
+    margin-left:100px;
+  }
+  .verywide {
+    width:1000px;
+  }
+  .center {
+    text-align: center;
+  }
+  .margin {
+    margin-left:100px;
+  }
+  .border {
+    border: 2px solid black
+  }
+  .grey {
+    background-color: #C3C3EB;
+  }
+  .sidebox {
+    float: left;
+    width: 100%;
+    margin-top: 45px;
+  }
+  .notopmargin {
+    margin-top: 0px;
+  }
+  .nobottommargin {
+    margin-bottom: 0px;
+  }
+  #leftaside {
+    float:right;
+  }
+-#######################
+#aside.sidebox
   :markdown
-    Modelo sc 724  
+    Modelo SC 724  
     31-Jan-01  
-    PRIFAS  
- 
-%h1
-  ESTADO LIBRE ASOCIADO DE PUERTO RICO
-
-%h6
-  Agencia
-%h6   
-  Dirección 
- 
-%table.table.table-bordered 
-  :markdown
-     Original - Deudor  
-     1ra Copla Director de Finanzas  
-     2da Copia - Recaudador Oficial  
-     3ra Copia - Deudor  
-     4ta Copia - Unidad Origen  
+    **PRIFAS**  
+.verywide  
+  %h1.center.nobottommargin
+    ESTADO LIBRE ASOCIADO DE PUERTO RICO
 %br
-%h4.centered
-  FACTURA AL COBRO
-  
-:markdown
-   Nombre  ____  
-   Dirección y  
-   Núm. de Cuenta o  
-   Seguro Social  
+.wide
+  .center
+    %h5.nobottommargin
+      JCA
+    %hr.midwide
+  %h6.center.notopmargin.nobottommargin
+    Agencia
+  .center
+    %h5.nobottommargin
+      Ponce de León
+    %hr.midwide
+  %h6.center.notopmargin   
+    Dirección 
+    
+.verywide    
+  #leftaside    
+    %table.table.border
+      %thead
+        %tr.grey
+          %th
+            NUM. FACTURA
+    %table.table.border        
+      %thead
+        %tr.grey
+          %th
+            AF
+          %th
+            AGEN
+          %th
+            NUM.
+      %tbody
+        %tr
+          %td
+          %td
+          %td 
+%table.table.border
+  %tbody
+    %td
+      :markdown
+         Original - Deudor  
+         1ra Copla Director de Finanzas  
+         2da Copia - Recaudador Oficial  
+         3ra Copia - Deudor  
+         4ta Copia - Unidad Origen  
 
 %br
-%table.table.table-striped 
-  %thead.grey
-    %tr
-      %td 
+.verywide
+  %h4.center
+    FACTURA AL COBRO
+    
+- {'Nombre' => @debt.debtor.name, 'Dirección y' => "#{@debt.debtor.address}; #{@debt.debtor.location}", |
+'Núm. de Cuenta o' => @debt.permit_infraction_number, |
+'Seguro Social' => "#{@debt.debtor.employer_id_number}#{@debt.debtor.ss_last_four}"}.each_pair do |key, elem|
+  .verywide.margin
+    = "<strong>#{key}: </strong>".html_safe + "#{elem}"
+  .verywide
+    .wide
+      %hr.notopmargin
+/  
+%br
+%table.table.border.wide.margin 
+  %colgroup.columns{:span => '4'}
+    %tr.grey
+      %th 
         DESCRIPCION
-      %td   
+      %th   
         CUENTA
-      %td 
+      %th 
         FONDO
-      %td   
+      %th   
         ORG
-      %td 
+      %th 
         PROG
-      %td 
+      %th 
         ASIG
-      %td 
+      %th
         AP 
-      %td
+      %th
         APORT FEDERAL 
-      %td
+      %th
         IMPORTE
   %tbody
     -[0].each do |i|
@@ -71,46 +164,46 @@
         %td
           = i 
         %td
-          = i
+          = @debt.amount_owed_pending_balance
     /
-%table.table.table-striped         
+%table.table.border.wide.margin        
   %thead.grey
     %tr
-      %td
+      %th.narrow
         FECHA DE LA TRANSACCION
-      %td
+      %th.narrow
         FECHA DE VENCIMEINTO
-      %td 
+      %th
         DESCRIPCION DE LA DEUDA
-      %td
+      %th.narrow
         IMPORTE
   %tbody
     - [1,2].each do |i|
       %tr
         %td 
-          = i
+          = @debt.original_debt_date
         %td 
-          = i
+          = @debt.original_debt_date + 30
         %td 
-          = i
+          = @debt.type_of_debt
         %td 
-          = i
+          = @debt.amount_owed_pending_balance
     /
     %tr
       %td
       %td
       %td
-        A PARTIR DEL __ SE LE CONCEDERAN 30 DIAS PARA REALIZAR SU PAGO.
+        = "A PARTIR DEL #{Date.today} SE LE CONCEDERAN 30 DIAS PARA REALIZAR SU PAGO."
           
       %td      
-%table.table.table-striped  
+%table.table.table-striped.border.wide.margin  
   %tbody
-    %tr 
+    %td
       :markdown 
-         CERTIFICO que los datos arriba indicados son correctos y que el pago de la deuda no se ha recibido. Usted tiene hasta 15 días laborables 
-         después de recibida esta factura para objetar la misma. Dicha notificación puede hacerla por teléfono al o por 
-         escrito a la dirección que se indica arriba. De no recibir notificación alguna se continuara con el tramite del caso. 
-%table.table.table-striped  
+        CERTIFICO que los datos arriba indicados son correctos y que el pago de la deuda no se ha recibido. Usted tiene hasta 15 días laborables 
+        después de recibida esta factura para objetar la misma. Dicha notificación puede hacerla por teléfono al o por 
+        escrito a la dirección que se indica arriba. De no recibir notificación alguna se continuara con el tramite del caso. 
+%table.table.table-striped.border.wide.margin  
   %tbody
     - [3].each do |i|
       %tr
@@ -128,7 +221,7 @@
         Nombre y Firma del Jefe o su Representate Autorizado
       %td
         Teléfono
-%table.table.table-striped  
+%table.table.table-striped.wide.margin  
   %tbody
     %tr
       %td 
@@ -142,6 +235,7 @@
          
 /
 %br
-:markdown        
-   Conservación: Seis años después de recibido el pago o declarada la deuda incobrable o una intervención del Contralor, lo que ocurra primero.
+.wide
+  :markdown      
+     Conservación: Seis años después de recibido el pago o declarada la deuda incobrable o una intervención del Contralor, lo que ocurra primero.
  
