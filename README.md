@@ -21,7 +21,9 @@ Due to the expertise found on the EQB (Environmental Quality Board) was limited 
 Instructions for setting up the server machine will be found in the Github Pages for RucPoc.
 Eventually they will be migrated here as well.
 
+__Testing Emails__
 
+The gem MailCatcher was used to test email sending locally. It doesn't work on jruby. But you can started from normal Ruby using RVM.
 
 __Name__
 Rukh was originally 'RucPoc -- registro único de cuentas por cobrar' but now it's just a meaningless-name associated with the [Rukh](http://en.wikipedia.org/wiki/Roc_(mythology)) from Arabian Nights. 

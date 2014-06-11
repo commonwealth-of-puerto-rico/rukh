@@ -1,7 +1,9 @@
 require 'HexString'
 class Debtor < ActiveRecord::Base
   
-  has_many :debts
+  has_many :debts, dependent: :restrict_with_exception 
+  # :restrict #or :restrict_with_error 
+
   
   ## Hooks
   before_save {self.email = email.downcase}
@@ -100,7 +102,13 @@ class Debtor < ActiveRecord::Base
   def Debtor.salt(token, salt=Rails.application.secrets.salt) #salt stored in secrets.yml
     token.to_i + salt
   end
-  
+  # def check_for_debts
+  #   #  before_destroy :check_for_debts
+  #   if debts.count > 0
+  #     errors.add_to_base("No se puede borrar Deudor con Deudas.")
+  #     return false
+  #   end
+  # end
   
   
 end

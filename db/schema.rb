@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526140959) do
+ActiveRecord::Schema.define(version: 20140611174036) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -84,6 +84,18 @@ ActiveRecord::Schema.define(version: 20140526140959) do
     t.integer  "debtor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "mail_logs", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "debt_id"
+    t.integer  "mailer_id"
+    t.string   "mailer_name"
+    t.datetime "datetime_sent"
+    t.string   "email_sent_to"
+    t.text     "mailer_content"
   end
 
   create_table "user_roles", force: true do |t|

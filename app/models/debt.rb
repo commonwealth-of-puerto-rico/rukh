@@ -1,7 +1,8 @@
 class Debt < ActiveRecord::Base
   
   ## Hooks
-  belongs_to :debtor, touch: true #,dependent: :destroy
+  belongs_to :debtor, touch: true 
+  has_many :mail_logs, dependent: :restrict_with_exception
   #has_many :payment_plans
   #Dependend Destroy means:
   # if Debtor is erase so are all the debts associeated with.
@@ -43,6 +44,7 @@ class Debt < ActiveRecord::Base
   end
 
   private
+  
     def self.to_plain_csv(options = {}) #For portability of code only.
       CSV.generate(options) do |csv|
         csv << column_names

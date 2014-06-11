@@ -28,6 +28,9 @@ describe Debt do
       expect(Debt.new(debtor_id: nil)).to_not be_valid
     end
     
+    it {should respond_to :debtor }
+  
+    
   end
   
   it "Contains a permit number or infraction number"

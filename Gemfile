@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-server = ['sql', 'mysql', 'heroku'][1] #remember to change db.yml
+server = ['sql', 'mysql', 'heroku'][0] #remember to change db.yml
 
 #ruby=jruby-1.7.12
 ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.12' 
@@ -37,7 +37,7 @@ gem 'cmess', '~> 0.4.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
-gem 'bootstrap-sass', '~> 3.1.1.1' #'~> 2.3.2.2' #'~> 3.1.1.1' is available
+gem 'bootstrap-sass', '~> 2.3.2.2' #'~> 3.1.1.1' is available
 gem 'haml-rails'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -79,6 +79,9 @@ gem 'bootstrap-will_paginate'
 
 # Console
 # gem 'pry', require: false
+
+# Email Previews
+gem 'rails_email_preview', '~> 0.2.20'
 
 group :development do
   gem 'localeapp', require: false

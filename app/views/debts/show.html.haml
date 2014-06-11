@@ -21,6 +21,10 @@
       %a{:href => '#{url_for new_payment_plan_path(@debt)}', :class => "btn btn-large btn-primary disabled"}
         Añadir Plan de Pago
       %span{:class => 'glyphicon glyphicon-envelope'}
-        = button_to "Generar Primer Aviso", home_path, :class => "btn btn-large btn-primary disabled", :method => :get, params: {email: current_user.email}
+        = button_to "Generar Primer Aviso", email_path, :class => "btn btn-large btn-primary", :method => :get, params: {id: @debt.id, mailer: :first}
+      %span{:class => 'glyphicon glyphicon-envelope'}
+        = button_to "Generar Segundo Aviso", email_path, :class => "btn btn-large btn-primary", :method => :get, params: {id: @debt.id, mailer: :second}
+      %span{:class => 'glyphicon glyphicon-envelope'}
+        = button_to "Generar Tercer Aviso", email_path, :class => "btn btn-large btn-primary", :method => :get, params: {id: @debt.id, mailer: :third}
     %p
-      = link_to "Vista preliminar de Emails", "/rails/mailers/"
+      = link_to "Vista preliminar de todos los Emails", rails_email_preview.rep_emails_url(email_locale: 'es', debt_id: @debt.id, current_user: @user)
