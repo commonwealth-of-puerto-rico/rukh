@@ -66,7 +66,8 @@ class DebtsController < ApplicationController
     if NotificationsMailer.respond_to?(@mailer) && [:first,:second,:third].include?(@mailer)
       @mail = NotificationsMailer.public_send(@mailer, @debt, @user)
       if @mail.deliver
-        NotificationsMailer.log_email(@mail, @debt, @user)
+        log_email(@mail, @debt, @user)
+        # LogMail.log_email(@mail, @debt, @user) #TODO refactor to lib
         flash[:success] = "Email: #{@mail.subject} Enviado"
       else 
         flash[:error] = "Email No Enviado"
@@ -104,6 +105,20 @@ class DebtsController < ApplicationController
     else
       redirect_to new_user_session_path
     end
+  end
+  
+  #TODO Method Below could be In Lib
+  def log_email(mail, debt, user)
+    mail_log = MailLog.create(
+      user_id: user.id,
+      debt_id: debt.id,
+      mailer_id: mail.message_id,
+      mailer_name: mail.subject,
+      datetime_sent: DateTime.now,
+      email_sent_to: mail.header.to_s,
+      mailer_content: mail.body.to_s
+    )
+    mail_log.save or fail
   end
   
 end

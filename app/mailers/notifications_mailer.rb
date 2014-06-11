@@ -69,19 +69,6 @@ class NotificationsMailer < ActionMailer::Base
     end
   end
   
-  def log_email(mail, debt, user)
-    mail_log = MailLog.create(
-      user_id: user.id,
-      debt_id: debt.id,
-      mailer_id: mail.message_id,
-      mailer_name: mail.subject,
-      datetime_sent: DateTime.now,
-      email_sent_to: mail.header.to_s,
-      mailer_content: mail.body.to_s
-    )
-    mail_log.save or fail
-  end
-  
   private
   
     def add_logo! 
