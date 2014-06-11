@@ -1,3 +1,4 @@
+!!! 5
 :scss
   table.table {
     border: 1px solid black; 
@@ -113,6 +114,9 @@
   %h4.center
     FACTURA AL COBRO
     
+:ruby
+  debtor_hash = {'Nombre' => @debt.debtor.name, 'Dirección y' => "#{@debt.debtor.address}; #{@debt.debtor.location}", 'Núm. de Cuenta o' => @debt.permit_infraction_number,
+  'Seguro Social' => "#{@debt.debtor.employer_id_number}#{@debt.debtor.ss_last_four}"}
 - {'Nombre' => @debt.debtor.name, 'Dirección y' => "#{@debt.debtor.address}; #{@debt.debtor.location}", |
 'Núm. de Cuenta o' => @debt.permit_infraction_number, |
 'Seguro Social' => "#{@debt.debtor.employer_id_number}#{@debt.debtor.ss_last_four}"}.each_pair do |key, elem|

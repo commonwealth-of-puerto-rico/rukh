@@ -1,0 +1,7 @@
+-#
+%span{:class => 'glyphicon glyphicon-envelope'}
+  = button_to "Enviar", email_send_path, :class => "btn btn-large btn-primary", :method => :post, params: { id: @debt.id, mailer: 'first_notification', user_id: @user.id }
+%hr
+= @preview.header.to_s
+%hr
+= @preview.body.to_s.html_safe 

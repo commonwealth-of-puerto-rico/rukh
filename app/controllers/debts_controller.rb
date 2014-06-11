@@ -42,6 +42,36 @@ class DebtsController < ApplicationController
     @debtor = Debtor.find_by_id @debt.debtor_id
   end
   
+  def preview_email
+    @debt = Debt.find_by_id(params[:id])
+    @user = current_user
+    @preview = NotificationsMailer.first(@debt, @user)
+    # @preview.body_encoding('utf-8')
+    # @preview.to_s.force_encoding('utf-8')
+    render layout: false #TODO create layout for emails w/ send
+  end
+  
+  def send_email #should be Post only
+    @debt = Debt.find_by_id(params[:id])
+    # @debtor = Debtor.find_by_id @debt.debtor_id
+    @user = current_user
+    # fail unless @user == User.find_by_id(params[:user_id])
+    #TODO Create logic here to mark which notification to send.
+    if NotificationsMailer.respond_to? :first
+      @mail = NotificationsMailer.first(@debt, @user)
+      if @mail.deliver
+        NotificationsMailer.log_email(@mail, @debt, @user)
+        flash[:success] = "Email #{@mail.subject} Enviado"
+      else 
+        flash[:error] = "Email No Enviado"
+      end
+    else 
+      fail
+    end
+    #log action
+    redirect_to @debt
+  end
+  
   private
   def assign_current_user
     @user = current_user

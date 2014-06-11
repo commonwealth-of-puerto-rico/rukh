@@ -1,5 +1,5 @@
-require "spec_helper"
+require 'spec_helper'
 
-describe Notifications do
+describe MailLog do
   pending "add some examples to (or delete) #{__FILE__}"
 end
