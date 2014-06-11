@@ -47,7 +47,7 @@ class DebtsController < ApplicationController
     @user = current_user
     @mailer = params[:mailer].to_sym
     #TODO Create logic here to mark which notification to send.
-    if NotificationsMailer.respond_to?(@mailer) && [:first,:second,:third].include?(@mailer)
+    if [:first,:second,:third].include?(@mailer) && NotificationsMailer.respond_to?(@mailer)
       @preview = NotificationsMailer.public_send(@mailer, @debt, @user)
     else 
       flash[:error] = "Email No Encontrado"
@@ -63,7 +63,7 @@ class DebtsController < ApplicationController
     @user = current_user
     @mailer = params[:mailer].to_sym
     #TODO Create logic here to mark which notification to send.
-    if NotificationsMailer.respond_to?(@mailer) && [:first,:second,:third].include?(@mailer)
+    if  [:first,:second,:third].include?(@mailer) && NotificationsMailer.respond_to?(@mailer)
       @mail = NotificationsMailer.public_send(@mailer, @debt, @user)
       if @mail.deliver
         log_email(@mail, @debt, @user)
@@ -73,9 +73,8 @@ class DebtsController < ApplicationController
         flash[:error] = "Email No Enviado"
       end
     else 
-      fail
+      flash[:error] = "Email No Encontrado"
     end
-    #log action
     redirect_to @debt
   end
   
