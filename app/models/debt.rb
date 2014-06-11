@@ -45,10 +45,6 @@ class Debt < ActiveRecord::Base
 
   private
   
-    # def deliver_notice(notice)
-    #   notice
-    # end
-  
     def self.to_plain_csv(options = {}) #For portability of code only.
       CSV.generate(options) do |csv|
         csv << column_names

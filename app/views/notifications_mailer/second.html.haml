@@ -1,0 +1,96 @@
+!!! 5
+:scss
+  .sidebox {
+    float: left;
+    width: 100%;
+    margin-top: 45px;
+  }
+  .notopmargin {
+    margin-top: 0px;
+  }
+  .nobottommargin {
+    margin-bottom: 0px;
+  }
+  .center {
+    text-align: center;
+  }
+-#######################
+#aside.sidebox
+  :markdown
+    Modelo SC 1072  
+    8 AGO 97  
+    REGL 44 (8 AGO 97)  
+.verywide  
+  %h1.center.nobottommargin
+    ESTADO LIBRE ASOCIADO DE PUERTO RICO
+%br
+.wide
+  .center
+    %h5.nobottommargin
+      JCA
+    %hr.midwide
+  %h6.center.notopmargin.nobottommargin
+    Agencia
+  .center
+    %h5.nobottommargin
+      Ponce de León
+    %hr.midwide
+  %h6.center.notopmargin   
+    Dirección 
+
+%br
+= "Fecha: #{Date.today}"
+-# {'Nombre' => @debt.debtor.name, 'Dirección y' => "#{@debt.debtor.address}; #{@debt.debtor.location}", |
+-# 'Núm. de Cuenta o' => @debt.permit_infraction_number, |
+-# 'Seguro Social' => "#{@debt.debtor.employer_id_number}#{@debt.debtor.ss_last_four}"}.each_pair do |key, elem|
+  .verywide.margin
+    = "<strong>#{key}: </strong>".html_safe + "#{elem}"
+  .verywide
+    .wide
+      %hr.notopmargin
+      
+.table
+  .tr
+    .td
+      ASUNTO
+    .td
+      = ":" 
+    .td
+      = "/TERCER AVISO"
+  .tr
+    .td
+      FACTURA NUM.
+    .td
+      = ":"
+    .td
+      = "factura"
+  .tr
+    .td
+      IMPORTE
+    .td
+      = ":"
+    .td
+      = "67.00" 
+/  
+:markdown
+  Le exhortamos a que envíe su pago dentro de los próximos **30 días** a partir de la fecha de esta comunicación. Debe efectuar el mismo con cheque certificado o giro postal expedido a nombre del **Secretario de Hacienda**. Tan pronto recibamos su pago, dejaremos sin efecto cualquier otra gestión de cobro que haya sigo iniciada.
+
+:markdown
+  De no objetar la deuda dentro de los próxomos **10 días laborables** o de no recibir su pago dentro del término antes indicado, enviaremos el caso a nuestros abogados para que inicien la **acción legal** para el cobro de la misma. También, notificaremos al Secretario de Hacienda para que descuente el importe adeudado de cualesquier pago que trámite el Gobierno a su favor.
+  
+:markdown
+  Si pago la deuda, favor de enviarnos la evidencia de pago.
+  
+:markdown
+  Cordialmente, 
+  
+:markdown
+  Jefe  
+  División de Finanzas
+  
+  
+  
+.small
+  AGS  
+  
+  

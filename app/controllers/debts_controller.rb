@@ -45,7 +45,14 @@ class DebtsController < ApplicationController
   def preview_email
     @debt = Debt.find_by_id(params[:id])
     @user = current_user
-    @preview = NotificationsMailer.first(@debt, @user)
+    @mailer = params[:mailer].to_sym
+    #TODO Create logic here to mark which notification to send.
+    if NotificationsMailer.respond_to?(@mailer) && [:first,:second,:third].include?(@mailer)
+      @preview = NotificationsMailer.public_send(@mailer, @debt, @user)
+    else 
+      flash[:error] = "Email No Enviado"
+      # redirect_back
+    end
     # @preview.body_encoding('utf-8')
     # @preview.to_s.force_encoding('utf-8')
     render layout: false #TODO create layout for emails w/ send
@@ -53,15 +60,14 @@ class DebtsController < ApplicationController
   
   def send_email #should be Post only
     @debt = Debt.find_by_id(params[:id])
-    # @debtor = Debtor.find_by_id @debt.debtor_id
     @user = current_user
-    # fail unless @user == User.find_by_id(params[:user_id])
+    @mailer = params[:mailer].to_sym
     #TODO Create logic here to mark which notification to send.
-    if NotificationsMailer.respond_to? :first
-      @mail = NotificationsMailer.first(@debt, @user)
+    if NotificationsMailer.respond_to?(@mailer) && [:first,:second,:third].include?(@mailer)
+      @mail = NotificationsMailer.public_send(@mailer, @debt, @user)
       if @mail.deliver
         NotificationsMailer.log_email(@mail, @debt, @user)
-        flash[:success] = "Email #{@mail.subject} Enviado"
+        flash[:success] = "Email: #{@mail.subject} Enviado"
       else 
         flash[:error] = "Email No Enviado"
       end

@@ -3,14 +3,6 @@ class NotificationsMailer < ActionMailer::Base
   # after_action :update_debt 
   # after_action :log_mail # Does after send exist?
   
-  # def email(which, *args)
-  #   if self.respond_to(which.to_sym)
-  #     self.send(which.to_sym, args)
-  #   else
-  #     fail
-  #   end
-  # end
-  
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -27,7 +19,8 @@ class NotificationsMailer < ActionMailer::Base
     mail(from: @user.email,
          to:   @debt.debtor.email, 
          cc:   @debt.debtor.contact_person_email, 
-         bcc:  @user.email) do |format|
+         bcc:  @user.email, 
+         subject: "Primera Notificación") do |format|
       format.html
     end
   end
@@ -48,7 +41,8 @@ class NotificationsMailer < ActionMailer::Base
     mail(from: @user.email,
          to:   @debt.debtor.email, 
          cc:   @debt.debtor.contact_person_email, 
-         bcc:  @user.email) do |format|
+         bcc:  @user.email, 
+         subject: "Segunda Notificación") do |format|
       format.html
     end
   end
@@ -69,7 +63,8 @@ class NotificationsMailer < ActionMailer::Base
     mail(from: @user.email,
          to:   @debt.debtor.email, 
          cc:   @debt.debtor.contact_person_email, 
-         bcc:  @user.email) do |format|
+         bcc:  @user.email,
+         subject: "Tercera Notificación") do |format|
       format.html
     end
   end
