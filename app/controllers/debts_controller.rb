@@ -50,8 +50,8 @@ class DebtsController < ApplicationController
     if NotificationsMailer.respond_to?(@mailer) && [:first,:second,:third].include?(@mailer)
       @preview = NotificationsMailer.public_send(@mailer, @debt, @user)
     else 
-      flash[:error] = "Email No Enviado"
-      # redirect_back
+      flash[:error] = "Email No Encontrado"
+      redirect_to :back
     end
     # @preview.body_encoding('utf-8')
     # @preview.to_s.force_encoding('utf-8')
