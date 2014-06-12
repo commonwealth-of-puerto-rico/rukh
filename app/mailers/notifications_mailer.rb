@@ -8,15 +8,13 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.first.subject
   #
-  def first(debt, user, pdf)
+  def first(debt, user)
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
     
     @debt = debt 
     @user = user 
-    
-    attachments['primera_notificacion.pdf'] = pdf.render
     
     mail(from: @user.email,
          to:   @debt.debtor.email, 
@@ -32,7 +30,7 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.second.subject
   #
-  def second(debt, user, pdf)
+  def second(debt, user)
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
@@ -54,7 +52,7 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.third.subject
   #
-  def third(debt, user, pdf)
+  def third(debt, user)
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
@@ -72,7 +70,6 @@ class NotificationsMailer < ActionMailer::Base
   end
   
   private
-  
     def add_logo! 
       attachments.inline['logo.png'] = File.read("#{Rails.root}public/assets/images/email_logo.png")
     end
