@@ -46,9 +46,10 @@ class DebtsController < ApplicationController
     @debt = Debt.find_by_id(params[:id])
     @user = current_user
     @mailer = params[:mailer].to_sym
+    @pdf_attachment = nil
     #TODO Create logic here to mark which notification to send.
     if [:first,:second,:third].include?(@mailer) && NotificationsMailer.respond_to?(@mailer)
-      @preview = NotificationsMailer.public_send(@mailer, @debt, @user)
+      @preview = NotificationsMailer.public_send(@mailer, @debt, @user, @pdf_attachment )
     else 
       flash[:error] = "Email No Encontrado"
       redirect_to :back
@@ -62,9 +63,10 @@ class DebtsController < ApplicationController
     @debt = Debt.find_by_id(params[:id])
     @user = current_user
     @mailer = params[:mailer].to_sym
+    @pdf_attachment = nil
     #TODO Create logic here to mark which notification to send.
     if  [:first,:second,:third].include?(@mailer) && NotificationsMailer.respond_to?(@mailer)
-      @mail = NotificationsMailer.public_send(@mailer, @debt, @user)
+      @mail = NotificationsMailer.public_send(@mailer, @debt, @user, @pdf_attachment)
       if @mail.deliver
         log_email(@mail, @debt, @user)
         # LogMail.log_email(@mail, @debt, @user) #TODO refactor to lib

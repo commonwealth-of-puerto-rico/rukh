@@ -8,13 +8,15 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.first.subject
   #
-  def first(debt, user)
+  def first(debt, user, pdf)
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
     
     @debt = debt 
     @user = user 
+    
+    attachments['primera_notificacion.pdf'] = pdf.render
     
     mail(from: @user.email,
          to:   @debt.debtor.email, 
@@ -30,7 +32,7 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.second.subject
   #
-  def second(debt, user)
+  def second(debt, user, pdf)
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
@@ -52,7 +54,7 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.third.subject
   #
-  def third(debt, user)
+  def third(debt, user, pdf)
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
