@@ -47,6 +47,8 @@ class DebtsController < ApplicationController
     @debt = Debt.find_by_id(params[:id])
     @user = current_user
     @mailer = params[:mailer].to_sym
+    puts "------->#{params.inspect}"
+    @print = params[:print] == 'true' ? true : false
     #TODO Create logic here to mark which notification to send.
     if [:first,:second,:third].include?(@mailer) && NotificationsMailer.respond_to?(@mailer)
       @preview = NotificationsMailer.public_send(@mailer, @debt, @user)

@@ -28,3 +28,13 @@
         = button_to "Generar Tercer Aviso", email_path, :class => "btn btn-primary", :method => :get, params: {id: @debt.id, mailer: :third}
     %p
       /= link_to "Vista preliminar de todos los Emails", rails_email_preview.rep_emails_url(email_locale: 'es', debt_id: @debt.id, current_user: @user)
+.row
+  %aside
+    -unless @debt.mail_logs.blank?
+      %table.table.table-stripped
+        %thead
+          %th
+            Enviado el:
+          %th
+            Email Enviado:
+        = render @debt.mail_logs
