@@ -42,32 +42,45 @@ class DebtsController < ApplicationController
     @debtor = Debtor.find_by_id @debt.debtor_id
   end
   
-  def preview_email
-    
-    @debt = Debt.find_by_id(params[:id])
+  def preview_email   
+    @debt = Debt.find_by_id(mailer_params[:id])
     @user = current_user
-    @mailer = params[:mailer].to_sym
-    puts "------->#{params.inspect}"
-    @print = params[:print] == 'true' ? true : false
+    @mailer = mailer_params[:mailer].to_sym
+    # puts "------->#{params.inspect}"
+    @print = mailer_params[:print] == 'true' ? true : false
+    #TODO search MailLogs for first instance of first email sent, date.
+    date_first_email_sent = @debt.mail_logs.find_by_mailer_name("Primera Notificación")
+    @date_first_email_sent = if date_first_email_sent
+      I18n.l (date_first_email_sent.datetime_sent.to_date), :format => '%d de %B de %Y'
+    else
+      "fecha de primer aviso no encontrada"
+    end
+    # puts "------->#{@date_first_email_sent.inspect}"
     #TODO Create logic here to mark which notification to send.
     if [:first,:second,:third].include?(@mailer) && NotificationsMailer.respond_to?(@mailer)
-      @preview = NotificationsMailer.public_send(@mailer, @debt, @user)
+      @preview = NotificationsMailer.public_send(@mailer, @debt, @user, 
+        date_first_email_sent: @date_first_email_sent, display_attachments: false)
     else 
       flash[:error] = "Email No Encontrado"
       redirect_to :back
     end
-    # @preview.body_encoding('utf-8')
-    # @preview.to_s.force_encoding('utf-8')
     render layout: false #TODO create layout for emails w/ send
   end
   
   def send_email #should be Post only
-    @debt = Debt.find_by_id(params[:id])
+    @debt = Debt.find_by_id(mailer_params[:id])
     @user = current_user
-    @mailer = params[:mailer].to_sym
+    @mailer = mailer_params[:mailer].to_sym
+    date_first_email_sent = @debt.mail_logs.find_by_mailer_name("Primera Notificación")
+    @date_first_email_sent = if date_first_email_sent
+      I18n.l (date_first_email_sent.datetime_sent.to_date), :format => '%d de %B de %Y'
+    else
+      "fecha de primer aviso no encontrada"
+    end
     #TODO Create logic here to mark which notification to send.
     if  [:first,:second,:third].include?(@mailer) && NotificationsMailer.respond_to?(@mailer)
-      @mail = NotificationsMailer.public_send(@mailer, @debt, @user)
+      @mail = NotificationsMailer.public_send(@mailer, @debt, @user,
+        date_first_email_sent: @date_first_email_sent, display_attachments: true)
       if @mail.deliver
         log_email(@mail, @debt, @user)
         # LogMail.log_email(@mail, @debt, @user) #TODO refactor to lib
@@ -85,6 +98,20 @@ class DebtsController < ApplicationController
   def assign_current_user
     @user = current_user
   end
+  
+  def mailer_params
+    if user_signed_in? #Devise
+      #If only used for sending can validate user role
+      params.permit(
+      :mailer,
+      :id,
+      :print)
+    else
+      flash[:error] = "Usuario No autorizado."
+      redirect_to :back
+    end
+  end
+  
   
   def debt_params
     if user_signed_in? #updated for Devise
@@ -115,10 +142,10 @@ class DebtsController < ApplicationController
       user_id: user.id,
       debt_id: debt.id,
       mailer_id: mail.message_id,
-      mailer_name: mail.subject,
+      mailer_name: mail.subject, 
       datetime_sent: DateTime.now,
       email_sent_to: mail.header.to_s,
-      mailer_content: mail.body.to_s
+      mailer_content: mail.html_part.body.to_s
     )
     mail_log.save or fail
   end

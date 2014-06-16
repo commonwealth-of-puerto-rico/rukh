@@ -8,13 +8,14 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.first.subject
   #
-  def first(debt, user)
+  def first(debt, user, options={})
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
     
     @debt = debt 
     @user = user 
+    headers[:'Return-Receipt-To'] = @user.email
     
     mail(from: @user.email,
          to:   @debt.debtor.email, 
@@ -30,13 +31,18 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.second.subject
   #
-  def second(debt, user)
+  def second(debt, user, options={})
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
     
     @debt = debt 
     @user = user 
+    headers[:'Return-Receipt-To'] = @user.email
+    
+    @date_first_email_sent = options[:date_first_email_sent]
+    @display_attachments = options[:display_attachments]
+    add_signature!
 
     mail(from: @user.email,
          to:   @debt.debtor.email, 
@@ -52,13 +58,18 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.third.subject
   #
-  def third(debt, user)
+  def third(debt, user, options={})
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
     
     @debt = debt 
-    @user = user 
+    @user = user
+    headers[:'Return-Receipt-To'] = @user.email
+    
+    @date_first_email_sent = options[:date_first_email_sent]
+    @display_attachments = options[:display_attachments]
+    add_signature!
 
     mail(from: @user.email,
          to:   @debt.debtor.email, 
@@ -71,7 +82,10 @@ class NotificationsMailer < ActionMailer::Base
   
   private
     def add_logo! 
-      attachments.inline['logo.png'] = File.read("#{Rails.root}public/assets/images/email_logo.png")
+      attachments.inline['logo.png'] = File.read("#{Rails.root}/app/assets/images/57.png")
+    end
+    def add_signature!
+      attachments.inline['signature.jpg'] = File.read("#{Rails.root}/app/assets/images/signature.jpg")
     end
 end
 
