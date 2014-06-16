@@ -11,5 +11,5 @@
 - unless @preview.multipart? 
   = @preview.body.to_s.html_safe 
 - else
-  = @preview.html_part.body.to_s.html_safe#@preview.parts[0].body.to_s.html_safe
+  = @preview.html_part.body.to_s.html_safe #@preview.parts[0].body.to_s.html_safe
 /

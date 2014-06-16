@@ -16,6 +16,8 @@ class NotificationsMailer < ActionMailer::Base
     @debt = debt 
     @user = user 
     headers[:'Return-Receipt-To'] = @user.email
+    @display_attachments = options[:display_attachments]
+    add_signature!
     
     mail(from: @user.email,
          to:   @debt.debtor.email, 

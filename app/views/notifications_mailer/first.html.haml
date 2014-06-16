@@ -217,7 +217,7 @@
         %td
           = Date.today
         %td
-          = i
+          = image_tag attachments['signature.jpg'].url, alt: "Firma" if @display_attachments
         %td 
           = i
     /
