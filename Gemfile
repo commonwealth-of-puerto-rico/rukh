@@ -67,7 +67,7 @@ gem 'devise', '~> 3.2.4'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-#Time Zone info data (for Rails 4.1)
+# Time Zone info data (for Rails 4.1)
 gem 'tzinfo-data'
 
 # Markdown
