@@ -29,6 +29,7 @@ class DebtorsController < ApplicationController
   def destroy
     assign_current_user
     #Should only be certain users --> Supervisor users.
+    #With 'dependency: restrict' only debtors w/ no debt can be deleted.
     Debtor.find(params[:id]).destroy
     flash[:success] = "Record del deudor borrado."
     redirect_to debtors_url
@@ -74,6 +75,7 @@ class DebtorsController < ApplicationController
   end
   
   def api_search
+    #TODO add a limit to the debtor info sent by json.
     respond_to do |format|
       format.html
       format.json { render json: @debtor, :callback => params[:callback] }

@@ -1,13 +1,14 @@
 class DebtsController < ApplicationController
   before_action :authenticate_user! ## for DEVISE
   
-  ## Resrouce Actions
+  ## Resource Actions
   def new
     assign_current_user
     # fail if params[:debtor_id].nil?
     @debtor = Debtor.find_by_id(params[:debtor_id])#something w/ params
     @debt = Debt.new
   end
+  
   def index
     assign_current_user
     @debts_all = Debt.paginate(page: params[:page], per_page: 10)
@@ -69,39 +70,32 @@ class DebtsController < ApplicationController
   
   private
   def prepare_email(debt, user, mailer, options={})  
-    # @date_first_email_sent = date_first_email_sent(debt) #This can be refactored out and passed as an option
     date_first_email_sent = options.fetch :date_first_email_sent, "fecha de primer aviso no encontrada"
     display_attachments = options.fetch :display_attachments, true
     
     if guard_mailer(mailer) 
       @mail_preview = NotificationsMailer.public_send(mailer, debt, user, 
         date_first_email_sent: date_first_email_sent, display_attachments: display_attachments)
+      if options.fetch :send, false 
+        deliver_mail(debt, user, mailer, @mail_preview)
+      end
     else 
       flash[:error] = "Email No Encontrado"
     end
-    
-    #Below can be refactored into it's own method send_mail
-    if options.fetch :send, false 
-      deliver_mail(debt, user, mailer, @mail_preview)
-      # if guard_mailer(mailer) && @mail_preview.deliver
-      #   # Log Mail
-      #   log_email(@mail_preview, debt, user, mailer_name: mailer)
-      #   flash[:success] = "Email: #{@mail_preview.subject} Enviado"
-      # else 
-      #   flash[:error] = "Email No Enviado"
-      # end
-    end
-
   end
   
   def deliver_mail(debt, user, mailer, mail_preview, options={})
-    if guard_mailer(mailer) && mail_preview.deliver
+    if mail_preview.deliver #guard_mailer(mailer) && 
       # Log Mail
       log_email(mail_preview, debt, user, mailer_name: mailer)
       flash[:success] = "Email: #{mail_preview.subject} Enviado"
     else 
       flash[:error] = "Email No Enviado"
     end
+  end
+  
+  def guard_mailer(mailer)
+    [:first,:second,:third].include?(mailer) && NotificationsMailer.respond_to?(mailer)
   end
   
   def date_first_email_sent(debt)
@@ -111,10 +105,6 @@ class DebtsController < ApplicationController
     else
       "fecha de primer aviso no encontrada"
     end
-  end
-  
-  def guard_mailer(mailer)
-    [:first,:second,:third].include?(mailer) && NotificationsMailer.respond_to?(mailer)
   end
   
   def assign_current_user
