@@ -15,7 +15,7 @@ class NotificationsMailer < ActionMailer::Base
     
     @debt = debt 
     @user = user 
-    headers[:'Return-Receipt-To'] = @user.email
+    add_return_receipt headers, @user.email
     @display_attachments = options[:display_attachments]
     add_signature!
     
@@ -40,7 +40,7 @@ class NotificationsMailer < ActionMailer::Base
     
     @debt = debt 
     @user = user 
-    headers[:'Return-Receipt-To'] = @user.email
+    add_return_receipt headers, @user.email
     
     @date_first_email_sent = options[:date_first_email_sent]
     @display_attachments = options[:display_attachments]
@@ -67,7 +67,7 @@ class NotificationsMailer < ActionMailer::Base
     
     @debt = debt 
     @user = user
-    headers[:'Return-Receipt-To'] = @user.email
+    add_return_receipt headers, @user.email
     
     @date_first_email_sent = options[:date_first_email_sent]
     @display_attachments = options[:display_attachments]
@@ -83,6 +83,12 @@ class NotificationsMailer < ActionMailer::Base
   end
   
   private
+    def add_return_receipt(headers, email)
+      headers[:'Return-Receipt-To'] = email
+      headers[:'Disposition-Notification'] = email
+      headers[:'X-Confirm-Reading-To'] = email 
+    end
+  
     def add_logo! 
       attachments.inline['logo.png'] = File.read("#{Rails.root}/app/assets/images/57.png")
     end
