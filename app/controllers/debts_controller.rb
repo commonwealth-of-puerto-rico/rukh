@@ -79,7 +79,7 @@ class DebtsController < ApplicationController
       if guard_mailer(mailer) && @mail_preview.deliver
         # Log Mail
         log_email(@mail, debt, user, mailer_name: mailer)
-        flash[:success] = "Email: #{@mail.subject} Enviado"
+        flash[:success] = "Email: #{@mail_preview.subject} Enviado"
       else 
         flash[:error] = "Email No Enviado"
       end
