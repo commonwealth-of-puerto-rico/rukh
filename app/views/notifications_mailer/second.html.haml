@@ -14,8 +14,21 @@
   .center {
     text-align: center;
   }
+  .midwide {
+    width:200px;
+  }
+  .verywide {
+    width:1000px;
+    margin: 30px;
+  }
+  .small {
+    font-size: small;
+  }
+  .table {
+    margin: 35px;
+  }
 -#######################
-#aside.sidebox
+#aside.sidebox.small
   :markdown
     Modelo SC 1072  
     8 AGO 97  
@@ -23,11 +36,10 @@
 .verywide  
   %h1.center.nobottommargin
     ESTADO LIBRE ASOCIADO DE PUERTO RICO
-%br
-.wide
+.verywide
   .center
     %h5.nobottommargin
-      JCA
+      JUNTA DE CALIDAD AMBIENTAL
     %hr.midwide
   %h6.center.notopmargin.nobottommargin
     Agencia
@@ -39,58 +51,68 @@
     Dirección 
 
 %br
-= "Fecha: #{Date.today}"
--# {'Nombre' => @debt.debtor.name, 'Dirección y' => "#{@debt.debtor.address}; #{@debt.debtor.location}", |
--# 'Núm. de Cuenta o' => @debt.permit_infraction_number, |
--# 'Seguro Social' => "#{@debt.debtor.employer_id_number}#{@debt.debtor.ss_last_four}"}.each_pair do |key, elem|
-  .verywide.margin
-    = "<strong>#{key}: </strong>".html_safe + "#{elem}"
-  .verywide
-    .wide
+.verywide
+  = "#{I18n.l Date.today, :format => '%d de %B de %Y'}"
+%table.table
+  %tr
+    %td
+      =@debt.debtor.name
       %hr.notopmargin
-      
-.table
-  .tr
-    .td
+      =@debt.debtor.address
+      %hr.notopmargin
+
+%br      
+%table.table
+  %tr
+    %td
       ASUNTO
-    .td
+    %td
       = ":" 
-    .td
-      = "/TERCER AVISO"
-  .tr
-    .td
+    %td
+      = ""
+    %td
+      = "/SEGUNDO AVISO"
+  %tr
+    %td
       FACTURA NUM.
-    .td
+    %td
       = ":"
-    .td
-      = "factura"
-  .tr
-    .td
+    %td
+      = "#{@debt.permit_infraction_number}"
+  %tr
+    %td
       IMPORTE
-    .td
+    %td
       = ":"
-    .td
+    %td
       = "67.00" 
 /  
-:markdown
-  Le exhortamos a que envíe su pago dentro de los próximos **30 días** a partir de la fecha de esta comunicación. Debe efectuar el mismo con cheque certificado o giro postal expedido a nombre del **Secretario de Hacienda**. Tan pronto recibamos su pago, dejaremos sin efecto cualquier otra gestión de cobro que haya sigo iniciada.
+.verywide
+  = "El #{@date_first_email_sent}, le enviamos la factura mencionada en el asunto, sin embargo, aún no hemos recibido el pago."
 
-:markdown
-  De no objetar la deuda dentro de los próxomos **10 días laborables** o de no recibir su pago dentro del término antes indicado, enviaremos el caso a nuestros abogados para que inicien la **acción legal** para el cobro de la misma. También, notificaremos al Secretario de Hacienda para que descuente el importe adeudado de cualesquier pago que trámite el Gobierno a su favor.
+  :markdown
+    Le exhortamos a que envíe su pago dentro de los próximos **30 días** a partir de la fecha de esta comunicación. Debe efectuar el mismo con cheque certificado o giro postal expedido a nombre del **Secretario de Hacienda**. Tan pronto recibamos su pago, dejaremos sin efecto cualquier otra gestión de cobro que haya sigo iniciada.
+
+  :markdown
+    De no objetar la deuda dentro de los próxomos **10 días laborables** o de no recibir su pago dentro del término antes indicado, enviaremos el caso a nuestros abogados para que inicien la **acción legal** para el cobro de la misma. También, notificaremos al Secretario de Hacienda para que descuente el importe adeudado de cualesquier pago que trámite el Gobierno a su favor.
   
-:markdown
-  Si pago la deuda, favor de enviarnos la evidencia de pago.
+  :markdown
+    Si pago la deuda, favor de enviarnos la evidencia de pago.
   
-:markdown
-  Cordialmente, 
+  :markdown
+    Cordialmente, 
   
-:markdown
-  Jefe  
-  División de Finanzas
+  = image_tag attachments['signature.jpg'].url, alt: "Firma" if @display_attachments
+  %br
+  = "Sr. Santos A. Aponte Cancel"
+  
+  :markdown
+    Jefe  
+    División de Finanzas
   
   
   
-.small
+.small.verywide
   AGS  
   
   

@@ -54,8 +54,11 @@
   #leftaside {
     float:right;
   }
+  .small {
+    font-size: small;
+  }
 -#######################
-#aside.sidebox
+#aside.sidebox.small
   :markdown
     Modelo SC 724  
     31-Jan-01  
@@ -63,17 +66,16 @@
 .verywide  
   %h1.center.nobottommargin
     ESTADO LIBRE ASOCIADO DE PUERTO RICO
-%br
 .wide
   .center
-    %h5.nobottommargin
-      JCA
+    %h4.nobottommargin
+      Junta de Calidad Ambiental
     %hr.midwide
   %h6.center.notopmargin.nobottommargin
     Agencia
   .center
     %h5.nobottommargin
-      Ponce de León
+      1375 Avenida Ponce de León, San Juan, PR 00926-2604
     %hr.midwide
   %h6.center.notopmargin   
     Dirección 
@@ -158,7 +160,7 @@
         %td 
           = i
         %td   
-          = i
+          = "14"
         %td 
           = i
         %td 
@@ -168,7 +170,7 @@
         %td
           = i 
         %td
-          = @debt.amount_owed_pending_balance
+          = number_to_currency @debt.amount_owed_pending_balance
     /
 %table.table.border.wide.margin        
   %thead.grey
@@ -182,22 +184,29 @@
       %th.narrow
         IMPORTE
   %tbody
-    - [1,2].each do |i|
+    - [1].each do |i|
       %tr
         %td 
-          = @debt.original_debt_date
+          = I18n.l @debt.original_debt_date
         %td 
-          = @debt.original_debt_date + 30
+          = I18n.l @debt.original_debt_date + 30
         %td 
           = @debt.type_of_debt
         %td 
           = number_to_currency @debt.amount_owed_pending_balance
     /
+    - [1,2].each do |i|
+      %tr
+        %td 
+        %td 
+        %td 
+        %td 
+    /
     %tr
       %td
       %td
       %td
-        = "A PARTIR DEL #{Date.today} SE LE CONCEDERAN 30 DIAS PARA REALIZAR SU PAGO."
+        = "A PARTIR DEL #{I18n.l Date.today, :format => '%d de %B de %Y'} SE LE CONCEDERAN 30 DIAS PARA REALIZAR SU PAGO."
           
       %td      
 %table.table.table-striped.border.wide.margin  
@@ -212,11 +221,14 @@
     - [3].each do |i|
       %tr
         %td
-          = Date.today
+          = I18n.l Date.today, :format => '%d de %B de %Y'
         %td
-          = i
+          = @display_attachments ? image_tag(attachments['signature.jpg'].url, alt: "Firma") : " "
+          %br
+          %hr
+          = "Celine Dion"
         %td 
-          = i
+          = "(555)-555-5555"
     /
     %tr
       %td
@@ -229,7 +241,7 @@
   %tbody
     %tr
       %td 
-        = 'Debe efectuar el pago con un cheque certificado o giro a nombre del Secretario de Hacienda y enviarlo a:'
+        = "Debe efectuar el pago con un cheque certificado o giro a nombre del Secretario de Hacienda y enviarlo a: #{'Celine Dion'}"
     %tr
       %td
         = ''
@@ -239,7 +251,7 @@
          
 /
 %br
-.wide
+.wide.small
   :markdown      
-     Conservación: Seis años después de recibido el pago o declarada la deuda incobrable o una intervención del Contralor, lo que ocurra primero.
+     **Conservación:** Seis años después de recibido el pago o declarada la deuda incobrable o una intervención del Contralor, lo que ocurra primero.
  

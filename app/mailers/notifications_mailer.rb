@@ -8,13 +8,16 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.first.subject
   #
-  def first(debt, user)
+  def first(debt, user, options={})
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
     
     @debt = debt 
     @user = user 
+    add_return_receipt headers, @user.email
+    @display_attachments = options[:display_attachments]
+    add_signature!
     
     mail(from: @user.email,
          to:   @debt.debtor.email, 
@@ -30,13 +33,18 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.second.subject
   #
-  def second(debt, user)
+  def second(debt, user, options={})
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
     
     @debt = debt 
     @user = user 
+    add_return_receipt headers, @user.email
+    
+    @date_first_email_sent = options[:date_first_email_sent]
+    @display_attachments = options[:display_attachments]
+    add_signature!
 
     mail(from: @user.email,
          to:   @debt.debtor.email, 
@@ -52,13 +60,18 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.third.subject
   #
-  def third(debt, user)
+  def third(debt, user, options={})
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
     
     @debt = debt 
-    @user = user 
+    @user = user
+    add_return_receipt headers, @user.email
+    
+    @date_first_email_sent = options[:date_first_email_sent]
+    @display_attachments = options[:display_attachments]
+    add_signature!
 
     mail(from: @user.email,
          to:   @debt.debtor.email, 
@@ -69,23 +82,18 @@ class NotificationsMailer < ActionMailer::Base
     end
   end
   
-  def log_email(mail, debt, user)
-    mail_log = MailLog.create(
-      user_id: user.id,
-      debt_id: debt.id,
-      mailer_id: mail.message_id,
-      mailer_name: mail.subject,
-      datetime_sent: DateTime.now,
-      email_sent_to: mail.header.to_s,
-      mailer_content: mail.body.to_s
-    )
-    mail_log.save or fail
-  end
-  
   private
+    def add_return_receipt(headers, email)
+      headers[:'Return-Receipt-To'] = email
+      headers[:'Disposition-Notification'] = email
+      headers[:'X-Confirm-Reading-To'] = email 
+    end
   
     def add_logo! 
-      attachments.inline['logo.png'] = File.read("#{Rails.root}public/assets/images/email_logo.png")
+      attachments.inline['logo.png'] = File.read("#{Rails.root}/app/assets/images/57.png")
+    end
+    def add_signature!
+      attachments.inline['signature.jpg'] = File.read("#{Rails.root}/app/assets/images/signature.jpg")
     end
 end
 

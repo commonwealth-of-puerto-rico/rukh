@@ -78,14 +78,11 @@ gem 'will_paginate', '~> 3.0.5'
 gem 'bootstrap-will_paginate'
 
 # Console
-# gem 'pry', require: false
+gem 'pry'
 
-# Email Previews
-gem 'rails_email_preview', '~> 0.2.20'
 
 group :development do
   gem 'localeapp', require: false
-  gem 'pry'
   gem 'guard-rspec', '~> 4.2.8'
   gem 'guard-spork', '~> 1.5.1'
   gem 'spork-rails', github: 'sporkrb/spork-rails'
