@@ -47,7 +47,8 @@ class DebtsController < ApplicationController
     @user = current_user
     @mailer = mailer_params[:mailer].to_sym
     @print = (mailer_params[:print] == 'true') ? true : false
-    prepare_email(@debt, @user, @mailer, preview: true)
+    prepare_email(@debt, @user, @mailer, preview: true, 
+    display_attachments: false)
 
     render layout: false 
   end
@@ -56,7 +57,8 @@ class DebtsController < ApplicationController
     @debt = Debt.find_by_id(mailer_params[:id])
     @user = current_user
     @mailer = mailer_params[:mailer].to_sym
-    prepare_email(@debt, @user, @mailer, send: true)
+    prepare_email(@debt, @user, @mailer, send: true, 
+    display_attachments: true)
     
     redirect_to @debt
   end
@@ -64,33 +66,25 @@ class DebtsController < ApplicationController
   private
   def prepare_email(debt, user, mailer, options={})  
     @date_first_email_sent = date_first_email_sent(debt)
-    if options.fetch :preview, false
-      if guard_mailer(mailer) 
-        #[:first,:second,:third].include?(@mailer) && NotificationsMailer.respond_to?(@mailer)
-        @preview = NotificationsMailer.public_send(mailer, debt, user, 
-          date_first_email_sent: @date_first_email_sent, display_attachments: false)
+    display_attachments = options.fetch :display_attachments, true
+    
+    if guard_mailer(mailer) 
+      @mail_preview = NotificationsMailer.public_send(mailer, debt, user, 
+        date_first_email_sent: @date_first_email_sent, display_attachments: display_attachments)
+    else 
+      flash[:error] = "Email No Encontrado"
+    end
+    
+    if options.fetch :send, false 
+      if guard_mailer(mailer) && @mail_preview.deliver
+        # Log Mail
+        log_email(@mail, debt, user, mailer_name: mailer)
+        flash[:success] = "Email: #{@mail.subject} Enviado"
       else 
-        flash[:error] = "Email No Encontrado"
-        redirect_to :back
+        flash[:error] = "Email No Enviado"
       end
-    elsif options.fetch :send, false
-      if  guard_mailer(@mailer)
-        @mail = NotificationsMailer.public_send(mailer, debt, user,
-          date_first_email_sent: @date_first_email_sent, display_attachments: true)
-        if @mail.deliver
-          # Log Mail
-          log_email(@mail, debt, user, mailer_name: mailer)
-          flash[:success] = "Email: #{@mail.subject} Enviado"
-        else 
-          flash[:error] = "Email No Enviado"
-        end
-      else 
-        flash[:error] = "Email No Encontrado"
-      end
-    else
-      flash[:error] = "Email No Enviado"
-      redirect_to :back
-    end 
+    end
+
   end
   
   def date_first_email_sent(debt)

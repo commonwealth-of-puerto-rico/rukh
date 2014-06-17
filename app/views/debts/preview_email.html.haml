@@ -1,15 +1,18 @@
--#TODO Add flash notification header.
-
+- flash.each do |k, v|
+  %div{:class => "alert alert-#{k}"}= v
 - unless @print#
   %span{:class => 'glyphicon glyphicon-envelope'}
     = button_to "Enviar", email_send_path, :class => "btn btn-large btn-primary", :method => :post, params: { id: @debt.id, mailer: @mailer, user_id: @user.id }
   %span{:class => 'glyphicon glyphicon-print'}
     = button_to "Preparar para Imprimir", email_path, form: {:target => "_blank"}, :class => "btn btn-large btn-primary", :method => :get, params: { id: @debt.id, mailer: @mailer, user_id: @user.id, print: 'true' }
   %hr
-  = @preview.header.to_s
+  = @mail_preview.header.to_s if @mail_preview
   %hr
-- unless @preview.multipart? 
-  = @preview.body.to_s.html_safe 
-- else
-  = @preview.html_part.body.to_s.html_safe #@preview.parts[0].body.to_s.html_safe
+/
+- if @mail_preview  
+  - unless @mail_preview.multipart? 
+    = @mail_preview.body.to_s.html_safe 
+  - else
+    = @mail_preview.html_part.body.to_s.html_safe #@mail_preview.parts[0].body.to_s.html_safe
+  /
 /
