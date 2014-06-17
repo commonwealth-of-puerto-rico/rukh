@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
     
   end
   
-  def modeloSC_724
+  def dev
     render layout: false
   end
 

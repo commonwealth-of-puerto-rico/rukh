@@ -30,7 +30,7 @@
       /= link_to "Vista preliminar de todos los Emails", rails_email_preview.rep_emails_url(email_locale: 'es', debt_id: @debt.id, current_user: @user)
 .row
   %aside
-    -unless @debt.mail_logs.blank?
+    -if @debt.respond_to?(:mail_logs) && !@debt.mail_logs.blank?
       %table.table.table-stripped
         %thead
           %th

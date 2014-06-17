@@ -89,7 +89,7 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
     address: Rails.application.secrets.smpt, 
-    port: '25'
+    port: 25
   }
   # :address, :port, :domain, :user_name, :password, 
   # :authentication {:plain, :login, :cram_md5}

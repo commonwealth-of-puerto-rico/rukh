@@ -49,7 +49,10 @@ module Rukh
     end
     
     # Email Preview path 
-    config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews/"
+    # config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews/"
+    
+    # Encoding for Windows Tomcat #TODO Verify if actually needed.
+    config.encoding = 'utf-8'
     
     console do
       begin

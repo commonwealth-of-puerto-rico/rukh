@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   match '/help',          to: 'static_pages#help',    via: 'get'
   match '/home',          to: 'static_pages#home',    via: 'get'
+  match '/dev',           to: 'static_pages#dev',     via: 'get'
   match 'debtor/search',  to: 'debtors#search',       via: 'get', as: 'search'
   
   match '/import',        to: 'import#create',        via: 'post'
