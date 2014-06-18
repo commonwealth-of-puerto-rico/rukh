@@ -13,8 +13,8 @@
   = link_to debtor.employer_id_number, debtor 
   - if total.zero?
     = " | #{number_to_currency total, :unit => "$"}"
-  -else
+  - else
     = " | <strong>".html_safe + number_to_currency(total, :unit => '$') + "</strong>".html_safe
-  -#/ - if current_user.admin? #or current_user.supervisor? && debtor.respond_to?(:debts) == false
-  -#/   = " | "
-  -#/   = link_to "<span class='glyphicon glyphicon-trash'></span> delete".html_safe, debtor, method: :delete, data: {confirm: "Confirme Borrar Record: ¿Seguro?"}
+  - unless true or debtor.respond_to?(:debts) && !debtor.debts.blank?#current_user.admin? #or current_user.supervisor?
+    = " | "
+    = link_to "<span class='glyphicon glyphicon-trash'></span> delete".html_safe, debtor, method: :delete, data: {confirm: "Confirme Borrar Record: ¿Seguro?"}

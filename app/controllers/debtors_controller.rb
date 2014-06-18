@@ -30,8 +30,13 @@ class DebtorsController < ApplicationController
     assign_current_user
     #Should only be certain users --> Supervisor users.
     #With 'dependency: restrict' only debtors w/ no debt can be deleted.
-    Debtor.find(params[:id]).destroy
-    flash[:success] = "Record del deudor borrado."
+    begin 
+      Debtor.find(params[:id]).destroy
+      flash[:success] = "Record del deudor borrado."
+    rescue ActiveRecord::DeleteRestrictionError => e
+      flash[:error] = e
+      raise e
+    end
     redirect_to debtors_url
   end
   
