@@ -3,18 +3,18 @@
   -# Create a collect method to show total amount owed or paid.{:class => "#{debtor.collections.any? ? 'red' : 'green'}"}
   = "#{debtor.id}"
   = " "
-  %b
-    = link_to(("<i class='icon-folder-open'></i> ".html_safe + debtor.name), debtor)
+  %strong
+    = link_to(("<span class='glyphicon glyphicon-folder-open'></span> ".html_safe + debtor.name), debtor)
   = " - "
-  = debtor.tel
-  = debtor.ext
+  -#= debtor.tel
+  -#= debtor.ext
   = debtor.email
+  = " | " unless debtor.employer_id_number.blank?
   = link_to debtor.employer_id_number, debtor 
   - if total.zero?
     = " | #{number_to_currency total, :unit => "$"}"
   -else
     = " | <strong>".html_safe + number_to_currency(total, :unit => '$') + "</strong>".html_safe
-  / - if current_user.admin? #or current_user.supervisor?
-  /   = " | "
-  /   = link_to "<i class='icon-trash'></i> delete".html_safe, debtor, method: :delete, data: {confirm: "Confirme Borrar Record: ¿Seguro?"}
-  / /
+  -#/ - if current_user.admin? #or current_user.supervisor? && debtor.respond_to?(:debts) == false
+  -#/   = " | "
+  -#/   = link_to "<span class='glyphicon glyphicon-trash'></span> delete".html_safe, debtor, method: :delete, data: {confirm: "Confirme Borrar Record: ¿Seguro?"}

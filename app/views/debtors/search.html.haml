@@ -3,7 +3,8 @@
 = form_tag debtors_path, :method => 'get' do
   -# debtors_path might not be best?
   %p{:class => 'col-md-8_'}
-    = search_field_tag :search, params[:search] 
-    = submit_tag "Buscar", :name => nil 
+    = search_field_tag :search, params[:search]
+    .btn-group 
+      = submit_tag "Buscar", :name => nil 
 
 -#end

@@ -2,7 +2,7 @@
 - provide(:title, "Record de la Factura")
 %h1 Factura:
 .row
-  %aside.span6
+  %aside.col-md-6
     %section
       %h5
         -if @debtor
@@ -14,27 +14,22 @@
           = @debtor.contact_person
         /end  
 
-  %aside.span4
-    %section
+  %aside.col-md-4
+    .btn-group-vertical.btn-group
       =#yield :logs_sidebar
-    %p
-      %a{:href => '#{url_for new_payment_plan_path(@debt)}', :class => "btn btn-primary disabled"}
-        Añadir Plan de Pago
-      %span{:class => 'glyphicon glyphicon-envelope'}
-        = button_to "Generar Primer Aviso", email_path, :class => "btn btn-primary", :method => :get, params: {id: @debt.id, mailer: :first}
-      %span{:class => 'glyphicon glyphicon-envelope'}
-        = button_to "Generar Segundo Aviso", email_path, :class => "btn btn-primary", :method => :get, params: {id: @debt.id, mailer: :second}
-      %span{:class => 'glyphicon glyphicon-envelope'}
-        = button_to "Generar Tercer Aviso", email_path, :class => "btn btn-primary", :method => :get, params: {id: @debt.id, mailer: :third}
-    %p
+      -# %a{:href => '#{url_for new_payment_plan_path(@debt)}', :class => "btn btn-primary disabled"}
+      -#  Añadir Plan de Pago
+      = button_to "Generar Primer Aviso", email_path, :class => "btn btn-primary", :method => :get, params: {id: @debt.id, mailer: :first} 
+      = button_to "Generar Segundo Aviso", email_path, :class => "btn btn-primary", :method => :get, params: {id: @debt.id, mailer: :second}
+      / %span{:class => 'glyphicon glyphicon-envelope'}
+      = button_to "Generar Tercer Aviso", email_path, :class => "btn btn-primary", :method => :get, params: {id: @debt.id, mailer: :third}
       /= link_to "Vista preliminar de todos los Emails", rails_email_preview.rep_emails_url(email_locale: 'es', debt_id: @debt.id, current_user: @user)
 .row
-  %aside
-    -unless @debt.mail_logs.blank?
-      %table.table.table-stripped
-        %thead
-          %th
-            Enviado el:
-          %th
-            Email Enviado:
-        = render @debt.mail_logs
+  -unless @debt.mail_logs.blank?
+    %table.table.table-stripped
+      %thead
+        %th
+          Enviado el:
+        %th
+          Email Enviado:
+      = render @debt.mail_logs
