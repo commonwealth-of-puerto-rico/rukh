@@ -1,12 +1,12 @@
--#coding: utf-8
 - provide(:title, "Crear Record de Deudor")
 %h1.col-md-offset-2 Crear Record de Deudor Nuevo
 .row
   -if @debtor.errors.any?
-    %p
-      Problemas con:
+    %p.col-md-8.col-md-offset-2
+      %strong
+        Problemas con:
     - @debtor.errors.full_messages.each do |msg|
-      %li{:class => "alert alert-error"}
+      %li{:class => "alert alert-danger col-md-8 col-md-offset-2"}
         = msg
   /
   %div{:class => "col-md-8 col-md-offset-2"}

@@ -8,7 +8,7 @@ class StaticPagesController < ApplicationController
   end
   
   def dev
-    render layout: false
+    @user = current_user
   end
 
 end

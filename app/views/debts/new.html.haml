@@ -2,26 +2,29 @@
 %h1.col-md-offset-2 Crear Una Nueva Factura
 .row
   -if @debt.errors.any?
-    %p
-      Problemas con:
+    %p.col-md-8.col-md-offset-2
+      %strong
+        Problemas con:
     - @debt.errors.full_messages.each do |msg|
-      %li{:class => 'alert alert-error'}
+      %li{:class => 'alert alert-danger col-md-8 col-md-offset-2'}
         = msg
   /
   %h3.col-md-8.col-md-offset-2
-    = "Añadir una factura a: "
+    %strong
+      = "Añadir una factura a: "
+    %p
     - if @debtor 
-      .grey
-        !="<em> &bull;"
+      %em.grey
+        !=" &bull;"
         = @debtor.name
-      = @debtor.tel
-      = "  |  "
-      = @debtor.contact_person
-      %br
-      = "EIN: #{@debtor.employer_id_number}"
-      %br
-      = "Ultimos 4 de SS: #{@debtor.ss_last_four}"
-      !="</em>"
+      %em
+        = @debtor.tel
+        = "  |  "
+        = @debtor.contact_person
+        %br
+        = "EIN: #{@debtor.employer_id_number}"
+        %br
+        = "Ultimos 4 de SS: #{@debtor.ss_last_four}"
     / 
   %br
   %div{:class => "col-md-8 col-md-offset-2"}

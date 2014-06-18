@@ -1,0 +1,36 @@
+
+# Instalación en Windows (solo para Deploy)
+
+1. [JavaSDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) Java Development Kit
+2. [Java JCE](http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html) Java Cryptographic Extensions
+1. [Tomcat7](http://tomcat.apache.org/download-70.cgi) Apache Tomcat 7 Server
+2. [JRuby](www.jruby.org) necesario para las migraciones del db.
+3. [Mariadb](https://mariadb.org/) mejor que MySQL
+
+TODO: create a SaltStack script for this...
+
+# Instalación en Mac/Linux (para Development & Deploy)  
+
+### Mac  
+
+1. [RVM](www.rvm.io) (opcional puedes usar homebrew tambien pero RVM es mejor.) 
+   commando: `\curl -sSL https://get.rvm.io | bash -s stable`
+2. [Homebrew](http://brew.sh/) comando: 
+  `ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"`  
+3. [JavaSDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (puede ser la 6 o 7)
+4. [Java JCE](http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html) Java Cryptographic Extensions
+5. Maria DB: `brew install mariadb`
+6. Tomcat7: `brew install tomcat`
+7. JRuby: `brew install jruby` o mejor `rvm install jruby`
+
+
+### Ubuntu
+(usando `sudo apt-get install`)
+
+1. openjdk-7-jdk
+2. tomcat7
+3. postgresql (o otra base de datos mariadb envuelve añadir un ppa)
+4. RVM (ruby version manager) (vea como instalar en la sección de Mac)
+5. Configurar el shell en Ubuntu a login shell para RVM (vea site RVM)
+6. Jruby: `rvm install jruby`
+7. Bajar JCE [Java JCE](http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html)
