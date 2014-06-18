@@ -3,9 +3,9 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
-$gray-lighter: $grayLighter;
-$gray-light: $grayLight;
-$gray-darker: $grayDarker; 
+//$gray-lighter: $grayLighter;
+//$gray-light: $grayLight;
+//$gray-darker: $grayDarker; 
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -38,9 +38,9 @@ html {
   overflow-y: scroll;
 }
 
-body {
-  padding-top: 60px;
-}
+//body {
+//  padding-top: 70px;
+//}
 
 section {
   overflow: auto;
