@@ -2,7 +2,7 @@
 
 Para hacer el deploy que pueda funcionar en Windows y en Linux se selecionó JRuby/Java/Tomcat7 y como prueba Heroku. 
 Para hacer el deploy a tomcat primero este tiene que estar ready para un aplicación Rails 4.
-Sigua las instruciones en [Instruciones para Tomcat][d1] las cuales sirven para Linux o Windows. 
+Sigua las instruciones en la sección de instalación las cuales sirven para Linux o Windows. 
 Despues de preparada la maquina para el deploy en la maquina de 'development' corra los comandos para generar el war file.
 
 Translade el war file al file `<TOMCAT_HOME>/webapps` y corra el tomcat server. 
@@ -70,7 +70,7 @@ Tambien se le puede añadir esta linea al `web.xml` para darle un nombre a la ap
 
 ####Trouble shooting
 
-1. Me sale un error de JRuby version...![Error Page for JRuby version][d2]  
+1. Me sale un error de JRuby version...
 >Este error es probablemente porque un gem llamado jruby-jars que contiene el runtime de jruby esta en la version pasada corra `bundle update jruby-jars` en la maquina de development y corra warble again. 
 
 2. No corre Tomcat7 en Windows pero funciona en Linux  
@@ -82,6 +82,3 @@ Tambien se le puede añadir esta linea al `web.xml` para darle un nombre a la ap
 4. Algo raro con los war files...  
 >Warble tiene un bug que genera caracteres chatarra al final de files como: `web.xml` si ese el caso puede eliminar estos caracteres chatarra o mejor y sugerido crear un web.xml file en el directorio en la maquina 'development' para que Warble lo copie y no lo genere. 
 
-
-[d1][(tomcat_instructions.md "Instruciones para Tomcat")]
-[d2][(<%= asset_path('NewVersionofJRUBY.png') %>)]
