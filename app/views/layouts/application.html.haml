@@ -14,10 +14,6 @@
     = render 'layouts/shim'
   %body  
     = render 'layouts/header'
-    -# %p{class: "notice"}
-    -#  = notice 
-    -# %p{class: "alert"}
-    -#  = alert 
     .container
       - flash.each do |k, v|
         %div{:class => "alert alert-#{k}"}= v

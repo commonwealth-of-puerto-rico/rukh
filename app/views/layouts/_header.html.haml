@@ -1,18 +1,17 @@
-%header{ :class => 'navbar navbar-fixed-top navbar-inverse' }
-  .navbar-inner
-    .container
-      =link_to "Rukh", home_path, id: "logo"
-      %nav
-        %ul{ :class => 'nav pull-right' }
-          / %li= link_to "Home", home_path
-          / %li= link_to "Ayuda", help_path
+%header{ :class => 'navbar navbar-default navbar-fixed-top0 navbar-inverse', :role => 'navigation' }
+  .container-fluid
+    .navbar-header
+      =link_to "Rukh", home_path, id: "logo", class: 'navbar-brand'
+    .collapse.navbar-collapse
+      .nav.navbar-nav.navbar-right
+        %ul{ :class => 'nav navbar-nav' }
           -if signed_in?
-            / %li= link_to "Lista de Deudores", debtors_path
+            -# %li= link_to "Lista de Deudores", debtors_path
             %li= link_to "Facturas", debts_path
             %li= link_to "Deudor Nuevo", new_debtor_path
             %li= link_to "Buscar Deudor", search_path
             %li= link_to "Log out", destroy_user_session_path, method: "delete"    
-            %li#fat-menu.dropdown
+            %li.dropdown
               %a{:href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
                 Usuario
                 %b.caret
@@ -26,4 +25,4 @@
                 %li= link_to "Log out", destroy_user_session_path, method: "delete"
           -else
             %li= link_to "Log in", new_user_session_path #'/login'
-          /
+ 

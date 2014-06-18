@@ -1,6 +1,6 @@
 %li.grey
   %strong
-    =link_to "#{number_to_currency debt.amount_owed_pending_balance, :unit => '$'}", debt_path(debt.id)
+    =link_to ("<span class='glyphicon glyphicon-folder-open'></span> ".html_safe + "#{number_to_currency debt.amount_owed_pending_balance, :unit => '$'}"), debt_path(debt.id)
   %span
     %li.light-grey.round-top-corners  
       %em Banco emitidor del cheque:

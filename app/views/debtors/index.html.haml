@@ -1,14 +1,14 @@
 - provide(:title, "Lista de Deudores")
-.row
-  = form_tag debtors_path, :method => 'get' do
-    -# debtors_path might not be best?
-    %p
-      = search_field_tag :search, params[:search] 
-      = submit_tag "Buscar", :name => nil 
 
+= form_tag debtors_path, :method => 'get' do
+  -# debtors_path might not be best?
+  %p
+    = search_field_tag :search, params[:search]
+    .btn-group 
+      = submit_tag "Buscar", :name => nil 
   -#end
-=# "Search Params? #{!params[:search].nil?}"
-=# "Debtor #{@debtors.empty?}"
+-# "Search Params? #{!params[:search].nil?}"
+-# "Debtor #{@debtors.empty?}"
 %h1 Lista de Deudores
 -if params[:search].blank?
   - #will_paginate
