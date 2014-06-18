@@ -1,5 +1,5 @@
 - provide(:title, "Crear Factura Nueva")
-%h1 Crear Una Nueva Factura
+%h1.col-md-offset-2 Crear Una Nueva Factura
 .row
   -if @debt.errors.any?
     %p
@@ -8,7 +8,7 @@
       %li{:class => 'alert alert-error'}
         = msg
   /
-  %h3.span6.offset3
+  %h3.col-md-8.col-md-offset-2
     = "Añadir una factura a: "
     - if @debtor 
       .grey
@@ -24,7 +24,7 @@
       !="</em>"
     / 
   %br
-  %div{:class => "span6 offset3"}
+  %div{:class => "col-md-8 col-md-offset-2"}
     - if @debtor.blank?
       -#Searchform
     -else     

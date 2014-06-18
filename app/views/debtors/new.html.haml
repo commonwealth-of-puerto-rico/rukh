@@ -1,6 +1,6 @@
 -#coding: utf-8
 - provide(:title, "Crear Record de Deudor")
-%h1 Crear Record de Deudor Nuevo
+%h1.col-md-offset-2 Crear Record de Deudor Nuevo
 .row
   -if @debtor.errors.any?
     %p
@@ -9,7 +9,7 @@
       %li{:class => "alert alert-error"}
         = msg
   /
-  %div{:class => "span6 offset3"}
+  %div{:class => "col-md-8 col-md-offset-2"}
     =form_for(@debtor) do |f|
       -# Is this partial below duplicating errors?
       =# render partial: 'layouts/error_messages', :locals => { :object => f.object }
