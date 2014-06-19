@@ -1,4 +1,4 @@
-class Debt < ActiveRecord::Base
+class Debt < ActiveRecord::Base  #TODO create migration to prevent nulls on originating debt
   
   ## Hooks
   belongs_to :debtor, touch: true 
@@ -14,11 +14,14 @@ class Debt < ActiveRecord::Base
   VALID_INFRACTION_REGEX = /\A[[:alpha:]]-?[0-9]{2}-?[0-9]{2}-?[0-9]{3}-?[[:alpha:]]{2}\z/i
   VALID_PERMIT_OR_INFRACTION_REGEX = \
     /\A([[:alpha:]]{2}-?[[:alpha:]]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{1})|([[:alpha:]]-?[0-9]{2}-?[0-9]{2}-?[0-9]{3}-?[[:alpha:]]{2})\z/i
-  
+  VALID_DATE_REGEX = \
+    /([0-9]{1,2}(\/?|-?)[0-9]{1,2}(\/?|-?)[0-9]{4}|[0-9]{4}(\/?|-?)[0-9]{1,2}(\/?|-?)[0-9]{1,2})/
   
   ## Validations
   # validates :transaction_contact_person, length: {maximum: 144}
   validates :debtor_id, presence: true
+  validates :original_debt_date, presence: true, format: { with: VALID_DATE_REGEX, 
+            message: "Debe ser una fecha."}
   validates :amount_owed_pending_balance, format: { with: VALID_NUM_REGEX, 
             message: "Debe ser un número."}
   validates :bounced_check_number, format: { with: /\A[[:digit:]]*\z/i, 

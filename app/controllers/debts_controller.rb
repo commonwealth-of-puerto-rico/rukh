@@ -4,15 +4,25 @@ class DebtsController < ApplicationController
   ## Resource Actions
   def new
     assign_current_user
-    # fail if params[:debtor_id].nil?
     @debtor = Debtor.find_by_id(params[:debtor_id])#something w/ params
     @debt = Debt.new
+  end
+  
+  def edit
+    assign_current_user
+    @debt = Debt.find_by_id(params[:id]) #something w/ params
+    @debtor = Debtor.find_by_id(@debt.debtor_id)
+  end
+  
+  def show
+    assign_current_user
+    @debt = Debt.find_by_id(params[:id])
+    @debtor = Debtor.find_by_id @debt.debtor_id
   end
   
   def index
     assign_current_user
     @debts_all = Debt.paginate(page: params[:page], per_page: 10)
-    # @debts_all = Debt.all()
     
     respond_to do |format|
       format.html
@@ -25,10 +35,10 @@ class DebtsController < ApplicationController
     assign_current_user
     @debtor = Debtor.find_by_id(params[:debtor_id])
     fail if @debtor.nil?
-    puts @debtor.name
     params[:debt][:debtor_id] = @debtor.id
-    # @debt = @debtor.debt.new(debt_params)
     @debt = Debt.new(debt_params)
+    @debt.permit_infraction_number = strip_hyphens(@debt.permit_infraction_number)
+    @debt.originating_debt_amount = @debt.amount_owed_pending_balance
     if @debt.save
       flash[:success] = "Nueva Factura Creada"
       redirect_to @debt
@@ -38,9 +48,18 @@ class DebtsController < ApplicationController
     end
   end
   
-  def show
-    @debt = Debt.find_by_id(params[:id])
-    @debtor = Debtor.find_by_id @debt.debtor_id
+  def update
+    assign_current_user
+    @debt = Debt.find_by_id(params[:id]) #something w/ params
+    @debtor = Debtor.find_by_id(@debt.debtor_id)
+    @debt.permit_infraction_number = strip_hyphens(@debt.permit_infraction_number)
+    if @debt.update_attributes(update_debt_params) && @debt.valid?
+      flash[:success] = "Factura Actualizada"
+      redirect_to @debt
+    else
+      flash[:error] = "Factura No Actualizada"
+      render 'edit'
+    end  
   end
   
   def preview_email   
@@ -146,6 +165,30 @@ class DebtsController < ApplicationController
     else
       redirect_to new_user_session_path
     end
+  end
+  
+  def update_debt_params
+    if user_signed_in? #updated for Devise
+      #Can be determined by role
+      params.require(:debt).permit(
+        :permit_infraction_number,
+        :amount_owed_pending_balance,
+        :paid_in_full,
+        :type_of_debt,
+        :bank_routing_number,
+        :bank_name,
+        :bounced_check_number,
+        :in_payment_plan,
+        :in_administrative_process,
+        :contact_person_for_transactions,
+        :notes)
+    else
+      redirect_to new_user_session_path
+    end
+  end
+  
+  def strip_hyphens(string)
+    string.split('').reject{|x| x.match(/-/)}.join('')
   end
   
   #TODO Method Below could be In Lib

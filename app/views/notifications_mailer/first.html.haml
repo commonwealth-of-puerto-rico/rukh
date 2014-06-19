@@ -187,9 +187,9 @@
     - [1].each do |i|
       %tr
         %td 
-          = I18n.l @debt.original_debt_date
+          = I18n.l(@debt.original_debt_date) unless @debt.original_debt_date.nil?
         %td 
-          = I18n.l @debt.original_debt_date + 30
+          = I18n.l(@debt.original_debt_date + 30) unless @debt.original_debt_date.nil?
         %td 
           = @debt.type_of_debt
         %td 

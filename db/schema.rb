@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617001625) do
+ActiveRecord::Schema.define(version: 20140619193723) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20140617001625) do
     t.decimal  "amount_owed_pending_balance",     precision: 12, scale: 2
     t.boolean  "paid_in_full",                                             default: false
     t.string   "type_of_debt"
-    t.date     "original_debt_date"
+    t.date     "original_debt_date",                                                       null: false
     t.decimal  "originating_debt_amount",         precision: 12, scale: 2
     t.integer  "bank_routing_number"
     t.string   "bank_name"

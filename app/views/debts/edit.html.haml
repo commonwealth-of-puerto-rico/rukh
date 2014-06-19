@@ -1,21 +1,31 @@
 - provide(:title, "Editar Factura")
-%h1 Editar Factura
+%h1.col-md-offset-2 Editar Factura
 .row
-  %div
-    =form_for(@debt, url: {params: {debtor_id: @debtor.id}, controller: :debts, action: :create} ) do |f|
+  -if @debt.errors.any?
+    %p.col-md-8.col-md-offset-2
+      %strong
+        Problemas con:
+    - @debt.errors.full_messages.each do |msg|
+      %li{:class => 'alert alert-danger col-md-8 col-md-offset-2'}
+        = msg
+  /
+  %div{:class => "col-md-8 col-md-offset-2"}
+    =#form_for(@debt, url: {params: {debtor_id: @debtor.id, id: @debt.id}, controller: :debts, action: :create} ) do |f|
+    =form_for(@debt, :method => 'patch') do |f|
       = render partial: 'layouts/error_messages', :locals => { :object => f.object }
       =f.label :permit_infraction_number, "Número de Permisno o Multa"
-      =f.text_field :permit_infraction_number
+      =f.text_field :permit_infraction_number, class: 'form-control'
       =f.label :amount_owed_pending_balance, "Cantidad debida"
-      =f.number_field :amount_owed_pending_balance   
-      =f.label :original_debt_date, "Fecha de la deuda originadora"
-      =f.date_field :original_debt_date 
+      =f.number_field :amount_owed_pending_balance, class: 'form-control'  
+      =#f.label :original_debt_date, "Fecha de la deuda originadora"
+      =#f.date_field :original_debt_date, class: 'form-control' 
       =#f.label :bounced_check_bank, "Nombre del banco del cheque devuelto"
       =#f.text_field :bounced_check_bank
       =f.label :bounced_check_number, "Número del cheque devuelto"
-      =f.number_field :bounced_check_number
+      =f.number_field :bounced_check_number, class: 'form-control'
       =f.label :notes, "Notas"
-      =f.text_field :notes
+      =f.text_field :notes, class: 'form-control'
       =#hidden_field(:debtor_id,@debtor.id)
       =#check_box_tag "en plan de pago?", "0", @debt.payment_plan?
-      =f.submit "Editar Factura", class: "btn btn-large btn-primary"
+      .btn-group
+        =f.submit "Editar Factura", class: "btn btn-large btn-primary"
