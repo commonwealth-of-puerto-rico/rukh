@@ -88,6 +88,7 @@ class DebtsController < ApplicationController
   end
   
   private
+  ## Mail Methods (Should be in elsewhere)
   def prepare_email(debt, user, mailer, options={})  
     date_first_email_sent = options.fetch :date_first_email_sent, "fecha de primer aviso no encontrada"
     display_attachments = options.fetch :display_attachments, true
@@ -126,6 +127,7 @@ class DebtsController < ApplicationController
     end
   end
   
+  ## Controller Private Methods
   def assign_current_user
     @user = current_user
   end
@@ -142,7 +144,6 @@ class DebtsController < ApplicationController
       redirect_to :back
     end
   end
-  
   
   def debt_params
     if user_signed_in? #updated for Devise
@@ -187,6 +188,7 @@ class DebtsController < ApplicationController
     end
   end
   
+  #TODO Put Method Below in helper
   def strip_hyphens(string)
     string.split('').reject{|x| x.match(/-/)}.join('')
   end

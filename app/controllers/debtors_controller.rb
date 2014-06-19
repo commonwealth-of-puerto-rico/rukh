@@ -11,6 +11,7 @@ class DebtorsController < ApplicationController
   def create
     assign_current_user
     @debtor = Debtor.new(debtor_params) 
+    
     if @debtor.save
       flash[:success] = "Nuevo Record de Deudor Creado."
       redirect_to @debtor
@@ -96,6 +97,7 @@ class DebtorsController < ApplicationController
     def debtor_params
       if user_signed_in? #updated for Devise
         #Can be determined by role
+        #TODO add last SS permit and logic above
         params.require(:debtor).permit(:name, :email, :tel, :ext, :address,
               :location, :contact_person, :contact_person_email, :employer_id_number, :ss_hex_digest)
       else
