@@ -1,36 +1,37 @@
--#coding: utf-8
 - provide(:title, "Editar Record del Deudor")
-%h1 Editar Record del Deudor 
+%h1.col-md-offset-2 Editar Record del Deudor 
 .row
   -if @debtor.errors.any?
-    %p
-      Problemas con:
+    %p.col-md-8.col-md-offset-2
+      %strong
+        Problemas con:
     - @debtor.errors.full_messages.each do |msg|
-      %li{:class => "alert alert-error"}
+      %li{:class => "alert alert-danger col-md-8 col-md-offset-2"}
         = msg
   /
-  %div{:class => "span6 offset3"}
+  %div{:class => "col-md-8 col-md-offset-2"}
     =form_for(@debtor, :method => 'patch') do |f|
       -# Is this partial below duplicating errors?
       =# render partial: 'layouts/error_messages', :locals => { :object => f.object }
       =f.label :name, "Nombre"
-      =f.text_field :name
+      =f.text_field :name, class: 'form-control'
       =f.label :email, "Email"
-      =f.email_field :email
+      =f.email_field :email, class: 'form-control'
       =f.label :tel, "Teléfono"
-      =f.telephone_field :tel, placeholder: 'ex. 787-555-1234'
+      =f.telephone_field :tel, class: 'form-control', placeholder: 'ex. 787-555-1234'
       =f.label :ext, "Extención"
       =f.telephone_field :ext
       =f.label :address, "Dirección Postal"
-      =f.text_field :address
+      =f.text_field :address, class: 'form-control'
       =f.label :location, "Dirección Física"
-      =f.text_field :location
+      =f.text_field :location, class: 'form-control'
       =f.label :contact_person, "Persona Contácto"
-      =f.text_field :contact_person
+      =f.text_field :contact_person, class: 'form-control'
       =f.label :contact_person_email, "Email de la Persona Contácto"
-      =f.email_field :contact_person_email
+      =f.email_field :contact_person_email, class: 'form-control'
       =f.label :employer_id_number, "Numbero de SS Patronal"
-      =f.text_field :employer_id_number, placeholder: 'ex. 12-1234567'
+      =f.text_field :employer_id_number, class: 'form-control', placeholder: 'ex. 12-1234567'
       =f.label :ss_hex_digest, "Numbero de SS Personal"
-      =f.text_field :ss_hex_digest, placeholder: 'ex. 123-12-1234'
-      =f.submit "Actualizar Record del Deudor", class: "btn btn-large btn-primary"
+      =f.text_field :ss_hex_digest, class: 'form-control', placeholder: 'ex. 123-12-1234'
+      .btn-group
+        =f.submit "Actualizar Record del Deudor", class: "btn btn-large btn-primary"
