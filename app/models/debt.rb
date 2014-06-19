@@ -10,7 +10,7 @@ class Debt < ActiveRecord::Base
   ## REGEX
   VALID_NUM_REGEX = /\A[[:digit:]]+\.?[[:digit:]]*\z/
   VALID_PERMIT_REGEX = \
-    /\A[[:alpha:]]{2}-?[[:alpha:]]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{1}\z/i
+    /\A[[:alpha:]]{2}-?[[:alpha:]]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{1}\z/i
   VALID_INFRACTION_REGEX = /\A[[:alpha:]]-?[0-9]{2}-?[0-9]{2}-?[0-9]{3}-?[[:alpha:]]{2}\z/i
   VALID_PERMIT_OR_INFRACTION_REGEX = \
     /\A([[:alpha:]]{2}-?[[:alpha:]]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{1})|([[:alpha:]]-?[0-9]{2}-?[0-9]{2}-?[0-9]{3}-?[[:alpha:]]{2})\z/i

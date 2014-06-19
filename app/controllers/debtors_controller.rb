@@ -60,7 +60,6 @@ class DebtorsController < ApplicationController
   end
   
   def index
-    #TODO fix pagination
     assign_current_user
     @debtors = params[:search].blank? ?  
       Debtor.paginate(page: params[:page], per_page: 10) : 
