@@ -35,6 +35,8 @@
         -#render partial: 'layouts/error_messages', :locals => { :object => f.object }
         =f.label :permit_infraction_number, "Número de Permisno o Multa"
         =f.text_field :permit_infraction_number, class: 'form-control', placeholder: 'ex. PG-GE-71-12-10-4 o M-12-12-050-RC'
+        =f.label :original_debt_date, "Fecha de la deuda originadora"
+        =f.date_field :original_debt_date, class: 'form-control datepicker date_field'
         =f.label :amount_owed_pending_balance, "Cantidad debida"
         .input-group
           %span.input-group-addon
@@ -42,8 +44,6 @@
           =f.number_field :amount_owed_pending_balance, class: 'form-control'
           %span.input-group-addon
             = '.00'   
-        =f.label :original_debt_date, "Fecha de la deuda originadora"
-        =f.date_field :original_debt_date, class: 'form-control' 
         =#f.label :bounced_check_bank, "Nombre del banco del cheque devuelto"
         =#f.text_field :bounced_check_bank
         =f.label :bounced_check_number, "Número del cheque devuelto"
