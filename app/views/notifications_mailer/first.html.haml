@@ -154,21 +154,21 @@
     -[0].each do |i|
       %tr
         %td 
-          = i
+          = "Look up @debt.fimas_account in acconts table"
         %td   
-          = i
+          = @debt.fimas_account
         %td 
-          = i
+          = @debt.fimas_fund_code
         %td   
           = "14"
         %td 
-          = i
+          = @debt.fimas_program
         %td 
-          = i
+          = @debt.fimas_class_field
         %td 
-          = i 
+          = @debt.fimas_budget_reference
         %td
-          = i 
+          = @debt.fimas_project_id
         %td
           = number_to_currency @debt.amount_owed_pending_balance
     /

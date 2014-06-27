@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619193723) do
+ActiveRecord::Schema.define(version: 20140624185721) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -82,6 +82,20 @@ ActiveRecord::Schema.define(version: 20140619193723) do
     t.string   "contact_person_for_transactions"
     t.string   "notes"
     t.integer  "debtor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "fimas_project_id"
+    t.string   "fimas_budget_reference"
+    t.string   "fimas_class_field"
+    t.string   "fimas_program"
+    t.string   "fimas_fund_code"
+    t.string   "fimas_account"
+    t.string   "fimas_id"
+  end
+
+  create_table "fimas_accounts", force: true do |t|
+    t.string   "description"
+    t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -162,7 +162,13 @@ class DebtsController < ApplicationController
         :in_administrative_process,
         :contact_person_for_transactions,
         :notes,
-        :debtor_id)
+        :debtor_id,
+        :fimas_project_id,
+        :fimas_budget_reference,
+        :fimas_class_field,
+        :fimas_program,
+        :fimas_fund_code,
+        :fimas_account)
     else
       redirect_to new_user_session_path
     end

@@ -1,0 +1,578 @@
+code,description
+R0000,All Revenue Accounts
+R0110,Contrib Prop Inmueble-Año Corriente
+R0120,Contrib Prop Inmueble-Año Anterior
+R0130,Contrib Prop Mueble-No Tasada
+R0140,Contrib Prop Mueble-Año Anterior
+R0150,Contrib Sobre Propiedad
+R0210,Contribución Ingresos-Corporación
+R0211,Cont Ing Serv Pers Corp y Soc
+R0212,Corps No Tasadas Patronal
+R0213,Corps C.E. con Planilla
+R0214,Corps C.E. sin Planilla
+R0215,Ley Incentivos Contributivos
+R0216,Ingreso Corp. Tasada Amnist¿a
+R0217,Ing. Corp. No Tasada Amnist¿a
+R0218,Fondo Esp Desarrollo Económico
+R0219,Corp y Patronal Tasada- Incent
+R0220,Contribuciýn Ingresos-Sociedad
+R0221,Sociedades No Tasada Estimada
+R0222,Sociedades No Tasada Patronal
+R0223,Sociedades C.E. con Planilla
+R0224,Sociedades C.E. sin Planilla
+R0225,Ing. Soc. Tasada Amnist¿a
+R0226,Ing. Soc. No Tasada Amnist¿a
+R0227,Contrb/ingr no rinden planilla
+R0228,Corp-Plan de Incentivos
+R0230,Contribuciýn Ingresos-Individu
+R0231,Individuos No Tasada Estimada
+R0232,Ind. no Tasada Patronal
+R0233,Individuos C.E. con Planilla
+R0234,Individuos C.E. sin Planilla
+R0235,Ing. Ind. Tasada - Amnist¿a
+R0236,Ingr.Indiv. No Tasada Amnistía
+R0237,Patronal No Tasado Amnist¿a
+R0238,Indiv-Plan de Pago Incentivos
+R0239,Contrib/ Ingr. Pagos Reintegro
+R0240,Retencion en Origen-Corp 936
+R0241,Individuo Tasada-Plan Incentiv
+R0242,Prepago Toll Gate Tax
+R0243,Corp936 (Toll Gate) CE con Pla
+R0244,Corp936 (Toll) CE sin Planilla
+R0250,Contr Ingreso-Ret No Residente
+R0253,Ret.en Origen No Resi. CE Con
+R0254,Ret.En Origen No Resi. Ce Sin
+R0255,Cont. Ret. a no Res.(Regalías)
+R0256,"Imp.Regalias,Rentas, Can >10%"
+R0258,Cont. Ext. Corp. Soc. Ing. Bru
+R0260,Contr Ing-Pag Corr Emp Guberna
+R0270,Cont Ingres-Nuevas Corp Exenta
+R0271,Servicios Prestados Individuos
+R0272,Indemnizacion Judicial
+R0280,Cont Ingre-Corp Exenta Convert
+R0281,Servicios Prestados Corp./Soc.
+R0282,Partic.Distribuible Accionista
+R0283,Ingreso Neto Estimado
+R0284,Ingreso Neto Estimado
+R0285,Ingreso Neto Estimado
+R0286,Recaudos por Cheques Devueltos
+R0290,C/I - Int Sujetos Al 17%
+R0291,C/I - Int Sobre Div Al 20%
+R0295,Cobro Deuda Privatizada
+R0296,Cargo Deuda Privatizada
+R0297,Cobro Deuda Empleados
+R0298,Ret.Cobro DeudasEmpleados 7.5%
+R0300,Ingresos IVU Ventas
+R0301,Ingresos IVU Uso
+R0310,Arbitrios-Cigarillos
+R0311,Aumento Arbitrio A Cigarrillo
+R0313,Arb Cigarrillos - ley 112/2002
+R0320,Arbitrios-Articulo No Gravados
+R0330,Petroleo Crudo Y Derivados
+R0340,Arbitrios-Fosforos
+R0350,Arbitrios-Combustible Maritimo
+R0360,Arbitrios-Espiritus Destilados
+R0361,Espíritus Destil Caña Imp/Loc
+R0365,Arb Esp. Destilados Ley 112/02
+R0370,Arbitrios-Cerveza
+R0371,"Cerveza Importada 1-9,000,000"
+R0372,Cerveza import 9000001-10millo
+R0373,"Cerveza Imp 10,000,001-11millo"
+R0374,"Cerv Import 11,000,001 -12mill"
+R0375,Arb de Cervezas Ley 112/2002
+R0376,Cerv envase 5Gals o más
+R0377,Cerv con .5-1.5% alcohol
+R0380,Arbitrios de Inventarios
+R0390,Arbitrios-Alfombras
+R0400,Arbitrios-Vinos Y Champana
+R0401,Vinos Mostos Conventrados
+R0402,Vino de Fabric Local Subnormal
+R0403,Vino de Frutas Tropicales
+R0404,Champagne Importado-Esp o Carb
+R0405,Champagne Local-Esp o Carb
+R0406,Champagne Local -Mostos Concen
+R0410,Arbitrios Vinos Ley 112/2002
+R0430,Articulos De Joyeria
+R0431,"Articulos De Joyeria ""Fianza"""
+R0440,Arbitrios-Joyeria
+R0470,Arbitrios-Confituras
+R0500,Arbitrios-Gasolina
+R0510,Arbitrios-Combustible Avion
+R0570,Arbitrios-Azucar
+R0575,Arbitrio del Azúcar
+R0580,Arancel de Café
+R0590,Arbitrio-Artefacto Elec Y Gas
+R0600,Arbitrios-Maq Operada Monedas
+R0601,10% Enfermedades Catastróficas
+R0605,Depositario Ex Gob/Ex Prim Dam
+R0610,Manejo de Neumáticos
+R0620,Arbitrios-Vehiculos De Motor
+R0622,91% Manejo De Neumaticos
+R0623,3% Gastos Administrativos
+R0624,3% Gastos Administrativos
+R0625,3% Gastos Administrativos
+R0630,Arbitrios-Gomas y Tubos
+R0635,24% Emergencias
+R0636,5% Gastos Administrativos
+R0637,65% Recoleccion Y Manejo
+R0638,.5% Gastos Administrativos
+R0639,2% Gastos Administrativos
+R0640,3.5% Gastos Adms. (aceite)
+R0642,22.5% Jta. Calidad Ambiental
+R0643,25% Dep Cta Emergencia Ambient
+R0644,16% Depósito Dept. Hacienda
+R0645,11.5% Dep. Desperdicios Sólido
+R0646,25% Adquisición Conserv Terren
+R0661,"Ocup. Hab. Moteles,Ley102"
+R0670,Arbitrios-Aparatos Fotografico
+R0688,1.5%Hab.Hot.Ley25-Cta.Esp.I(9%
+R0689,.5% Hab Hot.Ley25 Cta.Espii-9%
+R0690,Arbitrios-Canones Ocup Hoteles
+R0691,Imp.1% Adic. Hab.Hot Ley96(9%)
+R0692,Imp.5% Hab.Hot.70% Ley 113(9%)
+R0693,Imp. 1% Adic. Ley 32 (9%)
+R0694,"Hab.Hotel,Apts.,Casa Hosp.(11%"
+R0695,Imp.1% Adic.Hab.Hot.Ley96-11%
+R0696,Imp.5% Hab.Hot.70% Ley 113(11%
+R0697,Imp. 3% Adic. Ley-32 (11%)
+R0698,1.5%Hab.Hot.Ley25(11%Cta.Esp.I
+R0699,05%Hab.Hot.Ley25(11%Cta.Esp.Ii
+R0700,Arbitrios-Gasolina O Diesel
+R0701,Gas Oil Y Diesel 50% Ley 24
+R0710,Arbitrios-Velloneras
+R0720,Arbitrios Sobre Tragamonedas
+R0721,Arb Traga 90% Exceso PRD Base
+R0730,Arbitrios-Cemento Hidraulico
+R0740,Arbitrios-Carreras De Caballos
+R0741,Fondo Educacional Ley 65 69
+R0742,Escuela De Jinetes
+R0750,Arbitrios-Entrada Espect Publi
+R0751,Festival Casals Ley Num. 155
+R0753,50% Espec.Públic Ley 121 2001
+R0754,Lic Producciones Fílmicas
+R0760,Arbitrios-Entrada Espect Depor
+R0762,Estadio Mun. De Bayamon
+R0763,Imp.Estadio Mun. De La Capital
+R0765,10% Arb. Coliseo Publico Ponce
+R0770,Arbitrios-Entrada Otro Especta
+R0771,Lic.Prom.Esp.Pub.Ley182-3-9-96
+R0780,Arbitrios-Primas De Seguro
+R0790,Arbitrios No Clasificados
+R0791,Uso Y Consumo No Tasada
+R0793,Ley64 Comis.Reguladora Telecom
+R0794,Uso Y Consumo Tasado Amnistia
+R0795,Uso Y Consumo No Tas Amnistia
+R0796,Import. Gallos Y Pollos Pelea
+R0797,Arb.Bebidas Carb.Ley 7 24-5-91
+R0799,Uso y Consumo- Plan Incentivos
+R0810,Licencias Venta Bebida Alcohol
+R0820,Licencias Vehiculo De Motor
+R0822,Cobrados Por Bancos Lic.Veh.Mo
+R0823,Derechos Marbetes Sc-848 Lic.
+R0824,Año Corriente Ley 9 (12/8/82)
+R0826,Cobrado Por Banco Ley 9
+R0827,Cobrado Sc-848 Ley 9
+R0828,Derechos Registro Furgones
+R082A,Aut Carr Ley 9 (12/8.82) SC707
+R082B,Derechos Marbetes SC 707
+R082C,Lic Veh Motor Banco Rev 939D
+R082D,Banco Ley 9 Rev 939D
+R0830,Licencia Venta Pieza Vehic Mot
+R0840,Licencias Venta Cigarillos
+R0850,Licencia Venta Gasolina
+R0860,Licencia Venta Vehiculos Motor
+R0861,Lic. Venta Veh. Motor
+R0870,Licencias Para Juegos De Azar
+R0871,Licencia Para Promotores Esp
+R0880,Licencia Fabric Bebida Alcohol
+R0890,Licencias N.O.C.
+R0891,Licencias Y Otros Amnistia
+R0900,Licencias Operar Velloneras
+R0901,Licmaq.Entre.Para-Adulto-Ley22
+R0910,Contribuciones Sobre Herencias
+R0911,Herencia No Tasada
+R0912,Her Y Dona Tasado Amnistia
+R0913,Her Y Dona No Tasado Amnistia
+R0919,Herencia Tasada Plan Incentivo
+R0920,Contribuciones Sobre Donativos
+R0921,Donaciones No Tasada
+R0929,Donaciones Tasadas-Incentivos
+R0930,Imp Sobre Articulos De Joyeria
+R0940,Imp. Petroleo Crudo Y Derivado
+R0950,Cont Nomina Compensacin Desemp
+R0970,Licencia Traficar Armas Fuego
+R0980,Licencia Traficar Joyeria
+R0990,Contribuciones N.O.C.
+R0991,Cont. No Clasificada No Tasada
+R1010,Canones Habitaciones Ley 299
+R1110,Mueble Tasada
+R1111,Prop. Mueble Tasada Amnistia
+R1112,Prop.Mueble No Tasada Amnistia
+R1120,Inmueble Tasada
+R1121,Inmueble Banco Rev 939C
+R1122,Prop. Inmueble Tasada Amnistia
+R1125,Manejo de la Vida Silvestre
+R1126,Multas Ley Vida Silvestre
+R1128,Multas Emitidas Cuerpo Vigilan
+R1150,Derechos De Licencias De Motor
+R1160,"Licencias Profesional,Ocupacio"
+R1170,Licencia Industria Fílmica
+R1171,Fiscalización Entidad Fílmica
+R1190,Licencias Comerciales N.O.C.
+R1191,Lic. Escuela Conductores
+R1192,Lic. Narcoticos
+R1193,Derecho Lic. Maq. Pasatiempo
+R1194,Porteador Aereo Mari. O Terr.
+R1195,Tiendas Zonas De Puerto Libre
+R1210,Licencias De Conductores
+R1220,Licencias Portar Armas Fuego
+R1230,Licencias de Pesca
+R1290,Licencia No Comerciales N.O.C.
+R1310,Lic.Corredor/Ven.Bienes Raices
+R1312,Evaluadores de Bienes Raíces
+R1313,Regulacion Mercados Descuentos
+R1399,Derechos Activ.Centro Recepcio
+R1510,Permisos Para Construccion
+R1590,Permisos No Clasificados
+R1595,Derecho Certificación PAN
+R1695,Pres.Grav-Vehi-Mot.Leyi97/100%
+R1696,"Pres. Grav. Veh. Motor,Ley 191"
+R1701,20% Der Reg Trans Comerciales
+R1702,80% Der Reg Trans Comerciales
+R1705,Nombres Comerciales
+R1800,Franquicias
+R2003,"Multa Tran. Ley 49, 25 Jul 97"
+R2010,"Derechos a Pagar,Tablillas Esp"
+R2012,Radicación tardía de traspaso
+R2014,Radic TardíaTraspaso 20% DISCO
+R2015,Radic TardíaTraspaso 80% F Gen
+R2017,Perm prov renovar licenciaACAA
+R2018,Permiso prov renovar lic DISCO
+R2019,Perm prov renovar lic Seg Comp
+R2020,Ident. Niños- DISCO- Ley 160
+R2021,Ident.Niños-Dep.Familia-Ley160
+R2022,Aut. Trans. Cargas Fondo Gener
+R2023,Aut. Trans. Cargas CortosDISCO
+R2024,Der exp uso tab veh moto arras
+R2025,Faltas Administrativas
+R2026,Faltas Adm Colecturias- DISCO
+R2027,Faltas Adm Bancos- DISCO
+R2028,Solicitud tarjeta identificaci
+R2029,Sol. Permiso Exención Tintes
+R2030,"Insc. Veh. motor, arra, semia"
+R2031,Anot. Gravam. Veh. Invo. Accid
+R2032,Cert. Esta. Oficial Inspección
+R2033,Aspirante mecánico Inspección
+R2034,Multas Código C Tránsito Disco
+R2035,Multas Codigo C Tránsito
+R2036,Multas Código H -Impedidos-10%
+R2037,Multas H Impedido 10% Banco
+R2038,Multas H Impedido 10% (SC848)
+R2039,Multas M Ley 22 $2.00 Colect
+R2040,Multas M Ley 22 $2.00 (SC848)
+R2041,Multas M Ley 22 $2.00 Banco
+R2042,Multas por Infracción Ley 145
+R2110,Derechos Multas-Trib Estatales
+R2120,Derecho Multa-Carrera Caballos
+R2170,Rótulos Removibles Temporero
+R2180,"Impedidos, 10%,Ley38(31/7/90)"
+R2181,"Impedidos,90%, Ley38(31/7/90)"
+R2182,"Impedidos, 10%,Ley 38(31/7/93)"
+R2183,"Impedidos,90%,Ley38(31/7/93)"
+R2184,"Multas Impedidos,10%(Bancos)"
+R2185,"Multas Impedidos, 90%(Bancos)"
+R2186,"Multas Colect.,Ley45(13/12/90)"
+R2187,"Multas Banco, Ley 45(13/12/90)"
+R2188,"Multas Colect.,Ley45(13/12/90)"
+R2189,"Multas Banco, Ley 45(13/12/90)"
+R2190,Derechos Multas N.O.C.
+R2191,Multas de Peajes Electrónicas
+R2192,Multas Cobradas Por Bancos
+R2193,Multas Ley Transito Sc-848
+R2194,Multas Administrativas
+R2195,Multas Adm.-Naves o Emb.
+R2196,Multas Arbitrios
+R2197,Multas Bebidas
+R2198,Ley45 13/Dic/90 Multas Colect
+R2199,Ley 45 13/Dic/90 Multas Bancos
+R219A,Multas Ley Transito Sc-707
+R219B,Multa Banco Rev 939D
+R219C,Ley45 13/Dic/90 Multas Colect
+R219D,Ley 45 13/12/90 Multas Bancos
+R219E,Ley #38 31/7/93 Impedidos
+R219F,Ley #38 31/7/93 Impedidos
+R2200,Permiso Estacionamiento Impedi
+R2201,Multa Municipal.Desperdi.Solid
+R2202,Multa Estatal.Deperdicio.Solid
+R2203,Multa Recurs.Nat.Desperdi.Soli
+R2205,Transportacion Y Obras Publica
+R2206,Depto. De La Familia
+R2207,Oficina Del Procurador
+R2208,Multas Seguridad Ocupacional
+R2209,Multas Practica de Fumar
+R2345,5%/Dist.Div.Ind.Res.o Extranj.
+R2346,5%Ind./Aum.valor acum.Act.Capi
+R2347,5%Ind./aum.valor acum.Opciones
+R2348,5%Ind./aum.val acum.acc.ej.opc
+R2349,10%Corp./aum.val.acum.act.cap.
+R2600,Confiscaciones
+R2700,Caducidades
+R2800,Penalidades
+R2801,Penalidades y Multas IVU
+R2802,Multas Administrativas IVU
+R2810,Penalidades Cuenta IRA
+R2811,Ret.17%-Inversiones Cuenta IRA
+R2812,Penalidades  EOI (Plan Incent)
+R2813,Débitos No Satisfechos EOI
+R2815,10% Contrb Esp Distr Ctas. IRA
+R2816,Contr-Trans Certif Cuentas IRA
+R2817,Contr Cuentas IRA Serv Público
+R2818,5% Retiro Cuentas IRA
+R2819,5% Prepago de Cuentas IRA
+R2820,5% Retiro Planes de Retiro
+R2821,5% Prepago por Planes Retiro
+R2822,Distrib Planes Comp Diferida
+R2823,Pago Adelantado-Dist Plan Comp
+R2900,Cargos Servs. Dpto. Hacienda
+R2901,Cargos por Serv 20%-Hacienda
+R2902,Cargos por Servicios de Cobros
+R3050,Interes Recargos De Propiedad
+R3060,Recargos IVU
+R3070,Intereses IVU
+R3100,Interes Recargos Cont Ingreses
+R3110,Intereses Sobre Saldos Bancos
+R3120,Intereses Prestamos Municipios
+R3130,Int Prestamo Entidad Privada
+R3150,Intereses Sobre Inversiones
+R3190,Intereses N.O.C
+R3210,Arrendamiento De Terrenos
+R3220,Arrendamiento De Solares
+R3240,Arrendamiento De Edificios
+R3245,Arrendamiento de Local
+R3250,Arrendamiento De Almacen
+R3260,Arrendamiento De Equipo
+R3270,Arrend Vivienda Empeado Guber
+R3290,Arrendamiento N.O.C
+R3320,Regalias Sobre Franquicias
+R3390,Regalias N.O.C
+R4110,Donativos Federales Carreteras
+R4120,Donativos Federales Para Salud
+R4130,Donativo Federal Instruccion
+R4140,Donativo Federal Agricultura
+R4150,"Donat Fed Inst Voc,Oficial"
+R4160,"Donat Fed Inst Voc,Eco Domesti"
+R4170,Donativo Federal Asist Publica
+R4190,"Donativos Federal, N.O.C."
+R4191,Donativo Federal Operacional
+R4192,Donativo Federal Nómina
+R4193,Don. Federal Nómina/Ajuste
+R4194,Don Fed Operacional  Ajuste
+R4220,Arbitrio Embarque Bebida Alcoh
+R4390,Derecho Aduana Eu No Clasifica
+R4391,Derecho Cia Reponsab Lim 75%
+R4392,Derecho Cia Reponsab Lim 25%
+R4393,Derechos Anuales Ley # 487
+R4400,Aport.Mun.al Fdo.Gen-alivio co
+R4410,Aport Patronal Fdo Pension Est
+R4420,Aport Empleado Fdo Pens Estata
+R4425,Aport. Individual Retiro 2000
+R4430,Pagos En Lugar De Contribucion
+R4470,Donat Aport Gasto Funcionamien
+R4480,Donat Aport Proyecto Capitaliz
+R4490,Donat Aport Aum Capital Indust
+R4710,Donativos Para Gastos De Func
+R4850,Part Gob Superavit Fdo Loteria
+R5109,Sellos Rentas Int.-Maq.Expend.
+R5110,Derechos Registro Documentos
+R5111,Registro De Marcas Ela 80%
+R5112,Registro De Marcas Ela 20%
+R5113,Registro De Marcas Ela 100%
+R5114,"Recibo,Archivo Y Regis. Incorp"
+R5115,Colegios Abogados
+R5116,Colegios Ingenieros
+R5117,Colegio De Agronomos
+R5118,Venta Comp Sellos Electrónicos
+R5120,Derechos Certificacion Documen
+R5121,Derecho De Cert. De Documento
+R5122,Der. Cert. Exp. Vehiculos
+R5123,Der.Solicitud-Nec. Y Convenien
+R5124,Mod. Reg. Prop Ley 44-89
+R5125,Cert. Documento Dept. Estado
+R5126,Der. Exp. Rel. Cauda. Rel Y Do
+R5127,Cert Cadenas Vol Prog Comunes
+R5128,Fdo Esp Comp Victimas Maltrato
+R5129,Fdo Gen Gastos Administrativos
+R5130,Derechos Examenes De Bancos
+R5140,Derechos Juntas Examinadoras
+R5141,Junta Examinadora Trib Medicos
+R5142,Junta Dental Examinadora
+R5143,Servicio Junta Examinadora
+R5144,Expedición Pasaportes
+R5146,Reglamentos
+R5148,Venta de Publicaciones
+R5150,"Sellos Rama Judicial, 1% Gasto"
+R5151,Sellos Rama Jud. 99% Ley 235
+R5160,Sellos De Identificar Bebidas
+R5170,Derechos Examenes Conductores
+R5180,Derechos Cert. Vehiculos-Motor
+R5189,Registro Marcas 65%
+R5190,"Derechos Generales, N.O.C"
+R5191,Calcomania De Ins. Ley 273
+R5192,Sellos De Arancel Ley 144
+R5193,Eliminar Rec. Penal
+R5194,Libro De Traspasos Sc-795.5
+R5195,Loteria Electronica
+R5196,Serv. Inf. Vehiculo De Motor
+R5197,Progr.Inspec. Vehiculo Subasta
+R5198,Progr.Inspec.Vehiculo-Subasta
+R5199,Registro De Marcas (35%)
+R5200,Registro Marcas Ela Pr (80%)
+R5201,Registro Marcas Ela Pr (20%)
+R5202,Registro Marcas Ela Pr (100%)
+R5203,Sello de Arancel Ley # 244
+R5210,Venta De Publicaciones
+R5220,Suscripciones
+R5230,"Venta Prod Agric,Fores,Lecheri"
+R5240,Venta De Ganado
+R5250,Venta De Ropa Y Uniformes
+R5260,Venta Material Efecto Construc
+R5290,"Venta Articulos, N.O.C"
+R5300,Isnp Edif Emerg Med Bomb
+R5305,Multas Adms. Cuerpo Bomberos
+R5308,Cobro Extintores y Sist Extinc
+R5310,Derechos Oper Equipo Diversión
+R5410,Servicios De Riego
+R5411,Insp Edif Emerg Medic-Bomberos
+R5412,Cuota Riego (Juana Diaz)
+R5413,Cuota Riego (Santa Isabel)
+R5414,Cuota Riego (Salinas)
+R5420,Sanciones Econ. y Reprod. Doc.
+R5430,Servicio Hospital Y Laboratori
+R5460,Servicios De Transportacion
+R5470,Servicios De Imprenta
+R5480,Servicios De Publicidad
+R5482,Servicios Médicos-Hospitalario
+R5483,Servicio para Protección Salud
+R5490,"Servicios Departmentales, Noc"
+R5491,Solicitud De Permisos A.R.P.E.
+R5492,Solicitud Copias A  A.R.P.E.
+R5493,Remocion De Vehic. Dep. Y Cust
+R5494,Copia Documento En Dept.Estado
+R5495,"Control Armas, Solicitud Curso"
+R5497,Ingresos JCA 90% Permisos OGPe
+R5510,Loteria-Sorteos Ordinarios
+R5520,Loteria- Sorteos Extraordinari
+R5525,Seguro Responsabilidad Publica
+R5526,Seguro Responsabilidad Pública
+R5527,Seguro Resp. Pública-Bancos
+R5610,Derechos De Matricula
+R5690,Otros Derechos
+R5710,Subsistencia Empleado Gobierno
+R5775,Reembolso Horas Extras-FBI
+R5776,Reembolso Hrs.Extras-Aduana F.
+R5777,Reembolso Diferencial-DEA
+R5778,Reembolso Diferencial-FDA
+R5779,Confiscaciones-Tesoro Federal
+R5780,Confiscacion-Justicia Federal
+R5810,Reparaciones
+R5890,"Servicios, N.O.C"
+R5892,Registro de Licitadores
+R5893,Pliego de Subastas
+R5910,Primas Seguro Compens Obreros
+R5918,Fianzas EOI (Plan Incentivos0)
+R5930,Primas Seguro Automov Publicos
+R5940,Primas Seguro Cafe Contra Hura
+R5950,Comisiones Por Seguro
+R5960,Prima Seguro Inutilidad Muerte
+R5980,"Primas Prest Hipot, Pers /Cult"
+R5990,"Primas Seguro Comisio, N.O.C"
+R5992,Acca. Ley 138 Cobrado Banco
+R5993,Acca. Ley 138 Sc-848
+R599A,Acca Ley 138 Sc-707
+R599B,Acaa Rev 939D
+R6110,Viviend Subsist Empleado Gobie
+R6120,Vivienda Subsist Particulares
+R6210,Premio Lot Billet Extrav Sobra
+R6406,Educacion Legal Cont. Justicia
+R6900,"Rentas, N.O.C"
+R6901,"Din. encont.,ocupado o encauta"
+R6902,Faltantes
+R6903,Sobrante Encontrados Auditoria
+R6904,Casos Especiales
+R6905,Sueldos Especiales
+R6906,Sobrante Marbete Banco
+R6920,10% o > Ingrs Auditados  BGF
+R6930,Cobro Primas Seg. Compulsorio
+R7120,Venta De Terrenos
+R7130,Venta De Solares
+R7140,Venta De Edificios
+R7150,Venta De Hogares
+R7190,Venta Bienes Inmueble- N.O.C.
+R7210,Venta De Equipo
+R7220,Venta De Animales
+R7230,Venta De Activo Org
+R7910,"Prop Inmueble,Perdida O Danada"
+R7912,"Prop Inm Dañada, Perd/Reem Seg"
+R7915,"Equipo Perd, Dañado/Reemb Segu"
+R7920,Otros Activo Fijo Perdido Dana
+R7930,Otros Activos Perdido O Dañado
+R9110,Producto De Los Bonos
+R9111,Producto Refinanc De Bonos
+R9120,Producto De Los Pagares
+R9201,Multas H Impedido 90% Banco
+R9202,Multas H Impedido 90% (SC848)
+R9203,Multas M Ley 22 Colecturia
+R9204,Multas M Ley 22 (SC848)
+R9205,Multas M Ley 22 Bancos
+R9220,Otras Ftes. de Financiamiento
+R9221,Ing. Prima Financ. a Cto Plazo
+R9320,Dep.Esp. Prop. No Tasada
+R9321,Dep.Esp. Otros Tipos
+R9322,Alcant.Sanitario(Rio Piedras)
+R9323,Alcant.Sanitarios Guaynabo 70
+R9324,Alcant.Sanitarios Guaynabo 81
+R9325,Dep.Esp. Sobrante Propiedad
+R9326,Alcant. Sanitarios  (Carolina)
+R9327,Depósito Especial IVU Agencia
+R9390,Multas Ord. Mun. Ano Corriente
+R9391,Multas Código H Impedidos 90%
+R9392,Multa Ord. Mun. Cobradas Banco
+R9393,Multas Ord. Mun. Ley 3 Sc-848
+R9394,Do.Esp.Maestro Plomero Ley94/7
+R9395,Contri.Prop.Mueble No Tasada
+R9396,Col. Peritos Elect.Dep.Venta
+R9397,Sociedad Para Asistencia Legal
+R9398,C. D. 20%
+R9399,Dinero Confiscado Ley 301 2%
+R939A,C.D. 20%
+R939B,Deposito 400 Correspondencia
+R939C,Deposito Inmueble Bancos
+R939D,Deposito Marbetes Bancos
+R939E,Multas Ord Mun Ley 3 Sc-707
+R939F,Multas Municipal Bco Rev 939D
+R9460,Fondos Fed En Fideicomiso
+R9470,Pagos Efectuados por UComponen
+R9510,Reemb Gast Excep Ope-Año Anter
+R9511,Restitucion Al Estado Fdo Esta
+R9512,Restitucion Al Estado Fdo Fed
+R9520,Reemb Gast Excep Ope-Año Corri
+R9530,Reemb Costo Indirecto Prog Fed
+R9550,Reembolso De Gastos De Ope
+R9760,Transferencia Operacional-In
+R9761,Transferencia Mismo Fondo
+R9800,Transferencias De Capital
+R9801,Transferencia Saldos Libres
+R9805,Fdos Rec Candidatos Gob y Alca
+R9806,Ingresos Cheques Devueltos
+R9810,CORRECCION AÑOS ANTERIORES
+R9820,Colecturia Cuadre de Caja
+R9860,Contrib. Anom Part Politicos
+R9870,Ingresos Fondos Contab Ind
+R9871,Ingr Préstamos Hipotecarios
+R9872,Ingr por Préstamos Personales
+R9873,Ingr Préstamos Culturales
+R9990,Rentas Por Cobrar Robo
+R9991,Rentas Por Cobrar Falsificado
+R9992,Depositos Extraviados
+R9995,Perdidas
+R9996,Transf Ing. Fondo General
