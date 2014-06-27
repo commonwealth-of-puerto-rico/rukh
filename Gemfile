@@ -7,7 +7,7 @@ gem 'jruby-jars', '1.7.13' #Now explicitly calling jruby-jars version
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.2'
 
 platforms :jruby do
   group :development do
@@ -120,7 +120,7 @@ end
 group :deploy do
   platforms :jruby do
     # For Warbler changes to config/application.rb and config/environtments/production.rb
-    gem 'warbler', '1.4.2', :require => false # 1.4.3 is out
+    gem 'warbler', '1.4.3', :require => false # 1.4.3 is out
   end
 end
 
