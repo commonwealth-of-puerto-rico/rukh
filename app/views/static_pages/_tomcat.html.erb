@@ -8,10 +8,12 @@
   - *(Bajar el Java Development Kit 7 (mas reciente), tomcat 7, JRuby 1.7.5 o mas reciente (1.7.10 es el mas reciente) y Mariadb 5.5 (o MySQL) & instalalos (ver instruciones para instalación). )*
   
 2. Set `JRUBY_OPTS --2.0` in the **Environmental Variables**.  ('Control Panel > System > Advanced system settings >> Environmental Variables...').  
-  - *(En 'Control Panel > System > Advanced system settings >> Environmental Variables...' cree una nueva variable `JRUBY_OPTS` y en su valor ponga `--2.0`.  Este paso posiblemente no sea necesario con JRuby 9K en adelante.)*  ![Environmental Variables][t1]  
+  - *(En 'Control Panel > System > Advanced system settings >> Environmental Variables...' cree una nueva variable `JRUBY_OPTS` y en su valor ponga `--2.0`.  Este paso posiblemente no sea necesario con JRuby 9K en adelante.)*  
+  ![Environmental Variables][t1]  
   Ubuntu/Mac: put this: `export JRUBY_OPTS=--2.0` in .bashrc/.bash_profile of the deploy user.
   
-3. Download and install **Java Cryptographic Extensions (JCE)** security files for Java7 and  on your `jre7/lib/security` folder overwrite the `local_policy.jar` and `US_export_policy.jar`. In windows the JRE is located usually in `Program Files`.![Files to Replace][t2]
+3. Download and install **Java Cryptographic Extensions (JCE)** security files for Java7 and  on your `jre7/lib/security` folder overwrite the `local_policy.jar` and `US_export_policy.jar`. In windows the JRE is located usually in `Program Files`.  
+![Files to Replace][t2]
   - *(Bajar e instalar los JCE (Java Cryptographic Exentsions) del website de Oracle y remplazar los archivos indicados.)*  
   Ubuntu: if `which javac` is '/usr/bin/javac' then`echo $(readlink -f /usr/bin/javac | sed "s:bin/javac::")` produces the Java Home path.Switch to that directory and then drill into `jre/lib/security` from there.  
   Mac: Execute `/usr/libexec/java_home` to find Java Home. Switch to that directory and then drill into `jre/lib/security` from there.  
@@ -24,7 +26,8 @@
    - `-XX:PermSize=256M`
    - `-Xmx1024m` (possibly can be lower, like 512m)
    - `-Dfile.encoding=UTF-8` (windows only for UTF-8 compatibility)
-     - *(Cambiar el setting de 'Heap Memory' en el tab de Java en la aplicación para el monitoreo de Tomcat (Windows) o en la configuración de Java. La ultima opción es particularmente importante para Rails 4.1 y Ubuntu.)*![Tomcat Windows Java Config][t3]  
+     - *(Cambiar el setting de 'Heap Memory' en el tab de Java en la aplicación para el monitoreo de Tomcat (Windows) o en la configuración de Java. La ultima opción es particularmente importante para Rails 4.1 y Ubuntu.)*  
+     ![Tomcat Windows Java Config][t3]  
   Ubuntu: Tomcat Heap Memory in `/etc/default/tomcat7/` or in `/etc/default/tomcat7/defaults.template`.
      
 6. Set up the admin user for Tomcat. In tomcat/conf/tomcat-users.xml set up the following lines: ![Tomcat User Settings][t4]

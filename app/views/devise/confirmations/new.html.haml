@@ -9,8 +9,9 @@
     %br
     = f.email_field :email, autofocus: true
   /
-  %div
-    = f.submit "Resend confirmation instructions"
+  %div.btn-group
+    = f.submit "Resend confirmation instructions", :class => 'btn'
 /end
 
+%br
 = render "devise/shared/links"

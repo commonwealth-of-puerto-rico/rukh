@@ -1,5 +1,5 @@
 %h2
-  Sign up
+  Usuario Nuevo
 
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages! 
@@ -21,7 +21,8 @@
 
   %div
     .btn-group
-      = f.submit "Sign up", class: "btn btn-large" 
+      = f.submit "Crear Usuario Nuevo", class: "btn btn-large" 
 /end
 
+%br
 = render "devise/shared/links"

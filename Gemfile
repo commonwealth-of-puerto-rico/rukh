@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku'][0] #remember to change db.yml
 
-#ruby=jruby-1.7.12
+#ruby=jruby-1.7.13
 ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.13' 
 gem 'jruby-jars', '1.7.13' #Now explicitly calling jruby-jars version
 
@@ -17,14 +17,14 @@ platforms :jruby do
     #Procfileheroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku' 
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.7'
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.8'
     when 'sql'
-      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.7'
+      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.8'
     when 'mysql'
-      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.7'
+      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.8'
     end
   end 
-  gem 'activerecord-jdbc-adapter', '~> 1.3.7' 
+  gem 'activerecord-jdbc-adapter', '~> 1.3.8' 
   gem 'therubyrhino' #JavaScript library
 end
 
@@ -37,7 +37,7 @@ gem 'cmess', '~> 0.4.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
-gem 'bootstrap-sass', '~> 3.1.1.1' #'~> 2.3.2.2' #'~> 3.1.1.1' is available
+gem 'bootstrap-sass', '~> 3.2.0.0' #'~> 3.1.1.1' #'~> 2.3.2.2' #'~> 3.2.0.0' is available
 gem 'haml-rails'
 
 # Use Uglifier as compressor for JavaScript assets
