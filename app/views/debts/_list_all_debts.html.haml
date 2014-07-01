@@ -4,6 +4,6 @@
   %td
     =link_to "#{number_to_currency debt.amount_owed_pending_balance, :unit => '$'}", debt_path(debt.id)
   %td
-    =debt.original_debt_date
+    =I18n.l debt.original_debt_date, :format => '%d de %B de %Y'
   %td
     =link_to debt.debtor.name, debtor_path(debt.debtor.id)
