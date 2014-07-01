@@ -105,13 +105,21 @@ class DebtsController < ApplicationController
   end
   
   def deliver_mail(debt, user, mailer, mail_preview, options={})
-    if mail_preview.deliver #guard_mailer(mailer) && 
-      # Log Mail
-      log_email(mail_preview, debt, user, mailer_name: mailer)
-      flash[:success] = "Email: #{mail_preview.subject} Enviado"
-    else 
-      flash[:error] = "Email No Enviado"
-    end
+    require 'thread'
+    msg = Queue.new
+    Thread.new {
+      if mail_preview.deliver #guard_mailer(mailer) && 
+        # Log Mail
+        log_email(mail_preview, debt, user, mailer_name: mailer)
+        # flash[:success] = "Email: #{mail_preview.subject} Enviado"
+        msg.push({:success => "Email: #{mail_preview.subject} Enviado"})
+      else 
+        # flash[:error] = "Email No Enviado"
+        msg.push({:error => "Email No Enviado"})
+      end
+    }.join()
+    flash_msg = msg.length.zero? ? {notice: 'thread error'} : msg.pop
+    flash[flash_msg.keys.first] = flash_msg.values.first
   end
   
   def guard_mailer(mailer)
