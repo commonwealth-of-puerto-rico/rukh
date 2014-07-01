@@ -2,4 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
-  $('.datepicker').datepicker({ dateFormat: "yy-mm-dd" })
+  $('.datepicker').datepicker({ dateFormat: "yy-mm-dd",
+  beforeShow: (input, instance)->
+    setTimeout ->
+      instance.dpDiv.css({'z-index': 100})
+   })
+  # $('#ui-datepicker-div').css({ 'z-index':100 })
+  # $('.datepicker').datepicker({ showAnim: 'slideDown'})
