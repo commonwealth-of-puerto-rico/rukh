@@ -7,5 +7,4 @@ $(document).ready ->
     setTimeout ->
       instance.dpDiv.css({'z-index': 100})
    })
-  # $('#ui-datepicker-div').css({ 'z-index':100 })
   # $('.datepicker').datepicker({ showAnim: 'slideDown'})
