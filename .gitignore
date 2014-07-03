@@ -40,4 +40,7 @@ config/database.yml
 #Ignoring Pre-compiled Assets
 /public/assets/*.png
 /public/assets/*.jpg
+/public/assets/*.gz
+
+
 
