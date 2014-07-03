@@ -7,7 +7,7 @@ gem 'jruby-jars', '1.7.13' #Now explicitly calling jruby-jars version
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.2'
+gem 'rails', '4.1.4'
 
 platforms :jruby do
   group :development do
