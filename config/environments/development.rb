@@ -42,6 +42,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 } #MailCatcher gem
   
   # Email Preview path
-  config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
+  # config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
+  
+  # Generate digests for assets URLs.
+  config.assets.digest = true #for testing 
   
 end
