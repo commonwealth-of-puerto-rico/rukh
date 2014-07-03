@@ -27,7 +27,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true #considering switching to true for bootstrap3.2 -David Acevedo
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -95,7 +95,7 @@ Rails.application.configure do
   # :authentication {:plain, :login, :cram_md5}
   
   # For Warbler added by David Acevedo (also ssl)
-  config.assets.precompile = config.assets.precompile + %w( *.png *.js *.scss *.coffee *.css )
+  config.assets.precompile = config.assets.precompile + %w(*.png *.js *.scss *.coffee *.css *.woff *.ttf *.svg *.eot)
   config.force_ssl = false # Changed for Warbler to false
   
 end

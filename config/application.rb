@@ -30,11 +30,14 @@ module Rukh
     config.i18n.available_locales = [:es] # For REP
     
     # For Bootstrap Sass
-    config.assets.precompile = config.assets.precompile + %w(*.png *.jpg *.jpeg *.gif)
+    config.assets.precompile = config.assets.precompile + %w(*.png *.jpg *.jpeg *.gif *.woff *.ttf *.svg *.eot)
     
     # For Warble
     config.assets.enabled = true
     config.assets.initialize_on_precompile = false
+    
+    # Encoding for Windows Tomcat #TODO Verify if actually needed.
+    config.encoding = 'utf-8'
     
     # Rspec Generators
     config.generators do |g|
@@ -51,22 +54,12 @@ module Rukh
     # Email Preview path 
     # config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews/"
     
-    # Encoding for Windows Tomcat #TODO Verify if actually needed.
-    config.encoding = 'utf-8'
-    
     console do
       begin
         require 'pry'
         config.console = Pry if defined? Pry
       rescue LoadError
       end
-      # Below seems unneccesary left for just in case.
-      # unless defined? Pry::ExtendCommandBundle
-      #   Pry::ExtendCommandBundle = Module.new
-      # end
-      # require "rails/console/app"
-      # require "rails/console/helpers"
-      # TOPLEVEL_BINDING.eval('self').extend ::Rails::ConsoleMethods
     end
     
     

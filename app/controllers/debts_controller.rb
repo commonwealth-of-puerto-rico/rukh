@@ -105,16 +105,22 @@ class DebtsController < ApplicationController
   end
   
   def deliver_mail(debt, user, mailer, mail_preview, options={})
-    require 'thread'
+    require 'thread' 
     Thread.new {
-      if mail_preview.deliver #guard_mailer(mailer) && 
-        # Log Mail
-        log_email(mail_preview, debt, user, mailer_name: mailer)
-        flash[:success] = "Email: #{mail_preview.subject} Enviado"
-      else 
-        flash[:error] = "Email No Enviado"
-      end
-    }.join()
+      begin 
+        if mail_preview.deliver #guard_mailer(mailer) &&
+          # Log Mail
+          log_email(mail_preview, debt, user, mailer_name: mailer)
+          flash[:success] = "Email: #{mail_preview.subject} Enviado"
+        else
+          flash[:error] = "Email No Enviado"
+        end
+      rescue SocketError => e
+        flash[:error] = "Conexión al servidor de emails falló: SocketError:#{e}"
+      rescue Errno::ECONNREFUSED => e
+        flash[:error] = "Conexión al servidor de emails falló: Errno::ECONNREFUSED:#{e}"
+      end 
+    }.join() 
   end
   
   def guard_mailer(mailer)

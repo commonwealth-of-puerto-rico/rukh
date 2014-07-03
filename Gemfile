@@ -75,7 +75,7 @@ gem 'tzinfo-data'
 gem 'kramdown' 
 
 # Pagination
-gem 'will_paginate', '~> 3.0.5'
+gem 'will_paginate', '~> 3.0.6'
 gem 'bootstrap-will_paginate'
 
 # Console
