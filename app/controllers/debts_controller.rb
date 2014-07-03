@@ -22,12 +22,15 @@ class DebtsController < ApplicationController
   
   def index
     assign_current_user
-    @debts_all = Debt.paginate(page: params[:page], per_page: 10)
-    @debts_all_for_csv = Debt.all()
-    
+    case params['format']
+    when 'csv', 'xls'
+      @debts_all = Debt.all()
+    else
+      @debts_all = Debt.paginate(page: params[:page], per_page: 10)
+    end   
     respond_to do |format|
       format.html
-      format.csv { send_data @debts_all_for_csv.to_csv}
+      format.csv { send_data @debts_all.to_csv}
       format.xls 
     end
   end
