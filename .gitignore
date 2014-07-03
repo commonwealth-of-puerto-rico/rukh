@@ -42,5 +42,7 @@ config/database.yml
 /public/assets/*.jpg
 /public/assets/*.gz
 
+#Ignore sass-cache
+/.sass-cache
 
 

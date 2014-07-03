@@ -29,7 +29,7 @@
         <Cell><Data ss:Type="String">fimas_account</Data></Cell>
         <Cell><Data ss:Type="String">fimas_id</Data></Cell>
       </Row>
-    <% @debts_all.each do |factura| %>
+    <% @debts_all_for_csv.each do |factura| %>
       <Row>
         <Cell><Data ss:Type="Number"><%= factura.id %></Data></Cell>
         <Cell><Data ss:Type="String"><%= factura.permit_infraction_number %></Data></Cell>
