@@ -44,7 +44,4 @@ Rails.application.configure do
   # Email Preview path
   # config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
   
-  # Generate digests for assets URLs.
-  config.assets.digest = true #for testing 
-  
 end

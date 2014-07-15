@@ -1,18 +1,20 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
 
 /* Import the fonts */
 
 /* $icon-font-path: url(asset-path('/../fonts')); */
 
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: font-url('glyphicons-halflings-regular.eot');
-  src: font-url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-       font-url('glyphicons-halflings-regular.woff') format('woff'),
-       font-url('glyphicons-halflings-regular.ttf') format('truetype'),
-       font-url('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
+/*
+  @font-face {
+    font-family: 'Glyphicons Halflings';
+    src: font-url('glyphicons-halflings-regular.eot');
+    src: font-url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+         font-url('glyphicons-halflings-regular.woff') format('woff'),
+         font-url('glyphicons-halflings-regular.ttf') format('truetype'),
+         font-url('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  }
+*/
 
 /* mixins, variables, etc. */
 
@@ -74,14 +76,14 @@ h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
-/*  text-align: center;*/
+  /*  text-align: center; */
 }
 
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
-/*  text-align: center;*/
+  /*  text-align: center; */
   font-weight: normal;
   color: $gray-light;
 }
