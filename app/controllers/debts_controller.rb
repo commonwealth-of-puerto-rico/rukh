@@ -123,6 +123,10 @@ class DebtsController < ApplicationController
         flash[:error] = "Conexión al servidor de emails falló: SocketError:#{e}"
       rescue Errno::ECONNREFUSED => e
         flash[:error] = "Conexión al servidor de emails falló: Errno::ECONNREFUSED:#{e}"
+      rescue Net::SMTPFatalError => e
+        flash[:error] = "Error del server SMTP: Net::SMTPFatalError #{e}"
+      # rescue ActiveRecord::JDBCError => e
+      #   flash[:error] = "Log no creado ActiveRecord::JDBCError #{e}"
       end 
     }.join() 
   end
@@ -209,22 +213,23 @@ class DebtsController < ApplicationController
   
   #TODO Put Method Below in helper
   def strip_hyphens(string)
-    string.split('').reject{|x| x.match(/-/)}.join('')
+    string.to_s.split('').reject{|x| x.match(/-/)}.join('')
   end
   
   #TODO Method Below could be In Lib
   def log_email(mail, debt, user, options={})
+    require 'base64'
     mail_log = MailLog.create(
       user_id: user.id,
       debt_id: debt.id,
       mailer_id: mail.message_id,
-      mailer_name: options.fetch(:mailer_name, 'unknown'), 
-      mailer_subject: mail.subject, 
+      mailer_name: options.fetch(:mailer_name, 'unknown').to_s, 
+      mailer_subject: mail.subject.to_s, 
       datetime_sent: DateTime.now,
-      email_sent_to: mail.header.to_s,
-      mailer_content: mail.multipart? ? mail.html_part.body.to_s : mail.body.to_s
+      email_sent_to: Base64.encode64(mail.header.to_s),
+      mailer_content: mail.multipart? ? Base64.encode64(mail.html_part.body.to_s) : Base64.encode64(mail.body.to_s)
     )
-    mail_log.save or fail
+    mail_log.save or fail 
   end
   
 end

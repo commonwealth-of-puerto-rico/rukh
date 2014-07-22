@@ -89,10 +89,12 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
     address: Rails.application.secrets.smpt, 
-    port: 25
+    port: 25,
+    enable_starttls_auto: true
   }
-  # :address, :port, :domain, :user_name, :password, 
+  # :address, :port, :domain, :user_name, :password, :enable_starttls_auto
   # :authentication {:plain, :login, :cram_md5}
+  # Domain could be: fimas-db.jcadomain.local
   
   # For Warbler added by David Acevedo (also ssl)
   config.assets.precompile = config.assets.precompile + %w(*.png *.js *.scss *.coffee *.css *.woff *.ttf *.svg *.eot)
