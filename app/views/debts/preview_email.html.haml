@@ -1,3 +1,15 @@
+:css
+  .btn {
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0,0,0,0)
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    height: 34px;
+    cursor: pointer;
+  }
+
 - flash.each do |k, v|
   %div{:class => "alert alert-#{k}"}= v
 - unless @print#

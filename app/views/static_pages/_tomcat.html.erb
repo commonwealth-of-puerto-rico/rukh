@@ -15,7 +15,7 @@
 3. Download and install **Java Cryptographic Extensions (JCE)** security files for Java7 and  on your `jre7/lib/security` folder overwrite the `local_policy.jar` and `US_export_policy.jar`. In windows the JRE is located usually in `Program Files`.  
 ![Files to Replace][t2]
   - *(Bajar e instalar los JCE (Java Cryptographic Exentsions) del website de Oracle y remplazar los archivos indicados.)*  
-  Ubuntu: if `which javac` is '/usr/bin/javac' then`echo $(readlink -f /usr/bin/javac | sed "s:bin/javac::")` produces the Java Home path.Switch to that directory and then drill into `jre/lib/security` from there.  
+  Ubuntu: if `which javac` is '/usr/bin/javac' then`echo $(readlink -f /usr/bin/javac | sed "s:bin/javac::")` produces the Java Home path. Switch to that directory and then drill into `jre/lib/security` from there. Typically: `/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/`  
   Mac: Execute `/usr/libexec/java_home` to find Java Home. Switch to that directory and then drill into `jre/lib/security` from there.  
   
 4. **NO SPACES** on path for Tomcat!!! (no # either) (Windows limitation)
@@ -28,7 +28,7 @@
    - `-Dfile.encoding=UTF-8` (windows only for UTF-8 compatibility)
      - *(Cambiar el setting de 'Heap Memory' en el tab de Java en la aplicación para el monitoreo de Tomcat (Windows) o en la configuración de Java. La ultima opción es particularmente importante para Rails 4.1 y Ubuntu.)*  
      ![Tomcat Windows Java Config][t3]  
-  Ubuntu: Tomcat Heap Memory in `/etc/default/tomcat7/` or in `/etc/default/tomcat7/defaults.template`.
+  Ubuntu: Tomcat Heap Memory in `/etc/default/tomcat7` or in `/etc/default/tomcat7/defaults.template`.
      
 6. Set up the admin user for Tomcat. In tomcat/conf/tomcat-users.xml set up the following lines: ![Tomcat User Settings][t4] Please note that the orginal file with have sample users but they'll be wrapped in a comment! And don't forget to add the rolename part as well.
    - *(Cree el usuario 'admin' en tomcat-users.xml.)*
@@ -37,7 +37,7 @@
 7. Increase tomcat7 manager's war deploy size if you want to deploy from the admin gui.
     `tomcat7/webapps/manager/WEB-INF/web.xml`
     
-    Ubuntu: `/usr/share/tomcat7-admin/` or `/var/lib/tomcat7/webapps` for webapps
+    Ubuntu: `/usr/share/tomcat7-admin/manager/WEB-INF/web.xml` and `/var/lib/tomcat7/webapps` for webapps
 
 8. Run **`jruby -S bundle exec rake db:create db:schema:load RAILS_ENV=production`** (this command can be run from the dev computer if it's in the same network and can connect to the database.) If run on the production machine it must me run on the directory with the application's Rake file:`<tomcat location>/webapps/<app name>/WEB-INF/`. 
   - *(Corra el commando para crear la base de datos. El commando debe correr del archivo localizado en `<tomcat location>/webapps/<app name>/WEB-INF/` que es donde esta localizado el Rakefile.)*

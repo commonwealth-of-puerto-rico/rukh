@@ -218,13 +218,13 @@ class DebtsController < ApplicationController
   
   #TODO Method Below could be In Lib
   def log_email(mail, debt, user, options={})
-    require 'base64'
+    require 'base64' #To encode content to prevent SQL injections
     mail_log = MailLog.create(
       user_id: user.id,
       debt_id: debt.id,
       mailer_id: mail.message_id,
       mailer_name: options.fetch(:mailer_name, 'unknown').to_s, 
-      mailer_subject: mail.subject.to_s, 
+      mailer_subject: mail.subject.to_s, #slightly vulnerable to SQL injection
       datetime_sent: DateTime.now,
       email_sent_to: Base64.encode64(mail.header.to_s),
       mailer_content: mail.multipart? ? Base64.encode64(mail.html_part.body.to_s) : Base64.encode64(mail.body.to_s)
