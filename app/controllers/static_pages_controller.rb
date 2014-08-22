@@ -10,5 +10,9 @@ class StaticPagesController < ApplicationController
   def dev
     @user = current_user
   end
+  
+  def prifas_account
+    respond_to :json
+  end
 
 end

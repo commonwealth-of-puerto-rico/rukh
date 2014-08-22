@@ -50,6 +50,20 @@
         =f.number_field :bounced_check_number, class: 'form-control'
         =f.label :notes, "Notas"
         =f.text_field :notes, class: 'form-control'
+        =#f.label :fimas_id, "Número de Fimas"
+        =#f.number_field :fimas_id, class: 'form-control'
+        =f.label :fimas_project_id
+        =f.text_field :fimas_project_id, class: 'form-control'
+        =f.label :fimas_budget_reference
+        =f.text_field :fimas_budget_reference, class: 'form-control'
+        =f.label :fimas_class_field
+        =f.text_field :fimas_class_field, class: 'form-control'
+        =f.label :fimas_program
+        =f.text_field :fimas_program, class: 'form-control'
+        =f.label :fimas_fund_code
+        =f.text_field :fimas_fund_code, class: 'form-control'
+        =f.label :fimas_account
+        =f.text_field :fimas_account, class: 'form-control'
         =#hidden_field(:debtor_id,@debtor.id)
         =#check_box_tag "en plan de pago?", "0", @debt.payment_plan?
         .btn-group

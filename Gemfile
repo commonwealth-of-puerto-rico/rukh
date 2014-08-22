@@ -7,29 +7,29 @@ gem 'jruby-jars', '1.7.13' #Now explicitly calling jruby-jars version
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails', '4.1.5'
 
 platforms :jruby do
   group :development do
-    gem 'activerecord-jdbcsqlite3-adapter'#, '~> 1.3.7'
+    gem 'activerecord-jdbcsqlite3-adapter'
   end
   group :production do
     #Procfileheroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku' 
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.8'
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.9' #1.3.9 is out
     when 'sql'
-      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.8'
+      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.9'
     when 'mysql'
-      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.8'
+      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.9'
     end
   end 
-  gem 'activerecord-jdbc-adapter', '~> 1.3.8' 
+  gem 'activerecord-jdbc-adapter', '~> 1.3.9' 
   gem 'therubyrhino' #JavaScript library
 end
 
 # Puma as server
-gem 'puma', '~> 2.8.2'
+gem 'puma', '~> 2.9.0' 
 
 # For CSV importing
 gem 'smarter_csv', '~> 1.0.17'
@@ -120,7 +120,7 @@ end
 group :deploy do
   platforms :jruby do
     # For Warbler changes to config/application.rb and config/environtments/production.rb
-    gem 'warbler', '1.4.3', :require => false # 1.4.3 is out
+    gem 'warbler', '1.4.4', :require => false # 1.4.4 is out
   end
 end
 
