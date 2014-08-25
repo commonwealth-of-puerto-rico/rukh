@@ -30,6 +30,9 @@ describe Debtor do
     it 'happy debtor path should be valid' do
       expect(happy_zombie_debtor).to be_valid
     end
+    it  'factory happy debtor path should be valid' do
+      expect(FactoryGirl.build(:debtor)).to be_valid
+    end
     
     it "contains either an ein or a ss but not both" do
       expect(unhappy_zombie_debtor.errors_on(:employer_id_number).size).to eq 1

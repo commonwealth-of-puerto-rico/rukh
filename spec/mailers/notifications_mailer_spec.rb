@@ -2,7 +2,11 @@ require "spec_helper"
 
 describe NotificationsMailer do
   describe "first" do
-    let(:mail) { NotificationsMailer.first }
+    let(:mail) { NotificationsMailer.first } #This needs a factory
+    
+    it 'fails if user or debtor is missing' do
+      pending
+    end
 
     it "renders the headers" do
       mail.subject.should eq("First")

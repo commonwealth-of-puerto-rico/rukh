@@ -8,6 +8,7 @@ gem 'jruby-jars', '1.7.13' #Now explicitly calling jruby-jars version
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
+# Devise breaks in 4.2.beta at the moment.
 
 platforms :jruby do
   group :development do
@@ -36,7 +37,7 @@ gem 'smarter_csv', '~> 1.0.17'
 gem 'cmess', '~> 0.4.1'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+# gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass', '~> 3.2.0.0' #'~> 3.1.1.1' #'~> 2.3.2.2' #'~> 3.2.0.0' is available
 gem 'haml-rails'
 
@@ -83,7 +84,7 @@ gem 'pry'
 
 
 group :development do
-  gem 'localeapp', require: false
+  # gem 'localeapp', require: false
   gem 'guard-rspec', '~> 4.2.8'
   gem 'guard-spork', '~> 1.5.1'
   gem 'spork-rails', github: 'sporkrb/spork-rails'
