@@ -13,6 +13,3 @@
       Log in
   -else
     = link_to "Log out", destroy_user_session_path, method: "delete", :class => "btn btn-large btn-default"
-:coffee
-  if navigator.userAgent.indexOf('compatible') > -1
-    alert "Tiene el modulo de compatibilidad prendido en IE, la navegación no funciona. Por favor apage el modulo."

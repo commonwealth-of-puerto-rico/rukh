@@ -7,4 +7,6 @@ reset_fonts = -> $('body').css('font-family', 'Arial')
 
 #Compatiblity Mode in IE tends to be turned on for intranets
 if navigator.userAgent.indexOf('compatible') > -1
-  alert "You have Compatibility Mode turned on in IE. Please turn it off."
+  alert "Tiene el modulo de compatibilidad prendido en IE, la navegación no funcionará. Por favor apague el modulo. Vaya a el ícono de una rueda dentada y seleccione 'Compatibility View Settings'"
+  $('.container').prepend("<div class='alert alert-danger'> IE Compatibilty Turned On. Please turn it off.</div>")
+
