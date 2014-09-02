@@ -18,14 +18,14 @@ platforms :jruby do
     #Procfileheroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku' 
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.9' #1.3.9 is out
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.10' #1.3.10 is out
     when 'sql'
-      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.9'
+      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.10'
     when 'mysql'
-      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.9'
+      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.10'
     end
   end 
-  gem 'activerecord-jdbc-adapter', '~> 1.3.9' 
+  gem 'activerecord-jdbc-adapter', '~> 1.3.10' 
   gem 'therubyrhino' #JavaScript library
 end
 
@@ -37,7 +37,7 @@ gem 'smarter_csv', '~> 1.0.17'
 gem 'cmess', '~> 0.4.1'
 
 # Use SCSS for stylesheets
-# gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'#, '~> 4.0.3'
 gem 'bootstrap-sass', '~> 3.2.0.0' #'~> 3.1.1.1' #'~> 2.3.2.2' #'~> 3.2.0.0' is available
 gem 'haml-rails'
 
@@ -76,7 +76,7 @@ gem 'tzinfo-data'
 gem 'kramdown' 
 
 # Pagination
-gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate', '~> 3.0.7' #.7 out now
 gem 'bootstrap-will_paginate'
 
 # Console
@@ -87,7 +87,7 @@ group :development do
   # gem 'localeapp', require: false
   gem 'guard-rspec', '~> 4.2.8'
   gem 'guard-spork', '~> 1.5.1'
-  gem 'spork-rails', github: 'sporkrb/spork-rails'
+  # gem 'spork-rails', github: 'sporkrb/spork-rails'
   gem 'rb-fsevent', '~> 0.9.3'
 end
 
