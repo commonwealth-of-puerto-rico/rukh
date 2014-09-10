@@ -1,17 +1,19 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
+require 'faker'
 
 FactoryGirl.define do
   factory :debtor do
-    name "Hombre Bionico"
-    email "carlostrabal@example.com"
+    name { Faker::Name.name }
+    email { Faker::Internet.safe_email }
     tel "787-761-6767"
-    ext "x5555"
-    address "Happy Drive PO box"
-    location "Km 4 Carr. 123"
-    contact_person "Carlos Trabal"
-    contact_person_email "ct@example.com"
-    uses_personal_ss true
-    ss_hex_digest "123456789"
+    ext "x#{Faker::PhoneNumber.extension}"
+    address { "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.zip}" }
+    location { "#{Faker::Address.street_name}, #{Faker::Address.secondary_address}" }
+    contact_person { Faker::Name.name }
+    contact_person_email { Faker::Internet.safe_email }
+    uses_personal_ss false
+    ss_hex_digest ''
+    employer_id_number { Faker::Company.ein }
   end
 end
 

@@ -18,6 +18,7 @@ class Debtor < ActiveRecord::Base
     end
   end
   #TODO before save clean up telephone number and ss
+  #TODO before save can clean up telephone number by selecting only [[:digits:]]
   # before_save record_transaction
   
   ## REGEX

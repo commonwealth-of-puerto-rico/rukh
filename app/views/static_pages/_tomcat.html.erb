@@ -30,7 +30,7 @@
      ![Tomcat Windows Java Config][t3]  
   Ubuntu: Tomcat Heap Memory in `sudoedit /etc/default/tomcat7` or in `/etc/default/tomcat7/defaults.template`.
      
-6. Set up the admin user for Tomcat. In tomcat/conf/tomcat-users.xml set up the following lines: ![Tomcat User Settings][t4] Please note that the orginal file with have sample users but they'll be wrapped in a comment! And don't forget to add the rolename part as well.
+6. Set up the admin user for Tomcat. In tomcat/conf/tomcat-users.xml set up the following lines: ![Tomcat User Settings][t4] Please note that the orginal file with have sample users but they'll be wrapped in a comment! And don't forget to add the rolename ("tomcat,manager-gui") part as well.
    - *(Cree el usuario 'admin' en tomcat-users.xml.)*
    - Ubuntu:`sudoedit /etc/tomcat7/tomcat-users.xml`
 
@@ -47,9 +47,22 @@ Notes/Notas:
 - War files are located in `/var/lib/tomcat7/webapps` in Ubuntu.
 - Tomcat logs are located in `/var/lib/tomcat7/logs` in Ubuntu.
  
+#### Pound
+Pound is a reverse proxy. It can be used to resolve the https certificates (if needed) and forward port 80 calls to port 8080 of tomcat. If you have more than one server it can serve as a rudimentary load balancer. 
+
+1. `sudoedit /etc/pound/pound.cfg`
+ListenHTTP is the ip and port it listens on. Use port '80'.
+Service Backend (there can be more than one) is the server. Use port '8080'. Specify a Priority if using more than one.
+2. `sudoedit /etc/default/pound`
+Change `startup=0` to `startup=1`
+3. `sudo service pound start`
+ 
+Pound can also handle certificates. 
+
+ 
 ## En la maquina de deploy  
 
-1. Utilize Warble 1.4.0.beta1 o mas reciente
+1. Utilize Warble 1.4.4 o mas reciente
 2. Cree un web.xml para que se copie -- no lo deje autogenerar.
 3. Run JRuby Lint to find issues
 4. Flip heroku settins en:
@@ -87,3 +100,11 @@ To start/stop the server from the command line you use the catalina shell script
 [t2]: <%= asset_path('JCE_replace_files.png') %> "JCE replace files"
 [t3]: <%= asset_path('tomcat_config_windows.png') %> "Tomcat Windows Java Config" 
 [t4]: <%= asset_path('tomcatuserssettings.png') %> "Tomcat User Settings"
+
+
+## Setting up the SMTP relay
+If your SMTP is on a windows server you must add the ip of the server running tomcat to the whitelist of relays for SMTP.
+Control Panel > Administrative Tools > IIS (Internet Info Server) > Default SMTP Virtual Server (Right Click)
+|+> Properties
+|+++> Access (Tab)
+|++++++> Relay 
