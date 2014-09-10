@@ -19,7 +19,7 @@ describe User do
   describe "Invalidations" do
     describe "when password is not present" do
       it 'user without password should not be valid' do
-        expect(happy_user.password = '').to raise_error RecordInvalid
+        expect{happy_user.password = ''}.to raise_error ActiveRecord::RecordInvalid
       end
     end 
   end

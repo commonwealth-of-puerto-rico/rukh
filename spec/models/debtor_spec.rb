@@ -72,10 +72,11 @@ describe Debtor do
     end
   
     it "rejects two debtors with same ss" do
-      # FactoryGirl.create(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)
+      debtor1 = FactoryGirl.create(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)
       # debtor1 = FactoryGirl.build(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)
       # debtor1.valid?
       # expect(debtor1.errors_on(:ss_hex_digest).size).to eq 1
+      expect{FactoryGirl.build(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)}.to raise_error
     end
     
     it 'is invalid if it has both ein and ss' do
@@ -98,7 +99,7 @@ describe Debtor do
       expect(Debtor.clean_up_search_term('Miguel Rios')).to be_a_kind_of(String)
     end
     describe 'garbage data' do
-      it 'should handle garbage data' do
+      it 'clean_up_search_term should handle garbage data' do
         expect{Debtor.clean_up_search_term(1.000003)}.to_not raise_error
         expect{Debtor.clean_up_search_term(/fail/)}.to_not raise_error 
         
