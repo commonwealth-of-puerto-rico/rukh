@@ -18,7 +18,11 @@ class Debtor < ActiveRecord::Base
     end
   end
   #TODO before save clean up telephone number and ss
+  before_save do 
+    self.tel = Debtor.remove_hyphens(self.tel)
+  end
   #TODO before save can clean up telephone number by selecting only [[:digits:]]
+  #TODO alter tel regex to accept parenthesis and spaces
   # before_save record_transaction
   
   ## REGEX
@@ -98,7 +102,7 @@ class Debtor < ActiveRecord::Base
     term.to_s.each_char.select{|x| x.match /[0-9]/}.join('')
   end
   def Debtor.encrypt(token)
-    Digest::SHA1.hexdigest(Debtor.salt(Debtor.remove_hyphens token ).to_s)
+    Digest::SHA1.hexdigest( Debtor.salt(Debtor.remove_hyphens(token) ).to_s)
   end
   def Debtor.salt(token, salt=Rails.application.secrets.salt) #salt stored in secrets.yml
     token.to_i + salt

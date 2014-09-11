@@ -9,6 +9,7 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
+// jquery-ui 5 uses require jquery-ui/datepicker
 //
 //= require jquery
 //= require jquery_ujs

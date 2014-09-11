@@ -49,13 +49,6 @@ describe Debtor do
       expect(unhappy_zombie_debtor.errors_on(:contact_person).size).to eq 1
     end
     
-    
-    it "cleans up telephone number" do
-      expect(happy_zombie_debtor.tel.to_i).to eql(7877877879)
-      expect(unhappy_zombie_debtor.tel.to_i).to_not eql(7877877879)
-      expect(unhappy_zombie_debtor.tel.each_char.select{|x| x.match(/[0-9]/)}.join('').to_i).to \
-        eql(7877877879)     
-    end
   end 
    
   describe "Invalidations" do
@@ -73,20 +66,30 @@ describe Debtor do
   
     it "rejects two debtors with same ss" do
       debtor1 = FactoryGirl.create(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)
-      # debtor1 = FactoryGirl.build(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)
-      # debtor1.valid?
-      # expect(debtor1.errors_on(:ss_hex_digest).size).to eq 1
-      expect{FactoryGirl.build(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)}.to raise_error
+      debtor2 = FactoryGirl.build(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)
+      # debtor2.valid?
+      # debtor1.run_callbacks(:save) { false } #just run the :before_save callback use {false}
+      # debtor2.run_callbacks(:save) { false }
+      # expect(debtor1.errors.size).to eq 1
+            # debtor1.run_callbacks(:after_save)
+      # expect{FactoryGirl.build(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)}.to raise_error
+      expect{debtor2.save!(validate: false)}.to raise_error # Secret Sause!
     end
     
     it 'is invalid if it has both ein and ss' do
       expect(FactoryGirl.build(:debtor, ss_hex_digest: "123-12-1234")).to_not be_valid
     end
      
-    # skip it 'rejects two debtors with same name'
+    # skip it 'rejects two debtors with same name' # Why should it?
   
   end
   
+  it "cleans up telephone number" do
+    expect(happy_zombie_debtor.tel.to_i).to eql(7877877879)
+    expect(unhappy_zombie_debtor.tel.to_i).to_not eql(7877877879)
+    expect(unhappy_zombie_debtor.tel.each_char.select{|x| x.match(/[0-9]/)}.join('').to_i).to \
+      eql(7877877879)     
+  end
   ####### Search Function
   describe 'clean_up_search_term_method' do
     it 'should return HexString for ss xxx-xx-xxxx number' do

@@ -7,7 +7,8 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true 
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-    = favicon_link_tag(asset_path('favicon.ico'))
+    -# favicon_link_tag(asset_path('favicon.ico'))
+    = favicon_link_tag('favicon.ico')
     = render 'layouts/shim'
     = render 'layouts/glyphicons'
   %body  

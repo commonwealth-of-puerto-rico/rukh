@@ -21,11 +21,13 @@ describe Debt do
       debt2 = FactoryGirl.build(:debt, amount_owed_pending_balance: "12.00")
       # puts debt1.inspect
       # puts debt2.inspect
-      debt2.valid?
-      expect(debt2.errors[:amount_owed_pending_balance].size).to eq(0)
-      debt1.valid?
       puts "It seems to be clobbering the value entered. So it will always be valid."
-      expect(debt1.errors[:amount_owed_pending_balance].size).to eq(1)
+      expect(debt2.valid?).to be true
+      expect(debt1.valid?).to be_falsy
+      # expect(debt2.errors[:amount_owed_pending_balance].size).to eq(0)
+      # debt1.valid?
+      
+      # expect(debt1.errors[:amount_owed_pending_balance].size).to eq(1)
       
       # Deprecated.
       # expect(debt1).to have(1).errors_on(:amount_owed_pending_balance)

@@ -11,11 +11,16 @@ class DebtorsController < ApplicationController
   def create
     assign_current_user
     @debtor = Debtor.new(debtor_params) 
-    
-    if @debtor.save
-      flash[:success] = "Nuevo Record de Deudor Creado."
-      redirect_to @debtor
-    else
+    begin
+      if @debtor.save
+        flash[:success] = "Nuevo Record de Deudor Creado."
+        redirect_to @debtor
+      else
+        flash.now[:warning] = "Hubo un Error. Record de Deudor No Creado."
+        render 'new'
+      end
+    rescue ActiveRecord::RecordNotUnique => e
+      flash.now[:error] = "Error: Un elemento esta duplicado en el sistema. \t#{e.message}"
       render 'new'
     end
   end
@@ -90,10 +95,9 @@ class DebtorsController < ApplicationController
   
   
   private
-  def assign_current_user
-    @user = current_user
-  end
-  
+    def assign_current_user
+      @user = current_user
+    end
     def debtor_params
       if user_signed_in? #updated for Devise
         #Can be determined by role
@@ -104,8 +108,6 @@ class DebtorsController < ApplicationController
         redirect_to new_user_session_path
       end
     end
-  
-  
-  
+   
 end
 __END__
