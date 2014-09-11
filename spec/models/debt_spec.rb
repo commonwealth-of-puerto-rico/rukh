@@ -22,7 +22,7 @@ describe Debt do
       # puts debt1.inspect
       # puts debt2.inspect
       puts "It seems to be clobbering the value entered. So it will always be valid."
-      expect(debt2.valid?).to be true
+      expect(debt2.valid?).to eq true
       expect(debt1.valid?).to be_falsy
       # expect(debt2.errors[:amount_owed_pending_balance].size).to eq(0)
       # debt1.valid?
