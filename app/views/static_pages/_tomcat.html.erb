@@ -30,7 +30,7 @@
      ![Tomcat Windows Java Config][t3]  
   Ubuntu: Tomcat Heap Memory in `sudoedit /etc/default/tomcat7` or in `/etc/default/tomcat7/defaults.template`.
      
-6. Set up the admin user for Tomcat. In tomcat/conf/tomcat-users.xml set up the following lines: ![Tomcat User Settings][t4] Please note that the orginal file with have sample users but they'll be wrapped in a comment! And don't forget to add the rolename ("tomcat,manager-gui") part as well.
+6. Set up the admin user for Tomcat. In tomcat/conf/tomcat-users.xml set up the following lines: ![Tomcat User Settings][t4]  Please note: the orginal file will have sample users, but they'll be wrapped in a comment! Remember to add the rolename ("tomcat,manager-gui") part as well.  
    - *(Cree el usuario 'admin' en tomcat-users.xml.)*
    - Ubuntu:`sudoedit /etc/tomcat7/tomcat-users.xml`
 
@@ -59,8 +59,10 @@ Change `startup=0` to `startup=1`
  
 Pound can also handle certificates. 
 
+#### Certificates for https with pound
+[How To link](http://www.project-open.org/en/howto_pound_https_configuration)
  
-## En la maquina de deploy  
+### En la maquina de deploy  
 
 1. Utilize Warble 1.4.4 o mas reciente
 2. Cree un web.xml para que se copie -- no lo deje autogenerar.
@@ -82,7 +84,7 @@ Ubuntu: ROOT is in `/var/lib/tomcat7/ROOT`
 Ubuntu: Logs are in `/var/log/tomcat7/`
 
 
-## Usando tomcat en Mac con Homebrew
+#### Usando tomcat en Mac con Homebrew
 `hombrew install tomcat`
 
 Verifica con 

@@ -82,3 +82,6 @@ Tambien se le puede añadir esta linea al `web.xml` para darle un nombre a la ap
 4. Algo raro con los war files...  
 >Warble tiene un bug que genera caracteres chatarra al final de files como: `web.xml` si ese el caso puede eliminar estos caracteres chatarra o mejor y sugerido crear un web.xml file en el directorio en la maquina 'development' para que Warble lo copie y no lo genere. 
 
+5. No sale el email... de Windows
+Hay un bug que descubrí en JRuby de Windows procesando la comunicacion con SMTP. Esta en el código de Java de como responde a mensajes del SMTP server. Este bug genera un fallo en el envio de emails. Trate usando Linux en vez de Windows para tener el server de Tomcat.
+

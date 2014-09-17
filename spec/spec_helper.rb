@@ -88,8 +88,8 @@ RSpec.configure do |config|
   config.order = "random"
   
   ### For testing email delivery w/ email_spec
-  config.include(EmailSpec::Helpers)
-  config.include(EmailSpec::Matchers)
+  # config.include(EmailSpec::Helpers)
+  # config.include(EmailSpec::Matchers)
   
 
   # RSpec Rails can automatically mix in different behaviours to your tests
