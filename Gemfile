@@ -7,7 +7,7 @@ gem 'jruby-jars', '1.7.15' #Now explicitly calling jruby-jars version
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.5'
+gem 'rails', '4.1.6'
 # Devise breaks in 4.2.beta at the moment.
 
 platforms :jruby do
@@ -30,7 +30,7 @@ platforms :jruby do
 end
 
 # Puma as server
-gem 'puma', '~> 2.9.0' 
+gem 'puma', '~> 2.9.1' 
 
 # For CSV importing
 gem 'smarter_csv', '~> 1.0.17'
@@ -110,6 +110,8 @@ platforms :ruby do
   group :development do
     gem 'sqlite3'
     gem 'github-pages', require: false  # Jekyll Integration
+    # Email testing
+    gem 'mailcatcher', '0.6.0', github: 'sj26/mailcatcher', require: false
   end
   group :production do
     gem 'therubyracer'    # JavaScript library
