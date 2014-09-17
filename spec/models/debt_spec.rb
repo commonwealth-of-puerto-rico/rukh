@@ -76,8 +76,11 @@ describe Debt do
   #Method Specs
   
   describe "Method Specs" do
-    describe "CSV creation" do
+    describe "CSV creation" do  
       it 'should create a valid csv file' do
+        FactoryGirl.create(:debt, :bank_name => "Pakistan Bank")
+        expect(Debt.to_csv).to match /Pakistan Bank/
+        # FactoryGirl.create(:debt)
         # expect(FactoryGirl.build(:debt).to_csv).to_not raise_error
       end
     end

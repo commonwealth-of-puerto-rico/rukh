@@ -103,6 +103,7 @@ group :test do
   gem 'capybara', '~> 2.2.1' #For Rspec3 (consider removing version)
   gem 'database_cleaner'
   gem 'launchy', require: false
+  gem 'email_spec', '>= 1.6.0'
 end
 
 platforms :ruby do

@@ -19,8 +19,8 @@ class DebtorsController < ApplicationController
         flash.now[:warning] = "Hubo un Error. Record de Deudor No Creado."
         render 'new'
       end
-    rescue ActiveRecord::RecordNotUnique => e
-      flash.now[:error] = "Error: Un elemento esta duplicado en el sistema. \t#{e.message}"
+    rescue ActiveRecord::RecordNotUnique, ActiveRecord::StatementInvalid, ActiveRecord::JDBCError => e
+      flash.now[:error] = "Error: Hay un problema con la data sometida. \t#{e.message}"
       render 'new'
     end
   end
@@ -57,11 +57,16 @@ class DebtorsController < ApplicationController
     assign_current_user
     # @debtor = Debtor.find(cookies[:current_debtor_id])
     @debtor = Debtor.find(params[:id])
-    if @debtor.update_attributes(debtor_params)
-      flash[:success] = "Informacion del deudor actualizada."
-      redirect_to @debtor
-    else
-      render 'edit'
+    begin
+      if @debtor.update_attributes(debtor_params)
+        flash[:success] = "Informacion del deudor actualizada."
+        redirect_to @debtor
+      else
+        render 'edit'
+      end
+    rescue ActiveRecord::RecordNotUnique, ActiveRecord::StatementInvalid, ActiveRecord::JDBCError => e
+      flash.now[:error] = "Error: Hay un problema con la data sometida. \t#{e.message}"
+      render 'new'
     end
   end
   

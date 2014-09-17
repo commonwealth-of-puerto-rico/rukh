@@ -30,8 +30,8 @@ class DebtsController < ApplicationController
     end   
     respond_to do |format|
       format.html
-      format.csv { send_data @debts_all.to_csv}
       format.xls 
+      format.csv {send_data @debts_all.to_csv}
     end
   end
   
@@ -66,6 +66,7 @@ class DebtsController < ApplicationController
     end  
   end
   
+  ## Emails
   def preview_email   
     @debt = Debt.find_by_id(mailer_params[:id])
     @user = current_user

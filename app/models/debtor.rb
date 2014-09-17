@@ -107,6 +107,9 @@ class Debtor < ActiveRecord::Base
   def Debtor.salt(token, salt=Rails.application.secrets.salt) #salt stored in secrets.yml
     token.to_i + salt
   end
+  def Debtor.guard_length(token, length=9) #should be in lib
+    fail unless token.to_s.split('').size == length
+  end
   # def check_for_debts
   #   #  before_destroy :check_for_debts
   #   if debts.count > 0

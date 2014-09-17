@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spork'
+require 'email_spec'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -85,6 +86,11 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+  
+  ### For testing email delivery w/ email_spec
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
+  
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

@@ -3,6 +3,7 @@ require "spec_helper"
 describe NotificationsMailer do
   describe "first" do
     let(:mail) { NotificationsMailer.first } #This needs a factory
+    # let(:email) { MessageMailer.first(FactoryGirl::build(:debt))}
     
     it 'fails if user or debtor is missing' do
       pending
