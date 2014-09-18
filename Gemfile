@@ -110,8 +110,6 @@ platforms :ruby do
   group :development do
     gem 'sqlite3'
     gem 'github-pages', require: false  # Jekyll Integration
-    # Email testing
-    # gem 'mailcatcher', '0.6.0', github: 'sj26/mailcatcher', require: false
   end
   group :production do
     gem 'therubyracer'    # JavaScript library
