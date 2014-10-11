@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku'][0] #remember to change db.yml
 
-#ruby=jruby-1.7.15
-ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.15' 
-gem 'jruby-jars', '1.7.15' #Now explicitly calling jruby-jars version
+#ruby=jruby-1.7.16
+ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.16' 
+gem 'jruby-jars', '1.7.16' #Now explicitly calling jruby-jars version
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
