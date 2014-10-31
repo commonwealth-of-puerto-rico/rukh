@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku'][0] #remember to change db.yml
 
-#ruby=jruby-1.7.16
-ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.16' 
-gem 'jruby-jars', '1.7.16' #Now explicitly calling jruby-jars version
+#ruby=jruby-1.7.16.1
+ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.16.1' 
+gem 'jruby-jars', '1.7.16.1' #Now explicitly calling jruby-jars version
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.1.7'
 # Devise breaks in 4.2.beta at the moment.
 
 platforms :jruby do
@@ -30,7 +30,7 @@ platforms :jruby do
 end
 
 # Puma as server
-gem 'puma', '~> 2.9.1' 
+gem 'puma', '~> 2.9.2' 
 
 # For CSV importing
 gem 'smarter_csv', '~> 1.0.17'

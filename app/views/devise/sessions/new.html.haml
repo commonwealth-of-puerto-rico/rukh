@@ -1,25 +1,27 @@
-%h3
-  Iniciar Sesión
+%div{:class => "col-md-8 col-md-offset-2"}
+  %h3
+    Iniciar Sesión
 
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  %div
-    %br
-    = f.label :email 
-    = f.email_field :email, class: 'form-control',autofocus: true 
-  %div
-    %br
-    = f.label :password
-    = f.password_field :password, class: 'form-control',autocomplete: "off"
-
-  - if devise_mapping.rememberable? 
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     %div
-      = f.check_box :remember_me 
-      = f.label :remember_me 
-  /end
+      %br
+      = f.label :email 
+      = f.email_field :email, class: 'form-control',autofocus: true 
+    %div
+      %br
+      = f.label :password
+      = f.password_field :password, class: 'form-control',autocomplete: "off"
 
-  %div
-    .btn-group
-      = f.submit "Log in", class: "btn" 
-/end
-%br
-= render "devise/shared/links"
+    - if devise_mapping.rememberable? 
+      %div
+        = f.check_box :remember_me 
+        = f.label :remember_me 
+    /end
+
+    %div
+      .btn-group
+        = f.submit "Log in", class: "btn" 
+  /end
+  %br
+  = render "devise/shared/links"
+/
