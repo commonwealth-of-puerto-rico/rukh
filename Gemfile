@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku'][0] #remember to change db.yml
 
-#ruby=jruby-1.7.16.1
-ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.16.1' 
-gem 'jruby-jars', '1.7.16.1' #Now explicitly calling jruby-jars version
+#ruby=jruby-1.7.17
+ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.17' 
+gem 'jruby-jars', '1.7.17' #Now explicitly calling jruby-jars version
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.7'
+gem 'rails', '4.1.8' #last tested w/ 4.1.8
 # Devise breaks in 4.2.beta at the moment.
 
 platforms :jruby do
@@ -18,22 +18,22 @@ platforms :jruby do
     #Procfileheroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku' 
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.10' #1.3.10 is out
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.13' #1.3.10 is out
     when 'sql'
-      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.10'
-    when 'mysql'
-      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.10'
+      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.13'
+    when 'mysql', 'mariadb'
+      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.13'
     end
   end 
-  gem 'activerecord-jdbc-adapter', '~> 1.3.10' 
+  gem 'activerecord-jdbc-adapter', '~> 1.3.13' 
   gem 'therubyrhino' #JavaScript library
 end
 
 # Puma as server
-gem 'puma', '~> 2.9.2' 
+gem 'puma', '~> 2.10.2' #'~> 2.9.2' 
 
 # For CSV importing
-gem 'smarter_csv', '~> 1.0.17'
+gem 'smarter_csv', '~> 1.0.17' #1.0.19 is out...
 gem 'cmess', '~> 0.4.1'
 
 # Use SCSS for stylesheets
@@ -52,6 +52,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 4.2.1' #'5.0.0' has an error
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# Turbo links also affect native load bars in webbrowsears
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

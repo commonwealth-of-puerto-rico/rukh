@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'spork'
-require 'email_spec'
+# require 'email_spec' # no longer used? see Gemfile
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
