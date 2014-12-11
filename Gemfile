@@ -18,7 +18,7 @@ platforms :jruby do
     #Procfileheroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku' 
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.13' #1.3.10 is out
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.13' 
     when 'sql'
       gem 'activerecord-jdbcmssql-adapter', '~> 1.3.13'
     when 'mysql', 'mariadb'
@@ -38,7 +38,7 @@ gem 'cmess', '~> 0.4.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'#, '~> 4.0.3'
-gem 'bootstrap-sass', '~> 3.2.0.0' #'~> 3.1.1.1' #'~> 2.3.2.2' #'~> 3.2.0.0' is available
+gem 'bootstrap-sass', '~> 3.2.0.2' #'~> 3.1.1.1' #'~> 2.3.2.2' #'~> 3.2.0.0' is available
 gem 'haml-rails'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -52,7 +52,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 4.2.1' #'5.0.0' has an error
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-# Turbo links also affect native load bars in webbrowsears
+# Turbo links also affect native load bars in web-browsers
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
