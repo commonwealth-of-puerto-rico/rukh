@@ -1,5 +1,6 @@
 - provide(:title, "Developer")
 - if true # user is signed in only
+  - require 'kramdown/converter/html'
   = Kramdown::Document.new(render('static_pages/install')).to_html.html_safe
 - if !@user.nil? #&& @user.user_role == 'admin'# user is admin only  
   = Kramdown::Document.new(render('static_pages/versions')).to_html.html_safe

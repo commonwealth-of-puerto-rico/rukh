@@ -74,7 +74,7 @@ gem 'devise', '~> 3.2.4'
 gem 'tzinfo-data'
 
 # Markdown
-gem 'kramdown', '1.4.1' #1.5.0 not rendering correctly
+gem 'kramdown', '1.4.1' #'1.5.0' not rendering correctly
 
 # Pagination
 gem 'will_paginate', '~> 3.0.7' #.7 out now

@@ -31,10 +31,14 @@ The gem [MailCatcher](mailcatcher.me) was used to test email sending locally. It
 __Name__
 Rukh was originally 'RucPoc -- registro único de cuentas por cobrar' but now it's just a meaningless-name associated with the [Rukh](http://en.wikipedia.org/wiki/Roc_(mythology)) from Arabian Nights. 
 
+__Documentation__
+Rukh has documentation in the platform under the `/dev` link.
+Additional documentation is found in the tests under the /spec folder in Rspec.
 
 __License:__
 The code is under GPL v3.
 
 <sup>1</sup> While Rukh works on a Windows stack a JRuby(`TCPSocket.open('ipaddrss', 25)`) bug prevented email delivery using SMTP. The final application was hosted on Linux, Windows was used as a test bed. An issue with the bug was opened on JRuby github page.
+
 image: [wikimedia commons](http://en.wikipedia.org/wiki/File:Edward_Julius_Detmold49.jpg): Charles Maurice Detmold (1883-1908)
 
