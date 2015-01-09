@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku'][0] #remember to change db.yml
 
-#ruby=jruby-1.7.17
+#ruby=jruby-1.7.18
 ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.18' 
 gem 'jruby-jars', '1.7.18' #Now explicitly calling jruby-jars version
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8' #last tested w/ 4.1.8
+gem 'rails', '4.1.9' #last tested w/ 4.1.8
 # Devise breaks in 4.2.beta at the moment.
 
 platforms :jruby do
