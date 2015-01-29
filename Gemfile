@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku'][0] #remember to change db.yml
 
-#ruby=jruby-1.7.17
-ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.17' 
-gem 'jruby-jars', '1.7.17' #Now explicitly calling jruby-jars version
+#ruby=jruby-1.7.18
+ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.18' 
+gem 'jruby-jars', '1.7.18' #Now explicitly calling jruby-jars version
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8' #last tested w/ 4.1.8
+gem 'rails', '4.1.9' #last tested w/ 4.1.8
 # Devise breaks in 4.2.beta at the moment.
 
 platforms :jruby do
@@ -18,11 +18,11 @@ platforms :jruby do
     #Procfileheroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku' 
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.13' 
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.14' 
     when 'sql'
-      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.13'
+      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.14'
     when 'mysql', 'mariadb'
-      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.13'
+      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.14'
     end
   end 
   gem 'activerecord-jdbc-adapter', '~> 1.3.13' 
