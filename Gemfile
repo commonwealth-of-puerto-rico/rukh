@@ -8,7 +8,7 @@ gem 'jruby-jars', '1.7.19' #Now explicitly calling jruby-jars version
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails'#, '4.1.9' #last tested w/ 4.1.8
+gem 'rails', '4.2.1' 
 # Devise breaks in 4.2.beta at the moment.
 
 platforms :jruby do

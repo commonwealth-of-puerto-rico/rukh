@@ -269,7 +269,7 @@ DEPENDENCIES
   pg
   pry
   puma (~> 2.10.2)
-  rails
+  rails (= 4.2.1)
   rails_12factor
   rspec
   rspec-rails
