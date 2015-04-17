@@ -7,15 +7,15 @@ FactoryGirl.define do
     sequence(:id) {|n| n}
     permit_infraction_number { "M-12-12-#{rand(100..999)}-RC" }
     amount_owed_pending_balance {rand(12).to_s}
-    paid_in_full :false
+    paid_in_full false
     type_of_debt 'multa'
     original_debt_date { "#{rand(1980..2014)}-#{rand(1..12)}-#{rand(1..28)}" }
     originating_debt_amount { rand(12).to_s }
     bank_routing_number {rand(111111111..999999999)}
     sequence(:bank_name) {|n| "FactoryGirlBank#{n}"}
     bounced_check_number {rand 1..11}
-    in_payment_plan :false
-    in_administrative_process :false
+    in_payment_plan false
+    in_administrative_process false
     contact_person_for_transactions "Guicho"
     notes "That will do gem, that will do."
     created_at {Date.yesterday} #DateTime.now.yesterday
