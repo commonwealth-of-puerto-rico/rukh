@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateDebts < ActiveRecord::Migration
   def change
     create_table :debts do |t|

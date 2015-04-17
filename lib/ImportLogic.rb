@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ## External GEMs
 require 'cmess/guess_encoding' 
 require 'smarter_csv' 

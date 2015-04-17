@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DebtsController < ApplicationController
   before_action :authenticate_user! ## for DEVISE
   

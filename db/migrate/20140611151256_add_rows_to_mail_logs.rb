@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddRowsToMailLogs < ActiveRecord::Migration
   def change
     change_table :mail_logs do |t|

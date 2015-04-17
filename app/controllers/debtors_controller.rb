@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DebtorsController < ApplicationController
   before_action :authenticate_user! ## for DEVISE
   # before_destroy current_user.user_role.somethingsomething

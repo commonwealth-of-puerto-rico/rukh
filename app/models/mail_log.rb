@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MailLog < ActiveRecord::Base
   belongs_to :debt
   # before_destroy false #Is this Rails 4 compatible?

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateFimasAccounts < ActiveRecord::Migration
   def change
     create_table :fimas_accounts do |t|

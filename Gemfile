@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku'][0] #remember to change db.yml
 
-#ruby=jruby-1.7.18
-ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.18' 
-gem 'jruby-jars', '1.7.18' #Now explicitly calling jruby-jars version
+#ruby=jruby-1.7.19
+ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.19'
+# ruby '2.0.0', :engine => 'jruby', :engine_version => '1.7.18'
+gem 'jruby-jars', '1.7.19' #Now explicitly calling jruby-jars version
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.9' #last tested w/ 4.1.8
+gem 'rails'#, '4.1.9' #last tested w/ 4.1.8
 # Devise breaks in 4.2.beta at the moment.
 
 platforms :jruby do
@@ -17,20 +18,20 @@ platforms :jruby do
   group :production do
     #Procfileheroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
-    when 'heroku' 
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.14' 
+    when 'heroku'
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.14'
     when 'sql'
       gem 'activerecord-jdbcmssql-adapter', '~> 1.3.14'
     when 'mysql', 'mariadb'
       gem 'activerecord-jdbcmysql-adapter', '~> 1.3.14'
     end
-  end 
-  gem 'activerecord-jdbc-adapter', '~> 1.3.14' 
+  end
+  gem 'activerecord-jdbc-adapter', '~> 1.3.14'
   gem 'therubyrhino' #JavaScript library
 end
 
 # Puma as server
-gem 'puma', '~> 2.10.2' 
+gem 'puma', '~> 2.10.2'
 
 # For CSV importing
 gem 'smarter_csv', '~> 1.0.19' #1.0.19 is out...
@@ -62,8 +63,8 @@ gem 'jbuilder', '~> 2.0'
 # gem 'sdoc', '~> 0.4.0',                              group: :doc
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
-gem 'devise', '~> 3.2.4'
+gem 'bcrypt'#, '~> 3.1.7'
+gem 'devise'#, '~> 3.2.4'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -86,22 +87,24 @@ gem 'pry'
 
 group :development do
   # gem 'localeapp', require: false
-  gem 'guard-rspec', '~> 4.2.8'
-  gem 'guard-spork', '~> 1.5.1'
+  # gem 'guard-rspec', '~> 4.2.8'
+  # gem 'guard-spork', '~> 1.5.1' #Some Problem with Spork and rails 4.2
   # gem 'spork-rails', github: 'sporkrb/spork-rails'
-  gem 'rb-fsevent', '~> 0.9.3'
+  # gem 'rb-fsevent', '~> 0.9.3'
+  
+  ## Used #gem 'magic_comment' to add encoding to all files ##
 end
 
 group :development, :test do
   # RSpec
-  gem 'rspec', '~> 2.99.0' 
-  gem 'rspec-rails', '~> 2.99.0' 
-  gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'rspec'#, '~> 2.99.0'
+  gem 'rspec-rails'#, '~> 2.99.0'
+  gem 'factory_girl_rails'#, '~> 4.2.1'
 end
 
 group :test do
   gem 'faker'
-  gem 'capybara', '~> 2.2.1' #For Rspec3 (consider removing version)
+  gem 'capybara'#, '~> 2.2.1' #For Rspec3 (consider removing version)
   gem 'database_cleaner'
   gem 'launchy', require: false
 end
@@ -125,4 +128,3 @@ group :deploy do
     gem 'warbler', '1.4.4', :require => false # 1.4.4 is out
   end
 end
-

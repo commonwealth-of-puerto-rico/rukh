@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Debt < ActiveRecord::Base  #TODO create migration to prevent nulls on originating debt
   
   ## Hooks

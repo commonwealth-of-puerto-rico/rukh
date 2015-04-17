@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # config/unicorn.rb
 worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15

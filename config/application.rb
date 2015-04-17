@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #config/application.rb
 require File.expand_path('../boot', __FILE__)
 

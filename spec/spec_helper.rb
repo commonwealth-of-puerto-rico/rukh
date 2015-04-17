@@ -1,5 +1,6 @@
+# -*- encoding : utf-8 -*-
 require 'rubygems'
-require 'spork'
+# require 'spork'
 # require 'email_spec' # no longer used? see Gemfile
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
@@ -33,7 +34,8 @@ require 'spork'
 # These instructions should self-destruct in 10 seconds.  If they don't, feel
 # free to delete them.
 
-Spork.prefork do
+# Spork.prefork do
+
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
@@ -108,9 +110,9 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
 
-end #Spork.prefork
+# end #Spork.prefork
 
-Spork.each_run do
-  # This code will be run each time you run your specs.
-
-end
+# Spork.each_run do
+#   # This code will be run each time you run your specs.
+#
+# end

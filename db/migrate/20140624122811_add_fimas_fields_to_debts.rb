@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddFimasFieldsToDebts < ActiveRecord::Migration
   def change
     add_column :debts, :fimas_project_id, :string

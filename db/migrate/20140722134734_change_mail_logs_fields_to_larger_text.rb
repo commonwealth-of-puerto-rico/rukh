@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ChangeMailLogsFieldsToLargerText < ActiveRecord::Migration
   def change
     # remove_column :mail_logs, :mailer_id, :integer

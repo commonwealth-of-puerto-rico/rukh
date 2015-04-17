@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ImportController < ApplicationController
   before_action :authenticate_user! ## for DEVISE
   

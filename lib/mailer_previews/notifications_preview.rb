@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class NotificationsPreview < ActionMailer::Preview
   #The name of the methods here determines the name of the preview,
   # but the mail object they returns determines what gets rendered.

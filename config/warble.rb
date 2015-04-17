@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # config/warble.rb
 
 # Disable Rake-environment-task framework detection by uncommenting/setting to false

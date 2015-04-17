@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MakeUserRolesUnique < ActiveRecord::Migration
   def change
     add_index :user_roles, :role_name, unique: true

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class HexString < String
   def initialize(string)
     #/[[:xdigit:]]+/ not needing because it's one char at a time
