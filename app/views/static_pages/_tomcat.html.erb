@@ -29,7 +29,7 @@
      ![Tomcat Windows Java Config][t3]  
   Ubuntu: Tomcat Heap Memory in `sudoedit /etc/default/tomcat7` or in `/etc/default/tomcat7/defaults.template`.
      
-6. Set up the admin user for Tomcat. In tomcat/conf/tomcat-users.xml set up the following lines: ![Tomcat User Settings][t4]  Please note: the orginal file will have sample users, but they'll be wrapped in a comment! Remember to add the rolename ("tomcat,manager-gui") part as well.  
+6. Set up the **admin user** for Tomcat. In tomcat/conf/tomcat-users.xml set up the following lines: ![Tomcat User Settings][t4]  Please note: the orginal file will have sample users, but they'll be wrapped in a comment! Remember to add the rolename ("tomcat,manager-gui") part as well.  
    - *(Cree el usuario 'admin' y añadale el rol de "tomcat,manager-gui" en tomcat-users.xml.)*
    - Ubuntu:`sudoedit /etc/tomcat7/tomcat-users.xml`
    - Mac Homebrew: `vim /usr/local/Cellar/tomcat/{{version}}/libexec/conf/tomcat-users.xml`
@@ -85,24 +85,24 @@ Notes/Notas:
 Ubuntu: `sudo service tomcat7 {stop|start|restart}`
 Ubuntu: ROOT is in `/var/lib/tomcat7/ROOT`
 Ubuntu: Logs are in `/var/log/tomcat7/`
-Mac Homebrew: `catalina {stop|start|restart}`
+Mac Homebrew: `catalina {run|stop|start|restart}`
 Mac Homebrew: ROOT is in `/usr/local/Cellar/tomcat/{{version}}/libexec/webapps/ROOT`
 Mac Homebrew: Logs are in `/usr/local/Cellar/tomcat/{{version}}/libexec/logs`
 
 
-#### Usando tomcat en Mac con Homebrew
+#### Usando Tomcat en Mac con Homebrew
 `hombrew install tomcat`
 
 Verifica con 
 `catalina -h` & `catalina run`
 To start/stop the server from the command line you use the catalina shell script:
 
-`$ /usr/local/Cellar/tomcat/7.0.53/bin/catalina run`  
-`$ /usr/local/Cellar/tomcat/7.0.53/bin/catalina stop`
+`$ /usr/local/Cellar/tomcat/{{version}}/bin/catalina run`  
+`$ /usr/local/Cellar/tomcat/{{version}}/bin/catalina stop`
 
 
 ¿Donde esta el directorio webapps? 
-`/usr/local/Cellar/tomcat/7.0.53/libexec/webapps/`
+`/usr/local/Cellar/tomcat/{{version}}/libexec/webapps/`
 
 # Setting up the SMTP relay (for sending emails)
 If your SMTP is on a windows server you must add the ip of the server running tomcat to the whitelist of relays for SMTP.

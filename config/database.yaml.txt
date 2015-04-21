@@ -18,6 +18,16 @@ test:
   <<: *default
   database: db/test.sqlite3
 
- production:
-   <<: *default
-   database: db/production.sqlite3
+production:
+  <<: *default
+  database: db/production.sqlite3
+
+# MariaDB/MySQL
+# production:
+#   adapter: jdbcmysql
+#   encoding: utf8
+#   database: test
+#   username: test
+#   password: test
+#   host: localhost
+#   port: 3306

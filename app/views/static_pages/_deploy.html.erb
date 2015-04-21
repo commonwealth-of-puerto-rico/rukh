@@ -15,6 +15,13 @@ Esto puede tomar bastante tiempo...
 
 >In order to be able to deploy on both Windows and Linux a Tomcat7 deploy was selected. Heroku was used as a test bed.
 
+#Pre-Deploy
+
+Antes de deploy y crear el War file se deben generar los files secretos si no se han generado ya. Tambien hay que poner la información para conectarse a la base de datos en los files de configuración. Para generar el `secret_key_base` use `rake secret`.
+
+1. config/database.yaml.txt -> database.yml
+2. config/secrets.yml.txt -> secrets.yml
+
 # War file
 La generación automatica del warfile es usando el gem Warble version 1.4.0 o mas reciente. Pero esta gema tiene ciertos 'gotchas' entre ellos que los file como web.xml que auto genera pueden contener caracteres chatarra al final, por lo tantos deben ser incluidos manualmente en el projecto para que Warble los cópie en vez de generarlos. 
 
