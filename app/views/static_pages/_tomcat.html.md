@@ -4,7 +4,7 @@
 
 ## Server:
   
-<!-- 2. NOT NEEDED Set `JRUBY_OPTS --2.0` in the **Environmental Variables**.  ('Control Panel > System > Advanced system settings >> Environmental Variables...').
+<!-- 2. NOT NEEDED FOR JRUBY-9K Set `JRUBY_OPTS --2.0` in the **Environmental Variables**.  ('Control Panel > System > Advanced system settings >> Environmental Variables...').
   - *(En 'Control Panel > System > Advanced system settings >> Environmental Variables...' cree una nueva variable `JRUBY_OPTS` y en su valor ponga `--2.0`.  Este paso posiblemente no sea necesario con JRuby 9K en adelante.)*
   ![Environmental Variables][t1]
   Ubuntu/Mac: put this: `export JRUBY_OPTS=--2.0` in .bashrc/.bash_profile of the deploy user. -->
@@ -29,6 +29,7 @@
      ![Tomcat Windows Java Config][t3]  
   Ubuntu: Tomcat Heap Memory in `sudoedit /etc/default/tomcat7` or in `/etc/default/tomcat7/defaults.template`.
   Mac: edit `/usr/local/Cellar/tomcat/{{ version }}/libexec/bin/catalina.sh`
+  Mac: Create `/usr/local/Cellar/tomcat/{{ version }}/libexec/bin/setenv.sh` and add `CATALINA_OPTS="-XX:MaxPermSize=256M -XX:PermSize=256M -Xmx1024m"` Though this is usually not necessary on the Mac so only add it if you need it. 
      
 6. Set up the **admin user** for Tomcat. In tomcat/conf/tomcat-users.xml set up the following lines: ![Tomcat User Settings][t4]  Please note: the orginal file will have sample users, but they'll be wrapped in a comment! Remember to add the rolename ("tomcat,manager-gui") part as well.  
    - *(Cree el usuario 'admin' y añadale el rol de "tomcat,manager-gui" en tomcat-users.xml.)*
@@ -112,7 +113,7 @@ Control Panel > Administrative Tools > IIS (Internet Info Server) > Default SMTP
 |+++> Access (Tab)  
 |++++++> Relay   
 
-
+---
 <!-- [t1]:<%= asset_path('environmental_variables.png') %> "Environmental Variables" -->
 [t2]: <%= asset_path('JCE_replace_files.png') %> "JCE replace files"
 [t3]: <%= asset_path('tomcat_config_windows.png') %> "Tomcat Windows Java Config" 

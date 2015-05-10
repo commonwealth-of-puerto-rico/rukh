@@ -1,22 +1,22 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku'][0] #remember to change config/database.yml
 
-#ruby=jruby-9.0.0.0.pre1
-# ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.19'
-ruby '2.2.0', :engine => 'jruby', :engine_version => '9.0.0.0.pre1'
+#ruby=jruby-9.0.0.0.pre2
+# ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.20'
+ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.0.0.pre2'
 
-# gem 'jruby-jars', '1.7.19' #Now explicitly calling jruby-jars version
-gem 'jruby-jars', '9.0.0.0.pre1' # Warbler doesn't support jruby-9k yet.
+# gem 'jruby-jars', '1.7.20' #Now explicitly calling jruby-jars version
+gem 'jruby-jars', '9.0.0.0.pre2' # Warbler doesn't support jruby-9k yet.
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1' 
 
 platforms :jruby do
-  ## Database Adapters
   group :development do
     gem 'activerecord-jdbcsqlite3-adapter'
   end
   group :production do
+    #Procfileheroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku'
       gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.14'
@@ -29,8 +29,6 @@ platforms :jruby do
   gem 'activerecord-jdbc-adapter', '~> 1.3.14'
   gem 'therubyrhino' #JavaScript library
 end
-
-#Procfile heroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
 
 # Puma as server
 gem 'puma', '~> 2.10.2'
@@ -125,10 +123,12 @@ platforms :ruby do
 end
 
 group :deploy do
-  # Warbler creates the war file for Tomcat Deployment
   platforms :jruby do
     # For Warbler changes to config/application.rb and config/environtments/production.rb
-    gem 'warbler', '1.4.6', require: false, github: 'rebelwarrior/warbler' 
+    # gem 'warbler', '1.4.7', require: false
+    # github: 'rebelwarrior/warbler'
+    # For JRuby 9k: 
+    gem 'warbler', require: false, github: 'jruby/warbler', branch: '2.x-dev'
     # Warbler doesn't support jruby-9k yet. Pulling from my repo.
   end
 end
