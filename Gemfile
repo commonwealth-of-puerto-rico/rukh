@@ -127,7 +127,6 @@ group :deploy do
     # For Warbler changes to config/application.rb and config/environtments/production.rb
     # gem 'warbler', '1.4.7', require: false
     # github: 'rebelwarrior/warbler'
-    # For JRuby 9k: 
     gem 'warbler', require: false, github: 'jruby/warbler', branch: '2.x-dev'
     # Warbler doesn't support jruby-9k yet. Pulling from my repo.
   end

@@ -31,15 +31,16 @@
   Mac: edit `/usr/local/Cellar/tomcat/{{ version }}/libexec/bin/catalina.sh`
   Mac: Create `/usr/local/Cellar/tomcat/{{ version }}/libexec/bin/setenv.sh` and add `CATALINA_OPTS="-XX:MaxPermSize=256M -XX:PermSize=256M -Xmx1024m"` Though this is usually not necessary on the Mac so only add it if you need it. 
      
-6. Set up the **admin user** for Tomcat. In tomcat/conf/tomcat-users.xml set up the following lines: ![Tomcat User Settings][t4]  Please note: the orginal file will have sample users, but they'll be wrapped in a comment! Remember to add the rolename ("tomcat,manager-gui") part as well.  
-   - *(Cree el usuario 'admin' y añadale el rol de "tomcat,manager-gui" en tomcat-users.xml.)*
+6. Set up the **admin user** for Tomcat. In tomcat/conf/tomcat-users.xml set up the following lines: ![Tomcat User Settings][t4]  Please note: the orginal file will have sample users, but they'll be wrapped in a comment! Remember to add the rolename (**"tomcat,manager-gui"**) part as well.  
+   - *(Cree el usuario 'admin' y añadale el rol de **"tomcat,manager-gui"** en tomcat-users.xml.)*
    - Ubuntu:`sudoedit /etc/tomcat7/tomcat-users.xml`
-   - Mac Homebrew: `vim /usr/local/Cellar/tomcat/{{version}}/libexec/conf/tomcat-users.xml`
+   - Mac Homebrew: `vim /usr/local/Cellar/tomcat/{{ version }}/libexec/conf/tomcat-users.xml`
 
-7. Increase tomcat7 manager's war deploy size if you want to deploy from the admin gui.
-    `tomcat7/webapps/manager/WEB-INF/web.xml`
+7. Increase tomcat7 manager's **war deploy size** if you want to deploy from the admin gui; try `104857600` double the standard.
+    `tomcat7/webapps/manager/WEB-INF/web.xml`  
+    Aumente el tamaño para subir archivos war desde la pantalla de administrador.  
     
-    Ubuntu: `/usr/share/tomcat7-admin/manager/WEB-INF/web.xml` and `/var/lib/tomcat7/webapps` for webapps
+    Ubuntu: `/usr/share/tomcat7-admin/manager/WEB-INF/web.xml` and `/var/lib/tomcat7/webapps` for webapps  
     Mac Homebrew: `/usr/local/Cellar/tomcat/{{version}}/libexec/webapps/manager/WEB-INF/web.xml`
 
 8. Run **`jruby -S bundle exec rake db:create db:schema:load RAILS_ENV=production`** (this command can be run from the dev computer if it's in the same network and can connect to the database.) If run on the production machine it must me run on the directory with the application's Rake file:`<tomcat location>/webapps/<app name>/WEB-INF/`. 
@@ -51,7 +52,7 @@ Notes/Notas:
 - War files are located in `/var/lib/tomcat7/webapps` in Ubuntu.
 - Tomcat logs are located in `/var/lib/tomcat7/logs` in Ubuntu and `/usr/local/Cellar/tomcat/{{ version }}/libexec/logs` in Mac Homebrew
  
-#### Pound
+## Pound:
 Pound is a reverse proxy. It can be used to resolve the https certificates (if needed) and forward port 80 calls to port 8080 of tomcat. If you have more than one server it can serve as a rudimentary load balancer. 
 
 1. `sudoedit /etc/pound/pound.cfg`
@@ -66,7 +67,7 @@ Pound can also handle certificates.
 #### Certificates for https with pound
 [How To link](http://www.project-open.org/en/howto_pound_https_configuration)
  
-### En la maquina de deploy  
+## En la maquina de deploy  
 
 1. Utilize Warble 1.4.5 o mas reciente
 2. Cree un web.xml para que se copie -- no lo deje autogenerar.

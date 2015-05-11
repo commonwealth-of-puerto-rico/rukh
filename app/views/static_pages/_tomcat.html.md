@@ -51,7 +51,7 @@ Notes/Notas:
 - War files are located in `/var/lib/tomcat7/webapps` in Ubuntu.
 - Tomcat logs are located in `/var/lib/tomcat7/logs` in Ubuntu and `/usr/local/Cellar/tomcat/{{ version }}/libexec/logs` in Mac Homebrew
  
-#### Pound
+## Pound:
 Pound is a reverse proxy. It can be used to resolve the https certificates (if needed) and forward port 80 calls to port 8080 of tomcat. If you have more than one server it can serve as a rudimentary load balancer. 
 
 1. `sudoedit /etc/pound/pound.cfg`
@@ -66,7 +66,7 @@ Pound can also handle certificates.
 #### Certificates for https with pound
 [How To link](http://www.project-open.org/en/howto_pound_https_configuration)
  
-### En la maquina de deploy  
+## En la maquina de deploy  
 
 1. Utilize Warble 1.4.5 o mas reciente
 2. Cree un web.xml para que se copie -- no lo deje autogenerar.
