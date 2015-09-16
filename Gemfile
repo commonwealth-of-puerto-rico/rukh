@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
-server = ['sql', 'mysql', 'heroku'][0] #remember to change config/database.yml
+server = ['sql', 'mysql', 'heroku', 'sqlite'][2] #remember to change config/database.yml
 
-#ruby=jruby-9.0.0.0.pre2
+#ruby=jruby-9.0.1.0
 # ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.20'
-ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.0.0.pre2'
+ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.1.0'
 
 # gem 'jruby-jars', '1.7.20' #Now explicitly calling jruby-jars version
-gem 'jruby-jars', '9.0.0.0.pre2' # Warbler doesn't support jruby-9k yet.
+gem 'jruby-jars', '9.0.1.0' # Warbler doesn't support jruby-9k yet.
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1' 
+gem 'rails', '4.2.4' 
 
 platforms :jruby do
   group :development do
@@ -19,52 +19,52 @@ platforms :jruby do
     #Procfileheroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku'
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.14'
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.18' 
     when 'sql'
-      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.14'
+      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.18'
     when 'mysql', 'mariadb'
-      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.14'
+      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.18'
     end
   end
-  gem 'activerecord-jdbc-adapter', '~> 1.3.14'
+  gem 'activerecord-jdbc-adapter', '~> 1.3.18'
   gem 'therubyrhino' #JavaScript library
 end
 
 # Puma as server
-gem 'puma', '~> 2.10.2'
+gem 'puma', '~> 2.13.4'
 
 # For CSV importing
-gem 'smarter_csv', '~> 1.0.19' #1.0.19 is out...
-gem 'cmess', '~> 0.4.1'
+gem 'smarter_csv'#, '~> 1.0.19' #1.0.19 is out...
+gem 'cmess'#, '~> 0.4.1'
 
 # Use SCSS for stylesheets
-gem 'sass-rails'#, '~> 4.0.3'
-gem 'bootstrap-sass', '~> 3.2.0.2' # is available
+gem 'sass-rails'##, '~> 4.0.3'
+gem 'bootstrap-sass'#, '~> 3.2.0.2' # is available
 gem 'haml-rails'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'#, '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.1'
+gem 'coffee-rails'#, '~> 4.0.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails', '~> 4.2.1' #'5.0.0' has an error
+gem 'jquery-ui-rails'#, '~> 4.2.1' #'5.0.0' has an error
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # Turbo links also affect native load bars in web-browsers
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'#, '~> 2.0'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'sdoc', '~> 0.4.0',                              group: :doc
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt'#, '~> 3.1.7'
-gem 'devise'#, '~> 3.2.4'
+gem 'bcrypt'##, '~> 3.1.7'
+gem 'devise'##, '~> 3.2.4'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -75,15 +75,17 @@ gem 'devise'#, '~> 3.2.4'
 gem 'tzinfo-data'
 
 # Markdown
-gem 'kramdown', '1.4.1' #'1.5.0' not rendering correctly
+gem 'kramdown'#, '1.4.1' #'1.5.0' not rendering correctly
 
 # Pagination
-gem 'will_paginate', '~> 3.0.7' #.7 out now
+gem 'will_paginate'#, '~> 3.0.7' #.7 out now
 gem 'bootstrap-will_paginate'
 
 # Console
 gem 'pry'
 
+# Import Logic
+gem 'celluloid' #0.17.1.2
 
 group :development do
   # gem 'localeapp', require: false

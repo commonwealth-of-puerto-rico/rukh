@@ -24,6 +24,22 @@ Presently the application creates a persistent database for accounting of debts,
 __Set Up__
 The application contains documentation on how it was set up including the whole stack and even a proxy for using https. These instructions are under the route `/dev` off the main application. You can also search for the Markdown files in `app/views/static_pages`.
 
+__Pre-deploy__
+
+Before being able to deploy and create a War file you must generate all the secret files if you haven't generated yet. 
+
+Additionally you must create the database if it doesn't exist (`rake db:create && rake db:migrate`), and the information file with the configuration for connecting to it.
+
+To generate the `secret_key_base` in the `secrets.yml` file use `rake secret`.
+
+1. config/database.yml.txt -> database.yml
+2. config/secrets.yml.txt -> secrets.yml
+
+Devise requires a secrete at: config/initializers/devise.rb for `config.secret_key` there is a comment on the file but replace the key.
+
+You might also need to generate the bin directory w/ `rake rails:update:bin`
+
+
 __Testing Emails__
 
 The gem [MailCatcher](mailcatcher.me) was used to test email sending locally. It doesn't work on jruby. But you can started from normal Ruby using RVM. I highly recommend using an RVM gemset and wrapper for MailCatcher as it tends con conflict with gems required by Rails.
