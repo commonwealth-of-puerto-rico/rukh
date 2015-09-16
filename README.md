@@ -35,7 +35,7 @@ To generate the `secret_key_base` in the `secrets.yml` file use `rake secret`.
 1. config/database.yml.txt -> database.yml
 2. config/secrets.yml.txt -> secrets.yml
 
-Devise requires a secrete at: config/initializers/devise.rb for `config.secret_key` there is a comment on the file but replace the key.
+Devise requires a secret at: config/initializers/devise.rb for `config.secret_key` there is a comment on the file but replace the key.
 
 You might also need to generate the bin directory w/ `rake rails:update:bin`
 

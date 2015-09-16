@@ -308,20 +308,20 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-will_paginate
   capybara
-  celluloid
+  celluloid (~> 0.17.1.2)
   cmess
-  coffee-rails
+  coffee-rails (~> 4.1.0)
   database_cleaner
   devise
   factory_girl_rails
   faker
   github-pages
   haml-rails
-  jbuilder
+  jbuilder (~> 2.3.1)
   jquery-rails
-  jquery-ui-rails
+  jquery-ui-rails (~> 5.0.5)
   jruby-jars (= 9.0.1.0)
-  kramdown
+  kramdown (~> 1.8.0)
   launchy
   pg
   pry
@@ -337,7 +337,7 @@ DEPENDENCIES
   therubyrhino
   turbolinks
   tzinfo-data
-  uglifier
+  uglifier (>= 2.7.2)
   unicorn
   warbler!
   will_paginate
