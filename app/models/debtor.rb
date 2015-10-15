@@ -7,10 +7,10 @@ class Debtor < ActiveRecord::Base
 
   
   ## Hooks
-  before_save {self.email = email.downcase}
-  before_save {self.ss_last_four = last_four(ss_hex_digest) unless ss_hex_digest.blank?}
-  before_save {self.uses_personal_ss = true unless ss_hex_digest.blank?}
-  before_save {self.contact_person_email = email.downcase}
+  before_save {self.email = email.downcase if self.email}
+  before_save {self.ss_last_four = last_four(ss_hex_digest) unless ss_hex_digest.blank? }
+  before_save {self.uses_personal_ss = true unless ss_hex_digest.blank? }
+  before_save {self.contact_person_email = email.downcase if self.email }
   before_save do
     unless self.ss_hex_digest.blank?
       self.ss_hex_digest = Debtor.encrypt(ss_hex_digest)
@@ -20,7 +20,7 @@ class Debtor < ActiveRecord::Base
   end
   #TODO before save clean up telephone number and ss
   before_save do 
-    self.tel = Debtor.remove_hyphens(self.tel)
+    self.tel = Debtor.remove_hyphens(self.tel) if self.tel
   end
   #TODO before save can clean up telephone number by selecting only [[:digits:]]
   #TODO alter tel regex to accept parenthesis and spaces

@@ -22,9 +22,14 @@ class ImportController < ApplicationController
         redirect_to action: 'new', status: 303 
       elsif file.headers['Content-Type: text/csv'] or 
           file.headers['Content-Type: application/vnd.ms-excel']
-        result = ImportLogic.import_csv(file)
+        updater = ProgressBarUpdater.new
+        importer = ImportLogic.new(updater)
+        result = importer.import_csv(file)
+        importer.terminate
+        # updater.terminate
+        
         flash[:notice] = result
-        redirect_to collections_path
+        redirect_to debts_path
       else
         flash[:error] = "No es un CSV"
         flash[:notice] = file.headers

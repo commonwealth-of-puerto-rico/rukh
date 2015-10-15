@@ -39,13 +39,18 @@ class Debt < ActiveRecord::Base  #TODO create migration to prevent nulls on orig
     debtor = Debtor.find_by_id(debtor_id)
     debtor.nil? ? 'NULL' : debtor.name
   end
+  def find_debtor_contact_person(debtor_id)
+    debtor = Debtor.find_by_id(debtor_id)
+    debtor.nil? ? 'NULL' : debtor.contact_person
+  end
    
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << column_names + [:debtor_name]
+      csv << column_names + [:debtor_name, :contact_person]
       all.each do |debt_record|
         debtor_name = debt_record.find_debtor_name(debt_record.attributes["debtor_id"])
-        csv << (debt_record.attributes.values_at(*column_names) << debtor_name)
+        contact_person = debt_record.find_debtor_contact_person(debt_record.attributes["debtor_id"])
+        csv << (debt_record.attributes.values_at(*column_names) << debtor_name << contact_person)
       end
     end
   end
