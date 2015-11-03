@@ -94,10 +94,12 @@ class DebtsController < ApplicationController
   end
   
   private
-  ## Mail Methods (Should be in elsewhere)
+  ## Mail Methods (Should be in elsewhere, move to /lib)
+  
+  
   def prepare_email(debt, user, mailer, options={})  
     date_first_email_sent = options.fetch :date_first_email_sent, "fecha de primer aviso no encontrada"
-    display_attachments = options.fetch :display_attachments, true
+    display_attachments   = options.fetch :display_attachments,   true
     
     if guard_mailer(mailer) 
       @mail_preview = NotificationsMailer.public_send(mailer, debt, user, 
@@ -105,6 +107,7 @@ class DebtsController < ApplicationController
       if options.fetch :send, false 
         deliver_mail(debt, user, mailer, @mail_preview)
       end
+      # refactor? options.fetch(:send, false) and deliver_mail(debt, user, mailer, @mail_preview)
     else 
       flash[:error] = "Email No Encontrado"
     end
@@ -112,6 +115,7 @@ class DebtsController < ApplicationController
   
   def deliver_mail(debt, user, mailer, mail_preview, options={})
     require 'thread' 
+    #TODO replace w/ actor?
     Thread.new {
       begin 
         if mail_preview.deliver #guard_mailer(mailer) &&

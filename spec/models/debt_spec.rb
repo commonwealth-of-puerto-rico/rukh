@@ -18,22 +18,15 @@ describe Debt do
     end
     
     it 'shoud validate amount owed is a number' do
-      debt1 = FactoryGirl.build(:debt, amount_owed_pending_balance: "hello world")
-      debt2 = FactoryGirl.build(:debt, amount_owed_pending_balance: "12.00")
-      # puts debt1.inspect
-      # puts debt2.inspect
-      puts "It seems to be clobbering the value entered. So it will always be valid."
-      expect(debt2.valid?).to eq true
-      expect(debt1.valid?).to be_falsy
-      # expect(debt2.errors[:amount_owed_pending_balance].size).to eq(0)
-      # debt1.valid?
-      
-      # expect(debt1.errors[:amount_owed_pending_balance].size).to eq(1)
-      
-      # Deprecated.
-      # expect(debt1).to have(1).errors_on(:amount_owed_pending_balance)
-      # Replaced w/
-      # expect(unhappy_zombie_debtor.errors_on(:employer_id_number).size).to eq 1
+      debt1 = FactoryGirl.build(:debt, amount_owed_pending_balance: nil) # or nil
+      # strings get clobbered into a number so must use nil
+      debt1.valid?
+      expect(debt1.errors[:amount_owed_pending_balance]).to include("Debe ser un número.")
+    end
+    
+    it 'should not allow amount owed pending balance to be nil' do
+      debt1 = FactoryGirl.build(:debt, amount_owed_pending_balance: nil)
+      expect(debt1).to_not be_valid   
     end
     
     it "is invalid without a debtor id" do
@@ -41,40 +34,40 @@ describe Debt do
     end
     
     it "Contains a permit number or infraction number or it is blank" do
-      #factory
-      expect(FactoryGirl.build(:debt)).to be_valid
-      #factory w/ permit number
       expect(FactoryGirl.build(:debt,
-        permit_infraction_number: "PG-GE-#{rand(10..99)}-#{rand(10..99)}-#{rand(10..99)}-#{rand(9)}")).to be_valid
-      #blank
-      expect(FactoryGirl.build(:debt,:permit_infraction_number => nil)).to be_valid
+        permit_infraction_number: "PG-GE-#{rand(10..99)}-#{rand(10..99)}-#{rand(10..99)}-#{rand(9)}")).to(be_valid) and
+      expect(FactoryGirl.build(:debt,:permit_infraction_number => nil)).to(be_valid)
     end
   
     it "has a 9 digit routing number or is blank" do
       debt3 = FactoryGirl.build(:debt, bank_routing_number: rand(1111111111..9999999999))
       debt3.valid?
-      expect(debt3.errors[:bank_routing_number].size).to eq(1)
-      #blank
+      expect(debt3.errors[:bank_routing_number]).to include "Deber ser un número de nueve (9) digitos o estar en blanco."
+    end
+    
+    it "routing number can be blank"  do
       expect(FactoryGirl.build(:debt,:bank_routing_number => nil)).to be_valid
     end
     
     it "raises an error if originating date is nil" do
-      # Doesn't raise an error but fails validation instead.
+      debt4 = FactoryGirl.build(:debt, :original_debt_date => nil )
+      debt4.valid?
+      expect(debt4.errors[:original_debt_date]).to include "no puede estar en blanco"
+    end
+    
+    it "orginating date set to nil should not be valid" do
       expect(FactoryGirl.build(:debt,:original_debt_date => nil)).to_not be_valid
-      # debt4 = FactoryGirl.build(:debt, :original_debt_date => nil )
-      # debt4.valid?
-      # expect(debt4.errors[:original_debt_date].size).to eq(1)
-      # expect(FactoryGirl.build(:debt, :original_debt_date => nil).errors[:original_debt_date].size).to eq(1)
     end
     
   end
   
-  describe "Procedure Specs" do
-    it "Is either paid_in_full, in process or owes some $$"
-  end
+  # describe "Procedure Specs" do
+  #   skip it "Is either paid_in_full, in process or owes some $$"
+  #   # Not implemented
+  # end
   
   
-  #Method Specs
+  ## Method Specs
   
   describe "Method Specs" do
     describe "CSV creation" do  

@@ -32,7 +32,7 @@ class Debt < ActiveRecord::Base  #TODO create migration to prevent nulls on orig
             message: "Debe ser un número de multa o permiso."}, 
             unless: Proc.new { |debt_ex| debt_ex.permit_infraction_number.blank? }
   validates :bank_routing_number, format: { with: VALID_ROUTING_NUM_REGEX,
-            message: "Deber ser un numero de nueve (9) digitos o estar en blanco. " }
+            message: "Deber ser un número de nueve (9) digitos o estar en blanco." }
   
   ## Methods
   def find_debtor_name(debtor_id)
@@ -57,7 +57,7 @@ class Debt < ActiveRecord::Base  #TODO create migration to prevent nulls on orig
 
   private
   
-    def self.to_plain_csv(options = {}) #For portability of code only.
+    def self.to_plain_csv(options = {}) #For portability of code only. # maybe use yield?
       CSV.generate(options) do |csv|
         csv << column_names
         all.each do |debt_record|

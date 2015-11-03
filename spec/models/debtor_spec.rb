@@ -37,26 +37,32 @@ describe Debtor do
     end
     
     it "contains either an ein or a ss but not both" do
-      expect(unhappy_zombie_debtor.errors_on(:employer_id_number).size).to eq 1
+      unhappy_zombie_debtor.valid?
+      expect(unhappy_zombie_debtor.errors[:employer_id_number]).to include "El Número de Seguro Social Patronal debe de ser válido: 'xx-xxxxxxx' o en blanco."
     end
     
     it "returns false for uses_personal_ss if ien present" do
-      expect(happy_zombie_debtor.employer_id_number.nil?).to eq false
-      expect(happy_zombie_debtor.uses_personal_ss).to eq false
+      expect(happy_zombie_debtor.employer_id_number.nil?).to(eq(false)) and
+      expect(happy_zombie_debtor.uses_personal_ss).to(eq(false)) : true ? false
     end
     
     it "contains a contact person" do
       #Learn new syntax
-      expect(unhappy_zombie_debtor.errors_on(:contact_person).size).to eq 1
+      unhappy_zombie_debtor.valid?
+      expect(unhappy_zombie_debtor.errors[:contact_person]).to include "El Número de Seguro Social Patronal debe de ser válido: 'xx-xxxxxxx' o en blanco."
     end
     
   end 
    
   describe "Invalidations" do
     
+    it "rejects bad emails addresses" do
+      unhappy_zombie_debtor.valid?
+      expect(unhappy_zombie_debtor.errors[:email]).to include "Email invalido" # or more
+    end
     it "rejects bad emails addresses (both for company and contact person)" do
-      expect(unhappy_zombie_debtor.errors_on(:email).size).to eq 1 # or more
-      expect(unhappy_zombie_debtor.errors_on(:contact_person_email).size).to eq 1 # or more
+      unhappy_zombie_debtor.valid?
+      expect(unhappy_zombie_debtor.errors[:contact_person_email]).to include "Email invalido" # or more
     end
     describe "when EIN is invalid" do
       it "should be invalid" do
@@ -74,7 +80,8 @@ describe Debtor do
       # expect(debtor1.errors.size).to eq 1
             # debtor1.run_callbacks(:after_save)
       # expect{FactoryGirl.build(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)}.to raise_error
-      expect{debtor2.save!(validate: false)}.to raise_error # Secret Sause!
+      debtor1.save!(validate: false)
+      expect{debtor2.save!(validate: false)}.to raise_error RuntimeError# Secret Sause!
     end
     
     it 'is invalid if it has both ein and ss' do

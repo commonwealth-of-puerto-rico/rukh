@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku', 'sqlite'][2] #remember to change config/database.yml
 
-#ruby=jruby-9.0.1.0
+#ruby=jruby-9.0.3.0
 # ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.20'
-ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.1.0'
+ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.3.0'
 
 # gem 'jruby-jars', '1.7.20' #Now explicitly calling jruby-jars version
-gem 'jruby-jars', '9.0.1.0' # Warbler doesn't support jruby-9k yet.
+gem 'jruby-jars', '9.0.3.0' # Warbler doesn't support jruby-9k yet.
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4' 
+gem 'rails', '4.2.4'
 
 platforms :jruby do
   group :development do
@@ -19,7 +19,7 @@ platforms :jruby do
     #Procfileheroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku'
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.18' 
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.18'
     when 'sql'
       gem 'activerecord-jdbcmssql-adapter', '~> 1.3.18'
     when 'mysql', 'mariadb'
@@ -94,7 +94,7 @@ group :development do
   # gem 'guard-spork', '~> 1.5.1' #Some Problem with Spork and rails 4.2
   # gem 'spork-rails', github: 'sporkrb/spork-rails'
   # gem 'rb-fsevent', '~> 0.9.3'
-  
+
   ## Used #gem 'magic_comment' to add encoding to all files ##
 end
 

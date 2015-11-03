@@ -24,11 +24,12 @@ class ImportController < ApplicationController
           file.headers['Content-Type: application/vnd.ms-excel']
         updater = ProgressBarUpdater.new
         importer = ImportLogic.new(updater)
-        result = importer.import_csv(file)
-        importer.terminate
-        # updater.terminate
+        importer.import_csv(file)
+        result = importer.exit_status
+        importer.terminate #shutdown actor
+        # updater.terminate # Already shutdown by importer
         
-        flash[:notice] = result
+        flash[:notice] = "#{result[:total_lines]} Records Importados en: #{result[time]} segundos"
         redirect_to debts_path
       else
         flash[:error] = "No es un CSV"
