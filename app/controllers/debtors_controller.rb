@@ -3,7 +3,7 @@ class DebtorsController < ApplicationController
   before_action :authenticate_user! ## for DEVISE
   # before_destroy current_user.user_role.somethingsomething
   
-  ## Resource Actions
+  ## Resource Actions ##
   def new
     assign_current_user
     @debtor = Debtor.new
@@ -34,8 +34,7 @@ class DebtorsController < ApplicationController
   end
   
   def destroy
-    assign_current_user
-    #Should only be certain users --> Supervisor users.
+    assign_current_user #Should only be certain users --> Supervisor users.
     #With 'dependency: restrict' only debtors w/ no debt can be deleted.
     begin 
       Debtor.find(params[:id]).destroy
@@ -76,20 +75,20 @@ class DebtorsController < ApplicationController
     @debtors = params[:search].blank? ?  
       Debtor.paginate(page: params[:page], per_page: 10) : 
       Debtor.search(params[:search])
- 
     @color_code_proc = ->(debtor_debts){debtor_debts.collect do |debt|
       debt.paid_in_full ? 0 : debt.amount_owed_pending_balance
       end.reduce(0){ |total, amount| amount + total}
     }
-    #map is an alias of collect, reduce of inject and select of find_all
   end
   
   
-  ## Methods
+  ## Additional Methods ##
   def search
     @debtor = Debtor.search(params[:search])
   end
   
+  ## API Search Stub for integration with other systems
+  # TODO Add security and finalize
   def api_search
     #TODO add a limit to the debtor info sent by json.
     respond_to do |format|

@@ -5,7 +5,7 @@ server = ['sql', 'mysql', 'heroku', 'sqlite'][2] #remember to change config/data
 # ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.20'
 ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.3.0'
 
-# gem 'jruby-jars', '1.7.20' #Now explicitly calling jruby-jars version
+# gem 'jruby-jars', '1.7.22' #Now explicitly calling jruby-jars version
 gem 'jruby-jars', '9.0.3.0' # Warbler doesn't support jruby-9k yet.
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -34,11 +34,9 @@ end
 gem 'puma', '~> 2.13.4'
 
 # For CSV importing
-gem 'smarter_csv'#, '~> 1.0.19' #1.0.19 is out...
-gem 'cmess'#, '~> 0.4.1'
-
-# Import Logic
-gem 'celluloid', '~> 0.17.1.2'
+gem 'smarter_csv', require: false #, '~> 1.0.19' #1.0.19 is out...
+gem 'cmess', require: false #, '~> 0.4.1'
+gem 'celluloid', '~> 0.17.1.2', require: false
 
 # Use SCSS for stylesheets
 gem 'sass-rails'##, '~> 4.0.3' #5.0.4
@@ -103,6 +101,9 @@ group :development, :test do
   gem 'rspec'#, '~> 2.99.0'
   gem 'rspec-rails'#, '~> 2.99.0'
   gem 'factory_girl_rails'#, '~> 4.2.1'
+  
+  gem 'guard-jruby-rspec', require: false, platform: :jruby
+  # gem 'rb-fsevent' if `uname` =~ /Darwin/
 end
 
 group :test do

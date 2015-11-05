@@ -2,16 +2,12 @@
 class ImportController < ApplicationController
   before_action :authenticate_user! ## for DEVISE
   
-  ## External GEMs
-  require 'cmess/guess_encoding' #Should be on Import Logic
-  
-  ## Internal libraries
+  ## Internal libraries ##
   require 'ImportLogic'
-  # include  ImportLogic
   
-  ## Methods
+  ## Resource Actions ##
   def new
-    @import_title = "Importar"
+    @import_title = "Importar CSV"
   end
   
   def create
@@ -22,8 +18,10 @@ class ImportController < ApplicationController
         redirect_to action: 'new', status: 303 
       elsif file.headers['Content-Type: text/csv'] or 
           file.headers['Content-Type: application/vnd.ms-excel']
+        # Creates Actors:
         updater = ProgressBarUpdater.new
         importer = ImportLogic.new(updater)
+        # Sends file to import actor:
         importer.import_csv(file)
         result = importer.exit_status
         importer.terminate #shutdown actor

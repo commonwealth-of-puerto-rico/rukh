@@ -201,9 +201,10 @@ class ImportLogic
        :fimas_id
     ]
     debt_record = delete_all_keys_except(record, debt_array)
-    puts debt_record
+    # puts debt_record
     Debt.create(debt_record)
     #if succeeds...
+    # store_record(record, debt_array, Debt) {}
   end
   
   def store_debtor_record(record, debtor_array=[])
@@ -212,12 +213,15 @@ class ImportLogic
     debtor_record[:contact_person] = debtor_record[:name]
     Debtor.create(debtor_record)
     #if succeeds...
+    # store_record(record, 
+    #   debtor_array, Debtor) {|debtor_record| debtor_record[:contact_person] = debtor_record[:name]}
   end
   
   def store_record(record, inc_array, model)
     clean_record = delete_all_keys_except(record, inc_array)
     yield clean_record
     model.create(clean_record)
+    #if succeeds...
   end
   
   def delete_all_keys_except(hash_record, 

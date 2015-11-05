@@ -43,7 +43,7 @@ describe Debtor do
     
     it "returns false for uses_personal_ss if ien present" do
       expect(happy_zombie_debtor.employer_id_number.nil?).to(eq(false)) and
-      expect(happy_zombie_debtor.uses_personal_ss).to(eq(false)) : true ? false
+      expect(happy_zombie_debtor.uses_personal_ss).to(eq(false)) ? true : false
     end
     
     it "contains a contact person" do

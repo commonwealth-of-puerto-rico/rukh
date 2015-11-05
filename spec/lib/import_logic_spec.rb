@@ -67,7 +67,7 @@ describe ImportLogic do
       :store_debtor_record,
       record
       )
-       
+      # check if debtor model added it
     end
     
     xit "imports file properly" do

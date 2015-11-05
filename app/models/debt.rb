@@ -44,6 +44,7 @@ class Debt < ActiveRecord::Base  #TODO create migration to prevent nulls on orig
     debtor.nil? ? 'NULL' : debtor.contact_person
   end
    
+  ## Export to CSV  
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << column_names + [:debtor_name, :contact_person]
