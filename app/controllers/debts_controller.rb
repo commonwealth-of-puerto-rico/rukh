@@ -199,8 +199,8 @@ class DebtsController < ApplicationController
         flash[:error] = "Conexión al servidor de emails falló: Errno::ECONNREFUSED:#{e}"
       rescue Net::SMTPFatalError => e
         flash[:error] = "Error del server SMTP: Net::SMTPFatalError #{e}"
-      # rescue ActiveRecord::JDBCError => e
-      #   flash[:error] = "Log no creado ActiveRecord::JDBCError #{e}"
+      rescue ActiveRecord::JDBCError => e
+        flash[:error] = "Log no creado ActiveRecord::JDBCError #{e}"
       end 
     }.join() 
   end

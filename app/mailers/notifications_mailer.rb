@@ -98,8 +98,3 @@ class NotificationsMailer < ActionMailer::Base
     end
 end
 
-=begin
-  # before_action :authenticate_user! ## for DEVISE #TODO Figure out how to call :authenticate_user from here
-  # default from: 
-  # before_action :add_inline_logo! #use only for notifications
-=end

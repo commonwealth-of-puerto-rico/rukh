@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku', 'sqlite'][2] #remember to change config/database.yml
 
 #ruby=jruby-9.0.3.0
-# ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.20'
+# ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.22'
 ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.3.0'
 
 # gem 'jruby-jars', '1.7.22' #Now explicitly calling jruby-jars version
-gem 'jruby-jars', '9.0.3.0' # Warbler doesn't support jruby-9k yet.
+gem 'jruby-jars', '9.0.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -16,7 +16,7 @@ platforms :jruby do
     gem 'activerecord-jdbcsqlite3-adapter'
   end
   group :production do
-    #Procfileheroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
+    #ProcfileHeroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku'
       gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.18'
@@ -27,7 +27,7 @@ platforms :jruby do
     end
   end
   gem 'activerecord-jdbc-adapter', '~> 1.3.18'
-  gem 'therubyrhino' #JavaScript library
+  gem 'therubyrhino'               # JavaScript library
 end
 
 # Puma as server
@@ -85,15 +85,13 @@ gem 'bootstrap-will_paginate'
 # Console
 gem 'pry'
 
-
+## Used #gem 'magic_comment' to add encoding to all files ##
 group :development do
   # gem 'localeapp', require: false
   # gem 'guard-rspec', '~> 4.2.8'
   # gem 'guard-spork', '~> 1.5.1' #Some Problem with Spork and rails 4.2
   # gem 'spork-rails', github: 'sporkrb/spork-rails'
   # gem 'rb-fsevent', '~> 0.9.3'
-
-  ## Used #gem 'magic_comment' to add encoding to all files ##
 end
 
 group :development, :test do
@@ -101,12 +99,13 @@ group :development, :test do
   gem 'rspec'#, '~> 2.99.0'
   gem 'rspec-rails'#, '~> 2.99.0'
   gem 'factory_girl_rails'#, '~> 4.2.1'
-  
+  # Guard
   gem 'guard-jruby-rspec', require: false, platform: :jruby
   # gem 'rb-fsevent' if `uname` =~ /Darwin/
 end
 
 group :test do
+  # Capybara (Integration Tests)
   gem 'faker'
   gem 'capybara'
   gem 'database_cleaner'
@@ -120,7 +119,7 @@ platforms :ruby do
   end
   group :production do
     gem 'therubyracer'    # JavaScript library
-    gem 'pg'              # heroku db
+    gem 'pg'              # Heroku db (PostgresQL)
     gem 'unicorn'         # Use unicorn as the app server
     gem 'rails_12factor'  # 12 Factor App for Log Stream & Serving Static files - Scaling
   end
@@ -132,6 +131,6 @@ group :deploy do
     # gem 'warbler', '1.4.7', require: false
     # github: 'rebelwarrior/warbler'
     gem 'warbler', require: false, github: 'jruby/warbler', branch: '2.x-dev'
-    # Warbler doesn't support jruby-9k yet. Pulling from my repo.
+    # Warbler doesn't support jruby-9k yet. Pulling from dev repo (or my repo).
   end
 end

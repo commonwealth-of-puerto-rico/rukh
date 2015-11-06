@@ -17,7 +17,7 @@ class ProgressBarUpdater
     #socket?
   end
   def run(actor)
-    #stub
+    # stub
     puts "UPDATER!!?"
     puts actor.current_progress
     true
@@ -57,11 +57,13 @@ module ImportSupport
     record
   end
   def find_number_lines(opened_file)
-    start_time       = Time.now
+      start_time       = Time.now
     total_file_lines = opened_file.each_line.inject(0){|total, amount| total += 1} 
     opened_file.rewind
-    end_time         = Time.now
-    # puts "1. Lines ==> #{total_file_lines} in #{((end_time - start_time) / 60).round(2)}"
+    if Rails.env.development?
+      end_time         = Time.now
+      puts("1. Lines ==> #{total_file_lines} in #{((end_time - start_time) / 60).round(2)}")
+    end
     total_file_lines
   end 
   
@@ -250,40 +252,4 @@ class ImportLogic
     debtor.blank? ? false : debtor.id
   end
 end
-
-
-
-  # def self.check_utf_encoding(file)
-  #   require 'cmess/guess_encoding'
-  #   input = File.read(file)
-  #   CMess::GuessEncoding::Automatic.guess(input)
-  # end
-    
-  # def self.sanitize_row(record)
-  #   ## Iterate over each value and strip any Dangerous SQL
-  #   ## hash :key sanitation happens w/ a merge later on
-  #   cleaned_record = {}
-  #   record.each_pair do |k,v| #this might remove too much info...
-  #     cleaned_record.store(k,
-  #       v.to_s.gsub(/\//i, '-').gsub(/[^ [:word:]\-\. ]/i, '') )
-  #       # first exchanges \ for - then removes everything not[^ ] :word or - or . or space
-  #       # put sql problem chars here only.gsub(/\W+/, ""))
-  #   end
-  #   cleaned_record
-  # end
-  
-  # def self.blank_out_fields(record, fields)
-  #   # blank out fields if record[field] is nil
-  #   fields.to_a.each do |field|
-  #     if record[field.to_sym].nil?
-  #       record[field.to_sym] = ''
-  #     end
-  #   end
-  #   record
-  # end
-  
-  # def self.add_missing_keys(hash_record, keys_array=[], default_value=nil)
-  #   # remember merge is a one-way operation <=
-  #   Hash[keys_array.map{|k| [ k, default_value ] }].merge(hash_record)
-  # end
 

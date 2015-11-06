@@ -11,8 +11,7 @@ describe DebtorsController do
       puts "Tested this and it works but test is not producing expected result."
       expect {
         delete :destroy, id: debtor.id
-      }.to raise_error
-      
+      }.to raise_error RuntimeError   
     end
     
   end

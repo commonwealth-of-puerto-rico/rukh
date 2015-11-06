@@ -23,16 +23,5 @@ describe DebtsController do
     # Authentication Issue to get xls output
 
   end
-  describe 'Deletion' do
-    before do
-      debtor10 = FactoryGirl.create(:debtor) # try using subject here
-    end
-    it 'should raise an error when delete is attempted' do
-      expect {
-        delete :destroy, id: debtor10.id
-      }.to raise_error
-    end
-    
-  end
   
 end

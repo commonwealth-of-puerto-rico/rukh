@@ -55,7 +55,6 @@ class DebtorsController < ApplicationController
     #TODO fix form method to patch or put for SS
     #Probably related to debtor_params below
     assign_current_user
-    # @debtor = Debtor.find(cookies[:current_debtor_id])
     @debtor = Debtor.find(params[:id])
     begin
       if @debtor.update_attributes(debtor_params)

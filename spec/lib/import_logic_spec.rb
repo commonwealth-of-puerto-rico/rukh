@@ -7,7 +7,7 @@ require 'ImportLogic'
 # Import sample CSV
 # Verify against test db
 
-# Use StringIO to simulate file  # For some reason StringIO::Open not liking me
+# Use StringIO to simulate file  
 
 test_stringio = StringIO.new(
 "id,permit_infraction_number,amount_owed_pending_balance,paid_in_full,type_of_debt,original_debt_date,originating_debt_amount,bank_routing_number,bank_name,bounced_check_number,in_payment_plan,in_administrative_process,contact_person_for_transactions,notes,debtor_id,created_at,updated_at,fimas_project_id,fimas_budget_reference,fimas_class_field,fimas_program,fimas_fund_code,fimas_account,fimas_id,debtor_name

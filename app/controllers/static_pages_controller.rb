@@ -13,11 +13,5 @@ class StaticPagesController < ApplicationController
   def dev
     @user = current_user
   end
-  
-  ## Stub for integration with other systems
-  #TODO implement
-  def prifas_account
-    respond_to :json
-  end
 
 end

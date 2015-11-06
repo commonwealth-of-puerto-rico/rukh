@@ -3,8 +3,6 @@ require 'HexString'
 class Debtor < ActiveRecord::Base
   
   has_many :debts, dependent: :restrict_with_exception 
-  # :restrict #or :restrict_with_error 
-
   
   ## Hooks
   before_save {self.email = email.downcase if self.email}
@@ -18,7 +16,7 @@ class Debtor < ActiveRecord::Base
       self.ss_hex_digest = nil #'NULL'
     end
   end
-  #TODO before save clean up telephone number and ss
+  #TODO before save: clean up telephone number and ss
   before_save do 
     self.tel = Debtor.remove_hyphens(self.tel) if self.tel
   end
@@ -74,12 +72,6 @@ class Debtor < ActiveRecord::Base
     end
   end
   
-  # def self.api_search(search_term)
-  #   #reject format xxx-xx-xxxx 
-  #   #accecpt only string or xx-xxxxxxxx
-  #   Debtor.search(search_term)
-  # end
-  
   def self.clean_up_search_term(search_term) 
     #if name keep string, if ein turn to int, if ss turn to hexstring else string
     #'-' is checked.
@@ -111,13 +103,5 @@ class Debtor < ActiveRecord::Base
   def Debtor.guard_length(token, length=9) #should be in lib
     fail unless token.to_s.split('').size == length
   end
-  # def check_for_debts
-  #   #  before_destroy :check_for_debts
-  #   if debts.count > 0
-  #     errors.add_to_base("No se puede borrar Deudor con Deudas.")
-  #     return false
-  #   end
-  # end
-  
   
 end

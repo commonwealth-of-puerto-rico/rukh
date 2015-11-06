@@ -25,7 +25,7 @@ class ImportController < ApplicationController
         importer.import_csv(file)
         result = importer.exit_status
         importer.terminate #shutdown actor
-        # updater.terminate # Already shutdown by importer
+        # Updater already shutdown by importer
         
         flash[:notice] = "#{result[:total_lines]} Records Importados en: #{result[time]} segundos"
         redirect_to debts_path

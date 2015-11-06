@@ -4,7 +4,6 @@ class Debt < ActiveRecord::Base  #TODO create migration to prevent nulls on orig
   ## Hooks
   belongs_to :debtor, touch: true 
   has_many :mail_logs, dependent: :restrict_with_exception
-  #has_many :payment_plans
   #Dependend Destroy means:
   # if Debtor is erase so are all the debts associeated with.
   
@@ -20,7 +19,6 @@ class Debt < ActiveRecord::Base  #TODO create migration to prevent nulls on orig
   VALID_ROUTING_NUM_REGEX =/\A([0-9]{9}\z|\z)/
   
   ## Validations
-  # validates :transaction_contact_person, length: {maximum: 144}
   validates :debtor_id, presence: true
   validates :original_debt_date, presence: true, format: { with: VALID_DATE_REGEX, 
             message: "Debe ser una fecha."}
