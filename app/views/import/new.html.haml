@@ -7,8 +7,8 @@
   :markdown 
     La primera fila deben ser los nombre de la columnas de la base de datos. 
     ([Exporte](/debts)  a un CSV para ver cuales son.)  
-.progress.hide
-  .progress-bar.progress-bar-striped#progress{:style => "width: #{'5.0'}%;", :'aria-valuenow' => "#{5}", :role => "progressbar", :'aria-valuemin' => "0", :'aria-valuemax' => "100"}
+.progress
+  .progress-bar.progress-bar-striped#progress-bar{:style => "width: #{'5.0'}%;", :'aria-valuenow' => "#{5}", :role => "progressbar", :'aria-valuemin' => "0", :'aria-valuemax' => "100"}
     "#{nil or "record-in-progress"}"
 / - if @user.admin? or @user.supervisor?
 = form_tag import_path, multipart: true do
