@@ -155,9 +155,7 @@ class ImportLogic
   
   def store_one_record(record, inc_array, model, &block)
     clean_record = delete_all_keys_except(record, inc_array)
-    if block
-      yield clean_record
-    end
+    yield(clean_record) if block
     model.create(clean_record)
     #if succeeds...
   end
