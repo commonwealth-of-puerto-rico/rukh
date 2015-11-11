@@ -36,9 +36,13 @@ describe Debtor do
       expect(FactoryGirl.build(:debtor)).to be_valid
     end
     
-    xit "contains either an ein or a ss but not both" do
-      unhappy_zombie_debtor.valid?
-      expect(unhappy_zombie_debtor.errors[:employer_id_number]).to include "El Número de Seguro Social Patronal debe de ser válido: 'xx-xxxxxxx' o en blanco."
+    it "contains either an ein or a ss but not both" do
+      happy_zombie_debtor.uses_personal_ss = true
+      happy_zombie_debtor.ss_hex_digest = "5656565656656"
+      happy_zombie_debtor.valid?
+      # es.activerecord.errors.models.debtor.attributes.employer_id_number.present
+      expect(happy_zombie_debtor.errors[:employer_id_number]).to include(
+      "No pueden haber ambos un número de Seguro Social Patronal y uno Personal")
     end
     
     it "returns false for uses_personal_ss if ien present" do
@@ -135,6 +139,20 @@ describe Debtor do
         expect(Debtor.search(1.0)).to raise_error RuntimeError, /unknown type/i
       end 
     end    
+  end
+  describe 'private methods' do
+    it 'last for should strip last four digits of a string of digits' do
+      expect(unhappy_zombie_debtor.send(:last_four, "123bbadfaf-134-adfa-123")).to eq "4123"
+    end
+    it 'removes hyphens from string and leaves only digits' do
+      expect(Debtor.send(:remove_hyphens, "123bbadfaf-134-adfa-123")).to eq "123134123"
+    end
+    it 'produces an encrypted string' do
+      expect(Debtor.send(:encrypt, "123456789")).to be_kind_of String
+    end
+    it 'produces an encrypted string not the same as original string' do
+      expect(Debtor.send(:encrypt, "123456789")).to_not eq("123456789")
+    end
   end
   
 end

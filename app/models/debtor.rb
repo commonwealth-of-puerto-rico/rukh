@@ -39,6 +39,8 @@ class Debtor < ActiveRecord::Base
     message: "Email invalido"  }
   validates :contact_person_email, format: { with: VALID_EMAIL_REGEX,
     message: "Email invalido"  }  
+  validates :tel, format: { with: VALID_TEL_REGEX, 
+    message: "Debe de der un número de teléfono válido: 'xxx-xxx-xxx'" }
   validates :employer_id_number, absence: true, 
     unless: Proc.new { |debtor_ex| debtor_ex.ss_hex_digest.blank? }
   validates :ss_hex_digest, absence: true, 
@@ -47,8 +49,6 @@ class Debtor < ActiveRecord::Base
     unless: Proc.new { |debtor_ex| debtor_ex.employer_id_number.blank? }
   validates :ss_hex_digest,       uniqueness: true, 
     unless: Proc.new { |debtor_ex| debtor_ex.ss_hex_digest.blank?  }
-  validates :tel, format: { with: VALID_TEL_REGEX, 
-    message: "Debe de der un número de teléfono válido: 'xxx-xxx-xxx'" }
   validates :employer_id_number,  format: { with: VALID_EIN_REGEX,
     message: "El Número de Seguro Social Patronal debe de ser válido: 'xx-xxxxxxx' o en blanco." }
   validates :ss_hex_digest,       format: { with: VALID_SS_REGEX,
