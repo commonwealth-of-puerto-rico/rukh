@@ -91,7 +91,7 @@ class ImportLogic
   
   ## Main import method. Uses an active record transaction (if it fails the whole thing 
   ## is rolled back) to prevent partial importing
-  def process_CSV_file(file, total_lines = 0, charset="bom|utf-8")
+  def process_CSV_file(file, total_lines=0, charset="bom|utf-8")
     begin 
       start_time = Time.now # setting up time keeping 
       ActiveRecord::Base.transaction do
@@ -101,7 +101,7 @@ class ImportLogic
             process_record_row(sanitized_row, {})
             @counter << sanitized_row # appends in latest record to allow error to report where import failed
               ### CallingActorInUpdater feeding it the this (the current) actor.
-              @updater_actor.run(Celluloid::Actor.current)
+              @updater_actor.run(Celluloid::Actor.current) unless @updater_actor.nil?
             @counter
           end
         end
@@ -114,9 +114,8 @@ class ImportLogic
       end
       
     ensure
-      # CSV::MalformedCSVError
-      # something gets said
-      @updater_actor.terminate
+      # on CSV::MalformedCSVError # something gets said
+      @updater_actor.terminate unless @updater_actor.nil?
     end   
   end
   
@@ -155,7 +154,7 @@ class ImportLogic
     clean_record = delete_all_keys_except(record, inc_array)
     yield(clean_record) if block
     model.create(clean_record)
-    #if succeeds... try: model.create(clean_record).save or fail
+    #if succeeds... 
   end
   
   def debtor_in_db_already(record, db_Debtor=Debtor)

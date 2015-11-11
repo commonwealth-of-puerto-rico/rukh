@@ -45,7 +45,7 @@ class Debt < ActiveRecord::Base  #TODO create migration to prevent nulls on orig
    
   ## Export to CSV  
   def self.to_csv(options = {})
-    require 'smarter_csv'
+    require 'csv'
     CSV.generate(options) do |csv|
       csv << column_names + [:debtor_name, :contact_person]
       all.each do |debt_record|
@@ -59,7 +59,7 @@ class Debt < ActiveRecord::Base  #TODO create migration to prevent nulls on orig
   private
     #For portability of code only.
     def self.to_plain_csv(options = {}) 
-      require 'smarter_csv'
+      require 'csv'
       CSV.generate(options) do |csv|
         csv << column_names # no additional columns
         all.each do |record|
