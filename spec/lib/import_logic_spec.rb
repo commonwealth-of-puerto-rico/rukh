@@ -15,6 +15,12 @@ describe ImportLogic do
   let(:imp) { ImportLogic.new(nil) }
   
   describe "Reads file" do
+    before do
+      # DatabaseCleaner.start
+    end
+    after do
+      # DatabaseCleaner.clean
+    end
     xit "reads number of lines correctly from actual file" do
       # testing private methods requires send
       # can't seem to make this work
