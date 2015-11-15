@@ -58,13 +58,13 @@ class Debt < ActiveRecord::Base  #TODO create migration to prevent nulls on orig
 
   private
     #For portability of code only.
-    def self.to_plain_csv(options = {}) 
+    def self.to_plain_csv(options = {}, &block) 
       require 'csv'
       CSV.generate(options) do |csv|
         csv << column_names # no additional columns
         all.each do |record|
           csv << record.attributes.values_at(*column_names)
-          # yield(csv, record)
+          yield(csv, record) if block
         end
       end
     end
