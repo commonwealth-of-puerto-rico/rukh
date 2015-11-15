@@ -7,41 +7,31 @@ require 'ImportLogic'
 # Import sample CSV
 # Verify against test db
 
-# Use StringIO to simulate file 
 csv_test_file = File.expand_path("./spec/lib/test.csv")
 
 describe ImportLogic do
-  
+
   let(:imp) { ImportLogic.new(nil) }
-  
+
   describe "Reads file" do
-    xit "reads number of lines correctly from actual file" do
-      # testing private methods requires send
-      # can't seem to make this work
-      File.open(csv_test_file) { |file|
-        expect(imp.send(:find_file_lines, file)).to eq(3)
-      } 
-    end
-    xit "stores_debtor_record successfully" do
-      record = test_stringio
-      imp.send(
-      :store_debtor_record,
-      record
-      )
-      # check if debtor model added it
-    end
-    
-    xit "imports file properly" do
-      #Clean up test db
-      import_csv(csv_test_file)
-      # Expect test db to contain correct ## of records
-      
+
+    # after do
+    #   if (Debt.any? or Debtor.any?)
+    #     puts "reseting DB ==> super slow"
+    #     if `rake db:reset RAILS_ENV="test"`
+    #       puts "reset DB ==> super slow"
+    #     end
+    #   end
+    # end
+    it "process CSV file properly" do
+      skip "This Test Can only be run in isolation."
+      if `rake db:reset RAILS_ENV="test"`
+        if imp.send(:process_CSV_file, File.new(csv_test_file), 3, "bom|utf-8")
+          imp.terminate
+        end
+        expect(Debt.count).to eq(2)
+      end
     end
 
-    
-    
   end
-  
-
-  
 end

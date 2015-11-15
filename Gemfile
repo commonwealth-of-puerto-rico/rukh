@@ -33,7 +33,7 @@ end
 # Puma as server
 gem 'puma', '~> 2.13.4'
 
-# For CSV importing
+# For CSV importing and exporting
 gem 'smarter_csv', require: false #, '~> 1.0.19' #1.0.19 is out...
 gem 'cmess', require: false #, '~> 0.4.1'
 gem 'celluloid', '~> 0.17.1.2', require: false

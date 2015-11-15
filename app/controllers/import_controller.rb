@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class ImportController < ApplicationController
+  include ActionController::Live
   
   before_action :authenticate_user! ## for DEVISE
   
@@ -10,6 +11,18 @@ class ImportController < ApplicationController
   ## Resource Actions ##
   def new
     @import_title = "Importar CSV"
+  end
+  
+  def stream_update
+    response.headers['Content-Type'] = 'text/event-stream'
+    sse = SSE.new response.stream
+    begin
+      sse.write("event: update\n")
+    rescue IOError
+    ensure
+      sse.close
+    end
+    render nothing: true
   end
   
   def create

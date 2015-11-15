@@ -2,7 +2,6 @@
 require 'spec_helper'
 
 describe Debt do
-
   ##########
   describe "Validations" do
     describe "responds to " do
@@ -18,8 +17,8 @@ describe Debt do
     end
     
     it 'shoud validate amount owed is a number' do
-      debt1 = FactoryGirl.build(:debt, amount_owed_pending_balance: nil) # or nil
       # strings get clobbered into a number so must use nil
+      debt1 = FactoryGirl.build(:debt, amount_owed_pending_balance: nil) # or nil
       debt1.valid?
       expect(debt1.errors[:amount_owed_pending_balance]).to include("Debe ser un número.")
     end
@@ -61,21 +60,35 @@ describe Debt do
     
   end
   
-  # describe "Procedure Specs" do
-  #   skip it "Is either paid_in_full, in process or owes some $$"
-  #   # Not implemented
-  # end
-  
-  
   ## Method Specs
-  
   describe "Method Specs" do
+    describe "find_debtor_attribute works" do
+      let(:subject) { FactoryGirl.build(:debt) }
+      it 'should return name' do
+        FactoryGirl.create(:debtor, :name => "Mark Twain", :id => 233)
+        expect(subject.find_debtor_attr(233, [:name])).to eq(["Mark Twain"])
+      end
+      it 'should return contact name' do
+        FactoryGirl.create(:debtor, :contact_person => "Samuel Clemens", :id => 234)
+        expect(subject.find_debtor_attr(234, [:contact])).to eq(["Samuel Clemens"])
+      end
+      it 'should returns array of name and contact name' do
+        FactoryGirl.create(:debtor, :contact_person => "Samuel Clemens", :name => "Mark Twain", :id => 236)
+        expect(subject.find_debtor_attr(236, [:name ,:contact])).to eq(["Mark Twain", "Samuel Clemens"])
+      end
+      it 'should fail if given anything other to search for'do
+        FactoryGirl.create(:debtor, :email => "MarkTwain@example.com", :id => 235)
+        expect { subject.find_debtor_attr(235, [:email])}.to raise_error(KeyError)
+      end
+    end
+  
     describe "CSV creation" do  
+      it "shouldn't error'" do
+        expect {Debt.to_csv}.not_to raise_error
+      end
       it 'should create a valid csv file' do
-        FactoryGirl.create(:debt, :bank_name => "Pakistan Bank")
-        expect(Debt.to_csv).to match /Pakistan Bank/
-        # FactoryGirl.create(:debt)
-        # expect(FactoryGirl.build(:debt).to_csv).to_not raise_error
+        expect(Debt.to_csv.chomp).to eq(
+        "id,permit_infraction_number,amount_owed_pending_balance,paid_in_full,type_of_debt,original_debt_date,originating_debt_amount,bank_routing_number,bank_name,bounced_check_number,in_payment_plan,in_administrative_process,contact_person_for_transactions,notes,debtor_id,created_at,updated_at,fimas_project_id,fimas_budget_reference,fimas_class_field,fimas_program,fimas_fund_code,fimas_account,fimas_id,debtor_name,contact_person")
       end
     end
   end

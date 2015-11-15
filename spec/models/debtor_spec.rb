@@ -32,13 +32,17 @@ describe Debtor do
     it 'happy debtor path should be valid' do
       expect(happy_zombie_debtor).to be_valid
     end
-    it  'factory happy debtor path should be valid' do
+    it 'factory happy debtor path should be valid' do
       expect(FactoryGirl.build(:debtor)).to be_valid
     end
     
     it "contains either an ein or a ss but not both" do
-      unhappy_zombie_debtor.valid?
-      expect(unhappy_zombie_debtor.errors[:employer_id_number]).to include "El Número de Seguro Social Patronal debe de ser válido: 'xx-xxxxxxx' o en blanco."
+      happy_zombie_debtor.uses_personal_ss = true
+      happy_zombie_debtor.ss_hex_digest = "5656565656656"
+      happy_zombie_debtor.valid?
+      # es.activerecord.errors.models.debtor.attributes.employer_id_number.present
+      expect(happy_zombie_debtor.errors[:employer_id_number]).to include(
+      "No pueden haber ambos un número de Seguro Social Patronal y uno Personal")
     end
     
     it "returns false for uses_personal_ss if ien present" do
@@ -47,9 +51,8 @@ describe Debtor do
     end
     
     it "contains a contact person" do
-      #Learn new syntax
       unhappy_zombie_debtor.valid?
-      expect(unhappy_zombie_debtor.errors[:contact_person]).to include "El Número de Seguro Social Patronal debe de ser válido: 'xx-xxxxxxx' o en blanco."
+      expect(unhappy_zombie_debtor.errors[:contact_person]).to include "no puede estar en blanco"
     end
     
   end 
@@ -57,8 +60,9 @@ describe Debtor do
   describe "Invalidations" do
     
     it "rejects bad emails addresses" do
-      unhappy_zombie_debtor.valid?
-      expect(unhappy_zombie_debtor.errors[:email]).to include "Email invalido" # or more
+      happy_zombie_debtor.email = 'bademail'
+      happy_zombie_debtor.valid?
+      expect(happy_zombie_debtor.errors[:email]).to include "Email invalido" # or more
     end
     it "rejects bad emails addresses (both for company and contact person)" do
       unhappy_zombie_debtor.valid?
@@ -72,29 +76,25 @@ describe Debtor do
     end
   
     it "rejects two debtors with same ss" do
-      debtor1 = FactoryGirl.create(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)
       debtor2 = FactoryGirl.build(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)
-      # debtor2.valid?
-      # debtor1.run_callbacks(:save) { false } #just run the :before_save callback use {false}
-      # debtor2.run_callbacks(:save) { false }
-      # expect(debtor1.errors.size).to eq 1
-            # debtor1.run_callbacks(:after_save)
-      # expect{FactoryGirl.build(:debtor, ss_hex_digest: "123-12-1234", employer_id_number: nil)}.to raise_error
-      debtor1.save!(validate: false)
-      expect{debtor2.save!(validate: false)}.to raise_error RuntimeError# Secret Sause!
+      happy_zombie_debtor.ss_hex_digest = "123-12-1234"
+      happy_zombie_debtor.save!(validate: false)
+      expect{ debtor2.save!(validate: true) }.to raise_error ActiveRecord::RecordNotUnique
     end
     
     it 'is invalid if it has both ein and ss' do
       expect(FactoryGirl.build(:debtor, ss_hex_digest: "123-12-1234")).to_not be_valid
     end
-     
-    # skip it 'rejects two debtors with same name' # Why should it?
   
   end
   
   it "cleans up telephone number" do
     expect(happy_zombie_debtor.tel.to_i).to eql(7877877879)
+  end
+  it "cleans up tel number 2" do
     expect(unhappy_zombie_debtor.tel.to_i).to_not eql(7877877879)
+  end
+  it 'cleans up tel number 3' do
     expect(unhappy_zombie_debtor.tel.each_char.select{|x| x.match(/[0-9]/)}.join('').to_i).to \
       eql(7877877879)     
   end
@@ -109,11 +109,14 @@ describe Debtor do
     it 'should return String for anything else' do
       expect(Debtor.clean_up_search_term('Miguel Rios')).to be_a_kind_of(String)
     end
-    describe 'garbage data' do
-      it 'clean_up_search_term should handle garbage data' do
+    describe 'search -clean_up_search_term- should handle garbage data' do
+      it 'garbage data1' do
         expect{Debtor.clean_up_search_term(1.000003)}.to_not raise_error
+      end
+      it 'garbage data2' do
         expect{Debtor.clean_up_search_term(/fail/)}.to_not raise_error 
-        
+      end
+      it 'garbage data3'do
         expect(Debtor.clean_up_search_term(/fail/)).to be_a_kind_of(String)
       end
     end
@@ -136,6 +139,20 @@ describe Debtor do
         expect(Debtor.search(1.0)).to raise_error RuntimeError, /unknown type/i
       end 
     end    
+  end
+  describe 'private methods' do
+    it 'last for should strip last four digits of a string of digits' do
+      expect(unhappy_zombie_debtor.send(:last_four, "123bbadfaf-134-adfa-123")).to eq "4123"
+    end
+    it 'removes hyphens from string and leaves only digits' do
+      expect(Debtor.send(:remove_hyphens, "123bbadfaf-134-adfa-123")).to eq "123134123"
+    end
+    it 'produces an encrypted string' do
+      expect(Debtor.send(:encrypt, "123456789")).to be_kind_of String
+    end
+    it 'produces an encrypted string not the same as original string' do
+      expect(Debtor.send(:encrypt, "123456789")).to_not eq("123456789")
+    end
   end
   
 end

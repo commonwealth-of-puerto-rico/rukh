@@ -118,6 +118,7 @@ es:
       not_a_number: no es un número
       not_an_integer: debe ser un entero
       odd: debe ser un número impar
+      present: debe de estar presente
       record_invalid: ! 'La validación falló: %{errors}'
       taken: ya está en  uso
       too_long:
@@ -207,3 +208,9 @@ es:
   activerecord:
     errors:
       <<: *errors
+      models:
+        debtor:
+          attributes:
+            employer_id_number:
+              present: "No pueden haber ambos un número de Seguro Social Patronal y uno Personal"
+      
