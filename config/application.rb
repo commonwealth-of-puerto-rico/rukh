@@ -28,22 +28,22 @@ module Rukh
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :es
-    config.i18n.available_locales = [:es] # For REP
-    
+    config.i18n.available_locales = [:es, :en] # For REP
+
     # For Bootstrap Sass
     config.assets.precompile = config.assets.precompile + %w(*.png *.jpg *.jpeg *.gif *.woff *.ttf *.svg *.eot)
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
-    
+
     # For Warble
     config.assets.enabled = true
     config.assets.initialize_on_precompile = false
-    
+
     # Encoding for Windows Tomcat #TODO Verify if actually needed.
     config.encoding = 'utf-8'
-    
+
     # Rspec Generators
     config.generators do |g|
-      g.test_framework :rspec, 
+      g.test_framework :rspec,
         fixtures: true,
         view_specs: false,
         helper_specs: false,
@@ -52,10 +52,10 @@ module Rukh
         request_specs: false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
-    
-    # Email Preview path 
+
+    # Email Preview path
     # config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews/"
-    
+
     console do
       begin
         require 'pry'
@@ -63,7 +63,7 @@ module Rukh
       rescue LoadError
       end
     end
-    
-    
+
+
   end
 end

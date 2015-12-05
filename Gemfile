@@ -18,12 +18,14 @@ platforms :jruby do
   group :production do
     #ProcfileHeroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
-    when 'heroku'
+    when 'heroku', 'postgresql'
       gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.18'
     when 'sql'
       gem 'activerecord-jdbcmssql-adapter', '~> 1.3.18'
     when 'mysql', 'mariadb'
       gem 'activerecord-jdbcmysql-adapter', '~> 1.3.18'
+    when 'sqlite'
+      gem 'activerecord-jdbcsqlite3-adapter'
     end
   end
   gem 'activerecord-jdbc-adapter', '~> 1.3.18'
@@ -85,6 +87,9 @@ gem 'bootstrap-will_paginate'
 # Console
 gem 'pry'
 
+# 12 Factor App for Log Stream & Serving Static files - Scaling
+gem 'rails_12factor'
+
 ## Used #gem 'magic_comment' to add encoding to all files ##
 group :development do
   # gem 'localeapp', require: false
@@ -118,10 +123,9 @@ platforms :ruby do
     gem 'github-pages', require: false  # Jekyll Integration
   end
   group :production do
-    gem 'therubyracer'    # JavaScript library
-    gem 'pg'              # Heroku db (PostgresQL)
-    gem 'unicorn'         # Use unicorn as the app server
-    gem 'rails_12factor'  # 12 Factor App for Log Stream & Serving Static files - Scaling
+    gem 'therubyracer' # JavaScript library
+    gem 'pg'           # Heroku db (PostgresQL)
+    gem 'unicorn'      # Use unicorn as the app server
   end
 end
 
