@@ -1,5 +1,5 @@
 # for Heroku
-workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+# workers Integer(ENV['WEB_CONCURRENCY'] || 2) # Remove for JRuby
 threads_count = Integer(ENV['MAX-THREADS'] || 5)
 threads threads_count, threads_count
 
