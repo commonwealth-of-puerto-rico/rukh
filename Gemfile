@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku', 'sqlite'][2] #remember to change config/database.yml
 
-#ruby=jruby-9.0.3.0
+#ruby=jruby-9.0.4.0
 # ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.22'
-ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.3.0'
+ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.4.0'
 
 # gem 'jruby-jars', '1.7.22' #Now explicitly calling jruby-jars version
-gem 'jruby-jars', '9.0.3.0'
+gem 'jruby-jars', '9.0.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.5' #4.2.4 tested
 
 platforms :jruby do
   group :development do

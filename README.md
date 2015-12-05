@@ -42,7 +42,7 @@ You might also need to generate the bin directory w/ `rake rails:update:bin`
 
 __Testing Emails__
 
-The gem [MailCatcher](mailcatcher.me) was used to test email sending locally. It doesn't work on jruby. But you can started from normal Ruby using RVM. I highly recommend using an RVM gemset and wrapper for MailCatcher as it tends con conflict with gems required by Rails.
+The gem [MailCatcher](mailcatcher.me) was used to test email sending locally. It doesn't work on JRuby. But you can start it from normal Ruby using RVM. I highly recommend using an RVM gemset and wrapper for MailCatcher as it tends con conflict with gems required by Rails.
 
 __Name__
 Rukh was originally 'RucPoc -- registro único de cuentas por cobrar' but now it's just a meaningless-name associated with the [Rukh](http://en.wikipedia.org/wiki/Roc_(mythology)) from Arabian Nights. 
@@ -51,10 +51,13 @@ __Documentation__
 Rukh has documentation in the platform under the `/dev` link.
 Additional documentation is found in the tests under the /spec folder in Rspec.
 
+Code Organization:
+This app was developed using **BDD** and **Hexagonal Rails** design, that is the buisness logic should be as much as possilbe in the `/lib` folder and talk to the controller or model through self-contained method calls. Search YouTube for ["GoRuCo 2012 Hexagonal Rails by Matt Wynne"](https://youtu.be/CGN4RFkhH2M) for more details on Hexagonal Rails.
+
 __License:__
 The code is under GPL v3.
 
-<sup>1</sup> While Rukh works on a Windows stack a JRuby(`TCPSocket.open('ipaddrss', 25)`) bug prevented email delivery using SMTP. The final application was hosted on Linux, Windows was used as a test bed. An issue with the bug was opened on JRuby github page.
+<sup>1</sup> While Rukh works on a Windows stack a JRuby (`TCPSocket.open('ipaddrss', 25)`) bug prevented email delivery using SMTP. The final application was hosted on Linux, Windows was used as a test bed. An issue with the bug was opened on JRuby github page. This was an unfortunate event since JRuby was picked because of a need to run it on Windows. 
 
 image: [wikimedia commons](http://en.wikipedia.org/wiki/File:Edward_Julius_Detmold49.jpg): Charles Maurice Detmold (1883-1908)
 
