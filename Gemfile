@@ -2,11 +2,9 @@ source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku', 'sqlite'][2] #remember to change config/database.yml
 
 #ruby=jruby-9.0.4.0
-# ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.22'
-ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.4.0'
-
-# gem 'jruby-jars', '1.7.22' #Now explicitly calling jruby-jars version
-gem 'jruby-jars', '9.0.4.0'
+ruby '2.2.2', :engine => 'jruby',
+  :engine_version => '9.0.4.0'
+gem 'jruby-jars', '9.0.4.0' #Now explicitly calling jruby-jars version
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5' #4.2.4 tested
@@ -29,7 +27,7 @@ platforms :jruby do
     end
   end
   gem 'activerecord-jdbc-adapter', '~> 1.3.18'
-  gem 'therubyrhino'               # JavaScript library
+  gem 'therubyrhino'  # JavaScript library
 end
 
 # Puma as server
@@ -63,7 +61,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.3.1'
 
 # bundle exec rake doc:rails generates the API under doc/api.
-# gem 'sdoc', '~> 0.4.0',                              group: :doc
+# gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt'##, '~> 3.1.10'
@@ -92,9 +90,10 @@ gem 'rails_12factor'
 
 ## Used #gem 'magic_comment' to add encoding to all files ##
 group :development do
+  # Some Problem with Spork and rails 4.2
   # gem 'localeapp', require: false
   # gem 'guard-rspec', '~> 4.2.8'
-  # gem 'guard-spork', '~> 1.5.1' #Some Problem with Spork and rails 4.2
+  # gem 'guard-spork', '~> 1.5.1'
   # gem 'spork-rails', github: 'sporkrb/spork-rails'
   # gem 'rb-fsevent', '~> 0.9.3'
 end
