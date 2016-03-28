@@ -3,7 +3,7 @@ Rukh
 
 ![Rukh](/app/assets/images/179px-Edward_Julius_Detmold49.jpg)
 
-[Dependency Status]: https://gemnasium.com/elgalu/boolean_class
+[![Dependency Status](https://gemnasium.com/rebelwarrior/rukh.svg)](https://gemnasium.com/rebelwarrior/rukh)
 
 
 Originally developed for the Environmental Quality Board to keep an accounting of out-standing debts specifically those resulting from bounced checks. Parallel accounting of these was required for these to allow for the closing of the fiscal year. Previously all accounting for these out-standing debts was kept track on a Excel file on a single computer. 
