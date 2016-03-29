@@ -67,11 +67,6 @@ gem 'jbuilder', '~> 2.4.1'
 gem 'bcrypt'##, '~> 3.1.10'
 gem 'devise'##, '~> 3.5.6'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # Time Zone info data (for Rails 4.1)
 gem 'tzinfo-data'
 
@@ -79,7 +74,7 @@ gem 'tzinfo-data'
 gem 'kramdown', '~> 1.10.0' #, '~> 1.8.0'
 
 # Pagination
-gem 'will_paginate'#, '~> 3.0.7' #.7 out now
+gem 'will_paginate'#, '~> 3.0.7' 
 gem 'bootstrap-will_paginate'
 
 # Console
@@ -88,15 +83,7 @@ gem 'pry'
 # 12 Factor App for Log Stream & Serving Static files - Scaling
 gem 'rails_12factor'
 
-## Used #gem 'magic_comment' to add encoding to all files ##
-group :development do
-  # Some Problem with Spork and rails 4.2
-  # gem 'localeapp', require: false
-  # gem 'guard-rspec', '~> 4.2.8'
-  # gem 'guard-spork', '~> 1.5.1'
-  # gem 'spork-rails', github: 'sporkrb/spork-rails'
-  # gem 'rb-fsevent', '~> 0.9.3'
-end
+## Used #gem 'magic_comment' to add encoding to all files for Windows ##
 
 group :development, :test do
   # RSpec
@@ -131,9 +118,7 @@ end
 group :deploy do
   platforms :jruby do
     # For Warbler changes to config/application.rb and config/environtments/production.rb
-    # gem 'warbler', '1.4.7', require: false
-    # github: 'rebelwarrior/warbler'
-    gem 'warbler', require: false, github: 'jruby/warbler', branch: '2.x-dev'
     # Warbler doesn't support jruby-9k yet. Pulling from dev repo (or my repo).
+    gem 'warbler', require: false, github: 'jruby/warbler', branch: '2.x-dev'
   end
 end
