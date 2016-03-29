@@ -36,7 +36,7 @@ gem 'puma'#, '~> 2.13.4'
 # For CSV importing and exporting
 gem 'smarter_csv', require: false #, '~> 1.0.19' #1.0.19 is out...
 gem 'cmess', require: false #, '~> 0.4.1'
-gem 'celluloid', '~> 0.17.1.2', require: false
+gem 'celluloid', '~> 0.17.3', require: false
 
 # Use SCSS for stylesheets
 gem 'sass-rails'##, '~> 4.0.3' #5.0.4
@@ -58,7 +58,7 @@ gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.3.1'
+gem 'jbuilder', '~> 2.4.1'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'sdoc', '~> 0.4.0', group: :doc
@@ -76,7 +76,7 @@ gem 'devise'##, '~> 3.5.6'
 gem 'tzinfo-data'
 
 # Markdown
-gem 'kramdown', '~> 1.8.0'
+gem 'kramdown', '~> 1.10.0' #, '~> 1.8.0'
 
 # Pagination
 gem 'will_paginate'#, '~> 3.0.7' #.7 out now

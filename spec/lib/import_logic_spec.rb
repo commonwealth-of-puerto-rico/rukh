@@ -29,6 +29,7 @@ describe ImportLogic do
         if imp.send(:process_CSV_file, File.new(csv_test_file), 3, "bom|utf-8")
           imp.terminate
         end
+        puts "Finishes Import Checking Result"
         expect(Debt.count).to eq(2)
       end
     end
