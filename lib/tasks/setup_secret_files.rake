@@ -1,4 +1,4 @@
-namespace :set_up do
+namespace :setup do
   
   desc "Sets up the secret files after a git clone."
   task :secret_files do
@@ -22,7 +22,7 @@ namespace :set_up do
       secret = `rake secret`
       fail unless $?.exitstatus == 0
       puts secret
-      secret
+      secret.chomp
     end
     
     copy "config/database.yml.txt", "config/database.yml"
@@ -43,7 +43,7 @@ test:
   secret_key_base: #{secret_key}
   salt: #{rand 9}
   secret_token: #{rand 9}
-  devise_secret_key:#{secret_key}
+  devise_secret_key: #{secret_key}
 
 test:
   secret_key_base: #{secret_key}

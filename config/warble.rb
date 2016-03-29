@@ -6,7 +6,7 @@
 
 # Warbler web application assembly configuration file
 Warbler::Config.new do |config|
-  config.jar_name = "rukhpre#{Time.now.to_i}"
+  config.jar_name = "rukh4#{Time.now.to_i}"
   # config.jar_name = "rukh"
   # The double ## does versioning in Tomcat but kills the war in windows
   # config.features = %w(executable)

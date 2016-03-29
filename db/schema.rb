@@ -14,17 +14,17 @@
 ActiveRecord::Schema.define(version: 20140722145656) do
 
   create_table "debtors", force: :cascade do |t|
-    t.string   "name",                 limit: 255
-    t.string   "email",                limit: 255
-    t.string   "tel",                  limit: 255
-    t.string   "ext",                  limit: 255
-    t.string   "address",              limit: 255
-    t.string   "location",             limit: 255
-    t.string   "contact_person",       limit: 255
-    t.string   "contact_person_email", limit: 255
-    t.string   "employer_id_number",   limit: 255
-    t.string   "ss_hex_digest",        limit: 255
-    t.string   "ss_last_four",         limit: 255
+    t.string   "name"
+    t.string   "email"
+    t.string   "tel"
+    t.string   "ext"
+    t.string   "address"
+    t.string   "location"
+    t.string   "contact_person"
+    t.string   "contact_person_email"
+    t.string   "employer_id_number"
+    t.string   "ss_hex_digest"
+    t.string   "ss_last_four"
     t.boolean  "uses_personal_ss"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,34 +35,34 @@ ActiveRecord::Schema.define(version: 20140722145656) do
   add_index "debtors", ["ss_hex_digest"], name: "index_debtors_on_ss_hex_digest", unique: true
 
   create_table "debts", force: :cascade do |t|
-    t.string   "permit_infraction_number",        limit: 255
-    t.decimal  "amount_owed_pending_balance",                 precision: 12, scale: 2
-    t.boolean  "paid_in_full",                                                         default: false
-    t.string   "type_of_debt",                    limit: 255
-    t.date     "original_debt_date",                                                                   null: false
-    t.decimal  "originating_debt_amount",                     precision: 12, scale: 2
+    t.string   "permit_infraction_number"
+    t.decimal  "amount_owed_pending_balance",     precision: 12, scale: 2
+    t.boolean  "paid_in_full",                                             default: false
+    t.string   "type_of_debt"
+    t.date     "original_debt_date",                                                       null: false
+    t.decimal  "originating_debt_amount",         precision: 12, scale: 2
     t.integer  "bank_routing_number"
-    t.string   "bank_name",                       limit: 255
+    t.string   "bank_name"
     t.integer  "bounced_check_number"
-    t.boolean  "in_payment_plan",                                                      default: false
-    t.boolean  "in_administrative_process",                                            default: false
-    t.string   "contact_person_for_transactions", limit: 255
-    t.string   "notes",                           limit: 255
+    t.boolean  "in_payment_plan",                                          default: false
+    t.boolean  "in_administrative_process",                                default: false
+    t.string   "contact_person_for_transactions"
+    t.string   "notes"
     t.integer  "debtor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "fimas_project_id",                limit: 255
-    t.string   "fimas_budget_reference",          limit: 255
-    t.string   "fimas_class_field",               limit: 255
-    t.string   "fimas_program",                   limit: 255
-    t.string   "fimas_fund_code",                 limit: 255
-    t.string   "fimas_account",                   limit: 255
-    t.string   "fimas_id",                        limit: 255
+    t.string   "fimas_project_id"
+    t.string   "fimas_budget_reference"
+    t.string   "fimas_class_field"
+    t.string   "fimas_program"
+    t.string   "fimas_fund_code"
+    t.string   "fimas_account"
+    t.string   "fimas_id"
   end
 
   create_table "fimas_accounts", force: :cascade do |t|
-    t.string   "description", limit: 255
-    t.string   "code",        limit: 255
+    t.string   "description"
+    t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,38 +72,38 @@ ActiveRecord::Schema.define(version: 20140722145656) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "debt_id"
-    t.string   "mailer_id",      limit: 255
-    t.string   "mailer_name",    limit: 255
+    t.string   "mailer_id"
+    t.string   "mailer_name"
     t.datetime "datetime_sent"
     t.text     "mailer_content"
-    t.string   "mailer_subject", limit: 255
+    t.string   "mailer_subject"
     t.text     "email_sent_to"
   end
 
   create_table "user_roles", force: :cascade do |t|
-    t.string   "role_name",  limit: 255, default: "normal_user"
+    t.string   "role_name",  default: "normal_user"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "developer",              default: false
+    t.boolean  "developer",  default: false
     t.integer  "user_id"
   end
 
   add_index "user_roles", ["role_name"], name: "index_user_roles_on_role_name", unique: true
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_role_id",                       default: 1
+    t.integer  "user_role_id",           default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

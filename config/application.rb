@@ -38,7 +38,7 @@ module Rukh
     config.assets.enabled = true
     config.assets.initialize_on_precompile = false
 
-    # Encoding for Windows Tomcat #TODO Verify if actually needed.
+    # Encoding for Windows Tomcat
     config.encoding = 'utf-8'
 
     # Rspec Generators

@@ -1,1 +1,0 @@
-(function(){var t;t=function(){return $("body").css("font-family","Arial")},navigator.userAgent.indexOf("compatible")>-1&&alert("You have Compatibility Mode turned on in IE. Please turn it off.")}).call(this);
