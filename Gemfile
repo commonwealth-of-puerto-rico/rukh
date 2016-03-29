@@ -17,16 +17,16 @@ platforms :jruby do
     #ProcfileHeroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku', 'postgresql'
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.18'
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.20'
     when 'sql'
-      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.18'
+      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.20'
     when 'mysql', 'mariadb'
-      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.18'
+      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.20'
     when 'sqlite'
       gem 'activerecord-jdbcsqlite3-adapter'
     end
   end
-  gem 'activerecord-jdbc-adapter', '~> 1.3.18'
+  gem 'activerecord-jdbc-adapter', '~> 1.3.20'
   gem 'therubyrhino'  # JavaScript library
 end
 
@@ -65,7 +65,7 @@ gem 'jbuilder', '~> 2.3.1'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt'##, '~> 3.1.10'
-gem 'devise'##, '~> 3.5.2'
+gem 'devise'##, '~> 3.5.6'
 
 # Use unicorn as the app server
 # gem 'unicorn'
