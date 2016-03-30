@@ -1,5 +1,26 @@
 namespace :setup do
   
+  desc "Sets up yml files for Travis CI"
+  task :travis do
+    def write_file(file, content)
+      File.open(file, "w+") do |f|
+        f.write content
+      end
+    end
+    def delete_files(filenames=[])
+      filenames.each do |file|
+        FileUtils.rm(file) if File.exist?(file)
+      end
+    end
+    delete_files ["config/database.yml"]
+    write_file "config/database.yml", 
+    'test:
+  adapter: sqlite3
+  database: ":memory:"
+  timeout: 500'
+  
+  end
+  
   desc "Sets up the secret files after a git clone."
   task :secret_files do
     def edit(file, line_old, line_changed)
