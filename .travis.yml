@@ -6,7 +6,8 @@ env:
 script:
   - bundle exec rake setup:travis
   - bundle exec rake db:schema:load 
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rspec spec 
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec spec/ 
   
 # - bundle exec rake db:test:prepare
+# - RAILS_ENV=test bundle exec rake db:migrate --trace
