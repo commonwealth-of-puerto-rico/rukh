@@ -12,8 +12,8 @@ namespace :setup do
         FileUtils.rm(file) if File.exist?(file)
       end
     end
-    delete_files ["config/database.yml"]
-    write_file "config/database.yml", 
+    # delete_files ["config/database.yaml"]
+    write_file "config/database.yaml", 
     'test:
   adapter: sqlite3
   database: ":memory:"
