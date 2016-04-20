@@ -14,6 +14,7 @@ namespace :setup do
     end
     secret = `rake secret`
     # delete_files ["config/database.yaml"]
+    # `export JRUBY_OPTS="-Xcext.enabled=true"`
     write_file "config/database.yaml", 
     'test:
   adapter: sqlite3

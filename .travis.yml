@@ -1,15 +1,11 @@
 language: ruby
 rvm:
   - jruby-9.0.5.0
+jdk:
+  - oraclejdk8
 env:
   - DB=sqlite
 script:
   - bundle exec rake setup:travis
-#  - bundle exec rake db:schema:load
-#  - bundle exec rake db:test:prepare
-#  - bundle exec rake db:migrate RAILS_ENV=test
-#  - bundle exec rspec spec/ --dry-run
   
   
-# - bundle exec rake db:test:prepare
-# - RAILS_ENV=test bundle exec rake db:migrate --trace
