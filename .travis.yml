@@ -5,8 +5,10 @@ jdk:
   - oraclejdk8
 env:
   - DB=sqlite
-script:
+before_script:
   - bundle exec rake setup:travis
+  - bundle exec rake db:create RAILS_ENV=test
+script:
   - bundle exec rake spec
   
   
