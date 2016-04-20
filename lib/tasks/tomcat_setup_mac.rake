@@ -1,4 +1,5 @@
 namespace :tomcat do
+  
   desc "Sets up Mac Homebrew's Tomcat server to handle Rails 4 JRuby apps."
   task :setup_mac do
     def edit(file, line_before, line_changed)
@@ -44,8 +45,25 @@ namespace :tomcat do
 <user username="tomcat" password="tomcat" roles="tomcat, manager-gui"/>
 <user username="both" password="tomcat" roles="tomcat,role1"/>
 <user username="role1" password="tomcat" roles="role1"/>'
+
+    edit "/usr/local/Cellar/tomcat/#{version}/libexec/conf/tomcat-users.xml",
+'<!--
+  <role rolename="tomcat"/>
+  <role rolename="role1"/>
+  <user username="tomcat" password="<must-be-changed>" roles="tomcat"/>
+  <user username="both" password="<must-be-changed>" roles="tomcat,role1"/>
+  <user username="role1" password="<must-be-changed>" roles="role1"/>
+-->',
+'<role rolename="tomcat"/>
+<role rolename="role1"/>
+<user username="tomcat" password="tomcat" roles="tomcat, manager-gui"/>
+<user username="both" password="tomcat" roles="tomcat,role1"/>
+<user username="role1" password="tomcat" roles="role1"/>'
+
     edit "/usr/local/Cellar/tomcat/#{version}/libexec/webapps/manager/WEB-INF/web.xml",
-      '<max-file-size>52428800',  '<max-file-size>104857600'
+      '<max-file-size>52428800</max-file-size>',  '<max-file-size>104857600</max-file-size>'
+    edit "/usr/local/Cellar/tomcat/#{version}/libexec/webapps/manager/WEB-INF/web.xml",
+      '<max-request-size>52428800</max-request-size>',  '<max-request-size>104857600</max-request-size>'
   end
 
   desc "Opens the relevant config files in mac or ubuntu."

@@ -1,13 +1,12 @@
 source 'https://rubygems.org'
-server = ['sql', 'mysql', 'heroku', 'sqlite'][2] #remember to change config/database.yml
+server = ['sql', 'mysql', 'heroku', 'sqlite'][3] #remember to change config/database.yml
 
 #ruby=jruby-9.0.5.0
 ruby '2.2.3', :engine => 'jruby',
   :engine_version => '9.0.5.0'
 gem 'jruby-jars', '9.0.5.0' #Now explicitly calling jruby-jars version
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.5' #4.2.4 tested
+gem 'rails', '4.2.6' 
 
 platforms :jruby do
   group :development do
@@ -17,26 +16,26 @@ platforms :jruby do
     #ProcfileHeroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku', 'postgresql'
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.18'
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.20'
     when 'sql'
-      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.18'
+      gem 'activerecord-jdbcmssql-adapter', '~> 1.3.20'
     when 'mysql', 'mariadb'
-      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.18'
+      gem 'activerecord-jdbcmysql-adapter', '~> 1.3.20'
     when 'sqlite'
       gem 'activerecord-jdbcsqlite3-adapter'
     end
   end
-  gem 'activerecord-jdbc-adapter', '~> 1.3.18'
+  gem 'activerecord-jdbc-adapter', '~> 1.3.20'
   gem 'therubyrhino'  # JavaScript library
 end
 
 # Puma as server
-gem 'puma', '~> 2.15.3'
+gem 'puma'
 
 # For CSV importing and exporting
 gem 'smarter_csv', require: false #, '~> 1.0.19' #1.0.19 is out...
 gem 'cmess', require: false #, '~> 0.4.1'
-gem 'celluloid', '~> 0.17.1.2', require: false
+gem 'celluloid', '~> 0.17.3', require: false
 
 # Use SCSS for stylesheets
 gem 'sass-rails'##, '~> 4.0.3' #5.0.4
@@ -58,28 +57,23 @@ gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.3.1'
+gem 'jbuilder', '~> 2.4.1'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt'##, '~> 3.1.10'
-gem 'devise'##, '~> 3.5.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'devise'##, '~> 3.5.6'
 
 # Time Zone info data (for Rails 4.1)
 gem 'tzinfo-data', '1.2016.4'
 
 # Markdown
-gem 'kramdown', '~> 1.8.0'
+gem 'kramdown', '~> 1.10.0' #, '~> 1.8.0'
 
 # Pagination
-gem 'will_paginate'#, '~> 3.0.7' #.7 out now
+gem 'will_paginate'#, '~> 3.0.7' 
 gem 'bootstrap-will_paginate'
 
 # Console
@@ -88,15 +82,7 @@ gem 'pry'
 # 12 Factor App for Log Stream & Serving Static files - Scaling
 gem 'rails_12factor'
 
-## Used #gem 'magic_comment' to add encoding to all files ##
-group :development do
-  # Some Problem with Spork and rails 4.2
-  # gem 'localeapp', require: false
-  # gem 'guard-rspec', '~> 4.2.8'
-  # gem 'guard-spork', '~> 1.5.1'
-  # gem 'spork-rails', github: 'sporkrb/spork-rails'
-  # gem 'rb-fsevent', '~> 0.9.3'
-end
+## Used #gem 'magic_comment' to add encoding to all files for Windows ##
 
 group :development, :test do
   # RSpec
@@ -132,8 +118,6 @@ group :deploy do
   platforms :jruby do
     # For Warbler changes to config/application.rb and config/environtments/production.rb
     gem 'warbler', '>= 2.0.0', require: false
-    # github: 'rebelwarrior/warbler'
     # gem 'warbler', require: false, github: 'jruby/warbler', branch: '2.x-dev'
-    # Warbler doesn't support jruby-9k yet. Pulling from dev repo (or my repo).
   end
 end

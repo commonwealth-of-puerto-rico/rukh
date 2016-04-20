@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
   root 'static_pages#home'
   
   match '/help',          to: 'static_pages#help',    via: 'get'
@@ -19,7 +18,6 @@ Rails.application.routes.draw do
   
   match '/email',         to: 'debts#preview_email',  via: 'get'
   match '/email/send',    to: 'debts#send_email',     via: 'post' 
-  #TODO refactor w/ debt id in path
 
   resources :debtors 
   resources :debts, except: :destroy do 
@@ -27,6 +25,7 @@ Rails.application.routes.draw do
   end
 
   match '/letter',        to: 'static_pages#modeloSC_724', via: 'get'
+  
   # get "static_pages/home"
   # get "static_pages/help"
   
@@ -34,3 +33,4 @@ Rails.application.routes.draw do
   # resources :status, only :index
 
 end
+
