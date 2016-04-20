@@ -15,12 +15,12 @@ namespace :setup do
     secret = `rake secret`
     # delete_files ["config/database.yaml"]
     # `export JRUBY_OPTS="-Xcext.enabled=true"`
-    write_file "config/database.yaml", 
+    write_file "config/database.yml", 
     'test:
   adapter: sqlite3
   database: ":memory:"
   timeout: 500'
-    write_file "config/secrets.yaml",
+    write_file "config/secrets.yml",
   "test:
   secret_key_base: #{secret}
   salt: 1
