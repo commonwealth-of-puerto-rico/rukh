@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class ImportController < ApplicationController
-  include ActionController::Live
+  include ActionController::Live # for sse (progress bar updatess)
   
   before_action :authenticate_user! ## for DEVISE
   
@@ -13,12 +13,16 @@ class ImportController < ApplicationController
     @import_title = "Importar CSV"
   end
   
-  def stream_update
+  def status
     response.headers['Content-Type'] = 'text/event-stream'
-    sse = SSE.new response.stream
+    sse = SSE.new(response.stream)
     begin
-      sse.write("event: update\n")
+      #on_change is a method to listen to notifications
+      ProgressBarUpdater.on_change do |data|
+        sse.write(data)
+      end
     rescue IOError
+      # Client Disconnected
     ensure
       sse.close
     end

@@ -6,11 +6,29 @@ Devise.setup do |config|
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # config.secret_key = '5da5f03918fea70a77a089a6c693c3c5a1f0fdb059c70fd0137b90f978b5fbc51a874fc67dbcf7dbed4e18edeac3bf03b26f7f46d7393257b2a8da744f842c92'
-  if ENV["SECRET_KEY_BASE"]
+  if ENV["DEVISE_SECRET_KEY_BASE"]
     # For Heroku
-    config.secret_key = ENV["SECRET_KEY_BASE"]
+    config.secret_key = ENV["DEVISE_SECRET_KEY_BASE"]
   else
     config.secret_key = Rails.application.secrets.devise_secret_key
+  end
+  
+  # To Keep Devise 3.5 behavior:
+  Devise.setup do |config|
+    config.email_regexp = /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
+  end
+  Devise.setup do |config|
+    config.reconfirmable = false
+  end
+  Devise.setup do |config|
+    config.sign_out_via = :get
+  end
+  Devise.setup do |config|
+    config.skip_session_storage = []
+  end
+  # New Devise 4.1 behavior 
+  Devise.setup do |config|
+    config.strip_whitespace_keys = [:email]
   end
 
   # ==> Mailer Configuration

@@ -16,13 +16,19 @@ class ProgressBarUpdater
   include Celluloid
   def initialize
     #socket?
+    @status = 0
   end
   def run(actor)
     # stub
     puts "UPDATER!!?"
     puts actor.current_progress
-    true
+    @status = actor.current_progress
   end
+  def on_change
+    yield @status # I don't know how to implement this sans callback
+  end
+  
+
 end
 
 # Import should initiallize an actor obj that gets sent the file name to import

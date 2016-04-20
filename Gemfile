@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku', 'sqlite'][2] #remember to change config/database.yml
 
-#ruby=jruby-9.0.4.0
-ruby '2.2.2', :engine => 'jruby',
-  :engine_version => '9.0.4.0'
-gem 'jruby-jars', '9.0.4.0' #Now explicitly calling jruby-jars version
+#ruby=jruby-9.0.5.0
+ruby '2.2.3', :engine => 'jruby',
+  :engine_version => '9.0.5.0'
+gem 'jruby-jars', '9.0.5.0' #Now explicitly calling jruby-jars version
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5' #4.2.4 tested
+gem 'rails', '~> 4.2.5' #4.2.4 tested
 
 platforms :jruby do
   group :development do
@@ -31,7 +31,7 @@ platforms :jruby do
 end
 
 # Puma as server
-gem 'puma', '~> 2.13.4'
+gem 'puma', '~> 2.15.3'
 
 # For CSV importing and exporting
 gem 'smarter_csv', require: false #, '~> 1.0.19' #1.0.19 is out...
@@ -73,7 +73,7 @@ gem 'devise'##, '~> 3.5.2'
 # gem 'capistrano-rails', group: :development
 
 # Time Zone info data (for Rails 4.1)
-gem 'tzinfo-data'
+gem 'tzinfo-data', '1.2016.4'
 
 # Markdown
 gem 'kramdown', '~> 1.8.0'
@@ -131,9 +131,9 @@ end
 group :deploy do
   platforms :jruby do
     # For Warbler changes to config/application.rb and config/environtments/production.rb
-    # gem 'warbler', '1.4.7', require: false
+    gem 'warbler', '>= 2.0.0', require: false
     # github: 'rebelwarrior/warbler'
-    gem 'warbler', require: false, github: 'jruby/warbler', branch: '2.x-dev'
+    # gem 'warbler', require: false, github: 'jruby/warbler', branch: '2.x-dev'
     # Warbler doesn't support jruby-9k yet. Pulling from dev repo (or my repo).
   end
 end
