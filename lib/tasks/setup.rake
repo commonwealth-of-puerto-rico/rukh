@@ -12,12 +12,19 @@ namespace :setup do
         FileUtils.rm(file) if File.exist?(file)
       end
     end
+    secret = `rake secret`
     # delete_files ["config/database.yaml"]
     write_file "config/database.yaml", 
     'test:
   adapter: sqlite3
   database: ":memory:"
   timeout: 500'
+    write_file "config/secrets.yaml",
+  "test:
+  secret_key_base: #{secret}
+  salt: 1
+  secret_token:  #{secret}
+  devise_secret_key:  #{secret}"
   
   end
   
