@@ -66,6 +66,8 @@ namespace :setup do
 test:
   secret_key_base: 
   salt: 
+  secret_token: 
+  devise_secret_key:
 ",
 "development:
   secret_key_base: #{secret_key}
@@ -76,6 +78,8 @@ test:
 test:
   secret_key_base: #{secret_key}
   salt: #{rand 9}
+  secret_token: #{rand 9}
+  devise_secret_key: #{secret_key}
 "
     edit "config/secrets.yml",
 "production:

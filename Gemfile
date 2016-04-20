@@ -9,7 +9,7 @@ gem 'jruby-jars', '9.0.5.0' #Now explicitly calling jruby-jars version
 gem 'rails', '4.2.6' 
 
 platforms :jruby do
-  group :development do
+  group :development,:test do
     gem 'activerecord-jdbcsqlite3-adapter'
   end
   group :production do
