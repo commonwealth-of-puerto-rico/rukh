@@ -67,7 +67,7 @@ gem 'bcrypt'##, '~> 3.1.10'
 gem 'devise'##, '~> 3.5.6'
 
 # Time Zone info data (for Rails 4.1)
-gem 'tzinfo-data', '1.2016.4'
+gem 'tzinfo-data', '1.2016.4', platforms: :jruby
 
 # Markdown
 gem 'kramdown', '~> 1.10.0' #, '~> 1.8.0'
