@@ -1,6 +1,9 @@
 # -*- encoding : utf-8 -*-
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  
+  # For Travis CI
+  # config.active_record.maintain_test_schema = false 
 
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that
