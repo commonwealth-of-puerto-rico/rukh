@@ -89,8 +89,8 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.1-java)
-    database_cleaner (1.5.2)
-    devise (4.0.0)
+    database_cleaner (1.5.3)
+    devise (4.0.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.1)
@@ -168,7 +168,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0221)
     minitest (5.8.4)
-    multi_json (1.11.2)
+    multi_json (1.11.3)
     nokogiri (1.6.7.2-java)
     nuggets (1.5.0)
     orm_adapter (0.5.0)
@@ -306,7 +306,6 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
-  github-pages
   guard-jruby-rspec
   haml-rails
   jbuilder (~> 2.4.1)
@@ -330,7 +329,6 @@ DEPENDENCIES
   turbolinks
   tzinfo-data (= 1.2016.4)
   uglifier (>= 2.7.2)
-  unicorn
   warbler (>= 2.0.0)
   will_paginate
 

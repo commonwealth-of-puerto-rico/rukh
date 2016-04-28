@@ -38,8 +38,8 @@ gem 'cmess', require: false #, '~> 0.4.1'
 gem 'celluloid', '~> 0.17.3', require: false
 
 # Use SCSS for stylesheets
-gem 'sass-rails'##, '~> 4.0.3' #5.0.4
-gem 'bootstrap-sass'#, '~> 3.2.0.2' # is available 3.3.5.1
+gem 'sass-rails'
+gem 'bootstrap-sass'
 gem 'haml-rails'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -48,19 +48,17 @@ gem 'uglifier', '>= 2.7.2'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 
-# Use jquery as the JavaScript library
+# Use jquery as the JavaScript library jquery-ui as the widget library
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 5.0.5'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# Turbolinks makes following links in your web application faster. 
+# Read more: https://github.com/rails/turbolinks
 # Turbo links also affect native load bars in web-browsers
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.4.1'
-
-# bundle exec rake doc:rails generates the API under doc/api.
-# gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt'##, '~> 3.1.10'
@@ -70,7 +68,7 @@ gem 'devise'##, '~> 3.5.6'
 gem 'tzinfo-data', '1.2016.4', platforms: :jruby
 
 # Markdown
-gem 'kramdown', '~> 1.10.0' #, '~> 1.8.0'
+gem 'kramdown', '~> 1.10.0' 
 
 # Pagination
 gem 'will_paginate'#, '~> 3.0.7' 
@@ -86,12 +84,11 @@ gem 'rails_12factor'
 
 group :development, :test do
   # RSpec
-  gem 'rspec'#, '~> 2.99.0'
-  gem 'rspec-rails'#, '~> 2.99.0'
-  gem 'factory_girl_rails'#, '~> 4.2.1'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
   # Guard
   gem 'guard-jruby-rspec', require: false, platform: :jruby
-  # gem 'rb-fsevent' if `uname` =~ /Darwin/
 end
 
 group :test do
@@ -102,22 +99,19 @@ group :test do
   gem 'launchy', require: false
 end
 
+group :deploy do
+  platforms :jruby do
+    # For Warbler see: config/application.rb and config/environtments/production.rb
+    gem 'warbler', '>= 2.0.0', require: false
+  end
+end
+
 platforms :ruby do
   group :development do
     gem 'sqlite3'
-    gem 'github-pages', require: false  # Jekyll Integration
   end
   group :production do
     gem 'therubyracer' # JavaScript library
     gem 'pg'           # Heroku db (PostgresQL)
-    gem 'unicorn'      # Use unicorn as the app server
-  end
-end
-
-group :deploy do
-  platforms :jruby do
-    # For Warbler changes to config/application.rb and config/environtments/production.rb
-    gem 'warbler', '>= 2.0.0', require: false
-    # gem 'warbler', require: false, github: 'jruby/warbler', branch: '2.x-dev'
   end
 end
