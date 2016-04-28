@@ -95,7 +95,6 @@ group :test do
   # Capybara (Integration Tests)
   gem 'faker'
   gem 'capybara'
-  gem 'database_cleaner'
   gem 'launchy', require: false
 end
 

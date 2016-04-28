@@ -7,30 +7,28 @@ require 'ImportLogic'
 # Import sample CSV
 # Verify against test db
 
-csv_test_file = File.expand_path("./spec/lib/test.csv")
-
 describe ImportLogic do
 
   let(:imp) { ImportLogic.new(nil) }
+  let(:csv_test_file) { File.expand_path("./spec/lib/test.csv") }
 
   describe "Reads file" do
+    before do
+    end
+    after do
+    end
 
-    # after do
-    #   if (Debt.any? or Debtor.any?)
-    #     puts "reseting DB ==> super slow"
-    #     if `rake db:reset RAILS_ENV="test"`
-    #       puts "reset DB ==> super slow"
-    #     end
-    #   end
-    # end
     it "process CSV file properly" do
-      skip "This Test Can only be run in isolation."
+      skip "This Test Can only be run in isolation. Because it uses Threads. And locks the SQlite db."
+      
       if `rake db:reset RAILS_ENV="test"`
+        
         if imp.send(:process_CSV_file, File.new(csv_test_file), 3, "bom|utf-8")
           imp.terminate
         end
         puts "Finishes Import Checking Result"
         expect(Debt.count).to eq(2)
+        
       end
     end
 
