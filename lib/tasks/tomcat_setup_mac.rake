@@ -104,9 +104,8 @@ namespace :tomcat do
       end
     when :ubuntu
       # Opens the configuration files for all tomcat versions installed.
-      tomcat_vers = Dir.entries("/etc/").select {/tomcat[0-9]+/}
-      editor = system("atom -v") ? "atom" : "nano"
-      puts("This task works better with Github's Atom text editor installed.") unless editor["atom"]
+      tomcat_vers = Dir.entries("/etc/").select {|x| x.match(/tomcat[0-9]+/) }
+      editor = "nano"
       tomcat_vers.each do |tomcat_ver|
         if Dir.exists?("/usr/share/#{tomcat_ver}-admin")
           system "#{editor} /usr/share/#{tomcat_ver}-admin/manager/WEB-INF/web.xml"
@@ -116,7 +115,8 @@ namespace :tomcat do
         if Dir.exists?("atom /etc/default/#{tomcat_ver}")
           system "#{editor} /etc/default/#{tomcat_ver}/defaults.template"
         else
-          system "#{editor} /etc/default/#{tomcat_ver}"
+          puts "FYI: /etc/defalut/#{tomcat_ver} requires previledges."
+          system "sudoedit /etc/default/#{tomcat_ver}"
         end
         puts "FYI: /etc/#{tomcat_ver}/tomcat-users.xml requires previledges."
         system "sudoedit /etc/#{tomcat_ver}/tomcat-users.xml"
