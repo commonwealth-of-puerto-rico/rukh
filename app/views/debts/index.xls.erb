@@ -39,7 +39,7 @@
         <Cell><Data ss:Type="Date"><%= factura.original_debt_date %></Data></Cell>
         <Cell><Data ss:Type="String"><%= factura.originating_debt_amount  %></Data></Cell>
         <Cell><Data ss:Type="Number"><%= factura.debtor_id %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= factura.find_debtor_name(factura.debtor_id) %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= factura.find_debtor_attr(factura.debtor_id, [:name]) %></Data></Cell>
         <Cell><Data ss:Type="String"><%= factura.in_payment_plan %></Data></Cell>
         <Cell><Data ss:Type="String"><%= factura.contact_person_for_transactions %></Data></Cell>
         <Cell><Data ss:Type="String"><%= factura.notes %></Data></Cell>

@@ -108,7 +108,7 @@ namespace :tomcat do
       editor = "nano"
       tomcat_vers.each do |tomcat_ver|
         if Dir.exists?("/usr/share/#{tomcat_ver}-admin")
-          system "#{editor} /usr/share/#{tomcat_ver}-admin/manager/WEB-INF/web.xml"
+          system "sudoedit /usr/share/#{tomcat_ver}-admin/manager/WEB-INF/web.xml"
         else
           puts "missing #{tomcat_ver}-admin package"
         end
