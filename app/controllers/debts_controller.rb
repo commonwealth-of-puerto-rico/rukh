@@ -58,7 +58,7 @@ class DebtsController < ApplicationController
   def index
     assign_current_user
     case params['format']
-    when 'csv', 'xls'
+    when 'csv', 'xls', 'xlsx'
       @debts_all = Debt.all()
     else
       @debts_all = Debt.paginate(page: params[:page], per_page: 10)
@@ -66,6 +66,7 @@ class DebtsController < ApplicationController
     respond_to do |format|
       format.html
       format.xls 
+      format.xlsx
       format.csv {send_data @debts_all.to_csv}
     end
   end

@@ -7,9 +7,11 @@
       %h3
         Archivos de todas las facturas:
       %a{:href => "#{url_for debts_path(format: 'xls')}", :class => "btn btn-info"}
-        Bajar datos en Excel
+        Bajar datos en Excel(xls) para Google Docs
       %a{:href => "#{url_for debts_path(format: 'csv')}", :class => "btn btn-info"}
         Bajar datos en CSV
+      %a{:href => "#{url_for debts_path(format: 'xlsx')}", :class => "btn btn-info"}
+        Bajar datos en Excel
 .row
   %aside.span6
     %section

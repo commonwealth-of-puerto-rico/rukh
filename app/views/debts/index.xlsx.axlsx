@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Facturas") do |sheet|
+  @debts_all.each do |debt|
+    sheet.add_row [debt.id, debt.find_debtor_attr(debt.debtor_id, [:name])]
+  end
+end
+

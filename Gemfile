@@ -74,6 +74,11 @@ gem 'kramdown', '~> 1.10.0'
 gem 'will_paginate'#, '~> 3.0.7' 
 gem 'bootstrap-will_paginate'
 
+# Excel output
+gem 'rubyzip', '= 1.0.0'
+gem 'axlsx', '= 2.0.1'
+gem 'axlsx_rails'
+
 # Console
 gem 'pry'
 
