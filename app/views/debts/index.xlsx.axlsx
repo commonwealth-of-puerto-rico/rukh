@@ -1,7 +1,37 @@
 wb = xlsx_package.workbook
+blue = wb.styles.add_style :color => "#00FF00"
 wb.add_worksheet(name: "Facturas") do |sheet|
-  @debts_all.each do |debt|
-    sheet.add_row [debt.id, debt.find_debtor_attr(debt.debtor_id, [:name])]
+  sheet.add_row [
+    "Permit Infraction Number",
+    "Amount Owed Pending Balance",
+    "Paid in Full?",
+    "Type of Debt",
+    "Original Debt Date",
+    "Originating Debt Amount",
+    "Debtor id",
+    "Debtor Name",
+    "In payment plan?",
+    "Contact Person",
+    "Notes",
+    "Created At",
+    "Last Updated At"
+    ], style: blue 
+  @debts_all.each do |factura|
+    sheet.add_row [
+      factura.id, 
+      factura.permit_infraction_number,
+      factura.amount_owed_pending_balance,
+      factura.paid_in_full,
+      factura.type_of_debt,
+      factura.original_debt_date,
+      factura.originating_debt_amount,
+      factura.debtor_id,
+      factura.find_debtor_attr(factura.debtor_id, [:name]).join(" "),
+      factura.in_payment_plan,
+      factura.contact_person_for_transactions,
+      factura.notes,
+      factura.created_at,
+      factura.updated_at
+    ]
   end
 end
-

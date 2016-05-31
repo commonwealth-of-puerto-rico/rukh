@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku', 'sqlite'][3] #remember to change config/database.yml
 
 #ruby=jruby-9.0.5.0
-ruby '2.2.3', :engine => 'jruby',
-  :engine_version => '9.0.5.0'
-gem 'jruby-jars', '9.0.5.0' #Now explicitly calling jruby-jars version
+ruby '2.3.0', :engine => 'jruby',
+  :engine_version => '9.1.2.0'
+gem 'jruby-jars', '9.1.2.0' #Now explicitly calling jruby-jars version
 
 gem 'rails', '4.2.6' 
 
@@ -31,11 +31,6 @@ end
 
 # Puma as server
 gem 'puma'
-
-# For CSV importing and exporting
-gem 'smarter_csv', require: false #, '~> 1.0.19' #1.0.19 is out...
-gem 'cmess', require: false #, '~> 0.4.1'
-gem 'celluloid', '~> 0.17.3', require: false
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -78,6 +73,14 @@ gem 'bootstrap-will_paginate'
 gem 'rubyzip', '= 1.0.0'
 gem 'axlsx', '= 2.0.1'
 gem 'axlsx_rails'
+
+# Excel importing
+gem 'roo'
+
+# For CSV importing and exporting
+gem 'smarter_csv', require: false #, '~> 1.0.19' #1.0.19 is out...
+gem 'cmess', require: false #, '~> 0.4.1'
+gem 'celluloid', '~> 0.17.3', require: false
 
 # Console
 gem 'pry'
