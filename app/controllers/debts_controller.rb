@@ -5,13 +5,13 @@ class DebtsController < ApplicationController
   ## Resource Actions ##
   def new
     assign_current_user
-    @debtor = Debtor.find_by_id(params[:debtor_id])#something w/ params
+    @debtor = Debtor.find_by_id(params[:debtor_id])
     @debt = Debt.new
   end
   
   def edit
     assign_current_user
-    @debt = Debt.find_by_id(params[:id]) #something w/ params
+    @debt = Debt.find_by_id(params[:id])
     @debtor = Debtor.find_by_id(@debt.debtor_id)
   end
   
@@ -40,7 +40,7 @@ class DebtsController < ApplicationController
   
   def update
     assign_current_user
-    @debt = Debt.find_by_id(params[:id]) #something w/ params
+    @debt = Debt.find_by_id(params[:id])
     @debtor = Debtor.find_by_id(@debt.debtor_id)
     @debt.permit_infraction_number = strip_hyphens(@debt.permit_infraction_number)
     if @debt.update_attributes(update_debt_params) && @debt.valid?

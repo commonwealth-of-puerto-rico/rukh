@@ -40,6 +40,7 @@ class ImportLogic
   include ImportSupport
 
   @@debt_headers_array = [
+       :id,
        :permit_infraction_number,
        :amount_owed_pending_balance,
        :paid_in_full,
@@ -58,7 +59,7 @@ class ImportLogic
        :fimas_class_field, :fimas_program,
        :fimas_fund_code,   :fimas_account, :fimas_id
     ]
-  @@debtor_headers_array = [:employer_id_number,:name,:tel,:email,:address,:location,:contact_person]
+  @@debtor_headers_array = [:id, :employer_id_number,:name,:tel,:email,:address,:location,:contact_person]
 
   attr_reader :exit_status, :result
 
@@ -126,23 +127,40 @@ class ImportLogic
   end
 
   def process_record_row(record, options={})
-    if debtor_in_db_already(record)
-      fail "Updating Records not implemented" # Updating record #Requires updated_at field check
+    debtor_id = debtor_in_db_already(record)
+    debt_id = record.fetch(:id, 0).to_i
+    
+    if debtor_id 
+      if (not record.fetch(:id).strip.downcase['null']) && 
+          Debt.find_by_id(debt_id)
+        ## Update action overwrites
+        ## Update Debt
+        record[:debtor_id] = debtor_id.to_i
+        update_debt_record(record, {update: true, id: debt_id}) 
+      elsif (not record.fetch(:id).strip.downcase['null'])
+        record[:debtor_id] = debtor_id.to_i
+        store_debt_record(record)
+      else
+        #TODO change fails into Flash message by using ImportError
+        fail "Can't Update Record without matching IDs" 
+      end
     elsif record[:debtor_id] &&
         !record.fetch(:debtor_id).strip.downcase['null']
       ## TODO: merge hash to add missing keys
-      ## TODO:Blank out nil values to empty strings:
+      ## TODO: Blank out nil values to empty strings:
       ## TODO # debtor_record = add_missing_keys(record, debtor_array)
 
       ## Store Debtor
       debtor_record = record
       debtor_record[:name] = record[:debtor_name]
+      # Debtor update not working.
       debtor = store_debtor_record(debtor_record)
 
       ## Store Debt
       record[:debtor_id] = debtor.id
       store_debt_record(record)
     else
+      #TODO change fails into Flash message by using ImportError
       fail "Can't understand import record: #{record}"
     end
   end
@@ -150,19 +168,43 @@ class ImportLogic
   def store_debt_record(record, debt_array=@@debt_headers_array)
     store_one_record(record, debt_array, Debt)
   end
+  
+  def update_debt_record(record, id, debt_array=@@debt_headers_array)
+    store_one_record(record, debt_array, Debt, {update: true, id: id, debt: true})
+  end
+  
+  def update_debtor_record(record, debtor_id, debtor_array=@@debtor_headers_array)
+    store_one_record(record, debtor_array, Debtor, 
+      {update: true, id: debtor_id, debtor: true}) {|debtor_record| debtor_record[:contact_person] = debtor_record[:name] }
+  end
 
   def store_debtor_record(record, debtor_array=@@debtor_headers_array)
     store_one_record(record, debtor_array,
-      Debtor) {|debtor_record| debtor_record[:contact_person] = debtor_record[:name]}
+      Debtor) {|debtor_record| debtor_record[:contact_person] = debtor_record[:name] }
   end
 
-  def store_one_record(record, inc_array, model, &block)
+  def store_one_record(record, inc_array, model, options={create: true}, &block)
     clean_record = delete_all_keys_except(record, inc_array)
+    # id = record.fetch(:id).to_i
     yield(clean_record) if block
-    model.create(clean_record)
+    case 
+    when options[:create]
+      model.create(clean_record) 
+    when options[:update] 
+      case
+      when options[:debt]
+        id = record[:id] 
+      when
+        id = record[:debtor_id]
+      end
+      up_record = {id => clean_record}
+      model.update(id, clean_record) 
+    else
+      fail "No valid option given"
+    end
     #if succeeds...
   end
-
+  
   def debtor_in_db_already(record, db_Debtor=Debtor)
     puts "Verifying if record contains a debtor already in db"
     case

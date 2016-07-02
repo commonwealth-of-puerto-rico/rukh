@@ -1,17 +1,18 @@
 -#coding: utf-8
 - provide(:title, "Facturas")
-%h1 Facturas:
+.row
+  %h1 Facturas:
 .row
   %aside.span6
     %section
       %h3
         Archivos de todas las facturas:
-      %a{:href => "#{url_for debts_path(format: 'xls')}", :class => "btn btn-info"}
-        Bajar datos en Excel(xls) para Google Docs
-      %a{:href => "#{url_for debts_path(format: 'csv')}", :class => "btn btn-info"}
-        Bajar datos en CSV
       %a{:href => "#{url_for debts_path(format: 'xlsx')}", :class => "btn btn-info"}
         Bajar datos en Excel
+      %a{:href => "#{url_for debts_path(format: 'xls')}", :class => "btn btn-info"}
+        Bajar datos en xls (LibreOffice)
+      %a{:href => "#{url_for debts_path(format: 'csv')}", :class => "btn btn-info"}
+        Bajar datos en CSV
 .row
   %aside.span6
     %section
@@ -31,4 +32,8 @@
           = render partial: 'list_all_debts', :locals => { :debt => debt_item }
         = will_paginate(@debts_all)
         /
-          
+.row
+  %aside.span6
+    %section
+      %a{href: "/import", class: "btn btn-default alert-info"}
+        Importar CSV
