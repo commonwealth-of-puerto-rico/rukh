@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku', 'sqlite'][3] #remember to change config/database.yml
 
-#ruby=jruby-9.1.5.0
+#ruby=jruby-9.1.6.0
 ruby '2.3.1', :engine => 'jruby',
-  :engine_version => '9.1.5.0'
-gem 'jruby-jars', '9.1.5.0' #Now explicitly calling jruby-jars version
+  :engine_version => '9.1.6.0'
+gem 'jruby-jars', '9.1.6.0' #Now explicitly calling jruby-jars version
 
 gem 'rails', '4.2.7.1' 
 
@@ -109,7 +109,7 @@ end
 group :deploy do
   platforms :jruby do
     # For Warbler see: config/application.rb and config/environtments/production.rb
-    gem 'warbler', '>= 2.0.0', require: false
+    gem 'warbler', '>= 2.0.4', require: false
   end
 end
 

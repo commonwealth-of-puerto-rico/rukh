@@ -41,9 +41,10 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.4.0)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     arel (6.0.3)
-    autoprefixer-rails (6.4.0.3)
+    autoprefixer-rails (6.5.3.1)
       execjs
     axlsx (2.0.1)
       htmlentities (~> 4.3.1)
@@ -59,7 +60,7 @@ GEM
     bootstrap-will_paginate (0.0.10)
       will_paginate
     builder (3.2.2)
-    capybara (2.8.1)
+    capybara (2.11.0)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -94,7 +95,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.10.0)
+    coffee-script-source (1.11.1)
     concurrent-ruby (1.0.2-java)
     devise (4.2.0)
       bcrypt (~> 3.0)
@@ -153,7 +154,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
-    jruby-jars (9.1.5.0)
+    jruby-jars (9.1.6.0)
     jruby-rack (1.1.20)
     json (1.8.3-java)
     kramdown (1.10.0)
@@ -173,9 +174,9 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    minitest (5.9.0)
+    minitest (5.10.1)
     multi_json (1.12.1)
-    nokogiri (1.6.8-java)
+    nokogiri (1.6.8.1-java)
     nuggets (1.5.0)
     orm_adapter (0.5.0)
     pry (0.10.4-java)
@@ -183,8 +184,9 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
       spoon (~> 0.0)
-    puma (3.6.0-java)
-    rack (1.6.4)
+    public_suffix (2.0.4)
+    puma (3.6.2-java)
+    rack (1.6.5)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.7.1)
@@ -216,8 +218,8 @@ GEM
       activesupport (= 4.2.7.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (11.2.2)
-    rb-fsevent (0.9.7)
+    rake (11.3.0)
+    rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     rb-kqueue (0.2.4)
@@ -232,7 +234,7 @@ GEM
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
       rspec-mocks (~> 3.5.0)
-    rspec-core (3.5.2)
+    rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -250,7 +252,7 @@ GEM
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
     ruby-ole (1.2.12)
-    ruby_parser (3.8.2)
+    ruby_parser (3.8.3)
       sexp_processor (~> 4.1)
     rubyzip (1.0.0)
     safe_yaml (1.0.4)
@@ -263,10 +265,10 @@ GEM
       tilt (>= 1.1, < 3)
     sexp_processor (4.7.0)
     slop (3.6.0)
-    smarter_csv (1.1.0)
-    spoon (0.0.4)
+    smarter_csv (1.1.1)
+    spoon (0.0.6)
       ffi
-    spreadsheet (1.1.3)
+    spreadsheet (1.1.4)
       ruby-ole (>= 1.0)
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
@@ -278,10 +280,10 @@ GEM
     therubyrhino (2.0.4)
       therubyrhino_jar (>= 1.7.3)
     therubyrhino_jar (1.7.6)
-    thor (0.19.1)
+    thor (0.19.4)
     thread_safe (0.3.5-java)
     tilt (2.0.5)
-    timers (4.1.1)
+    timers (4.1.2)
       hitimes
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
@@ -290,16 +292,16 @@ GEM
       thread_safe (~> 0.1)
     tzinfo-data (1.2016.4)
       tzinfo (>= 1.0.0)
-    uglifier (3.0.2)
+    uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
-    warbler (2.0.3)
+    warbler (2.0.4)
       jruby-jars (>= 9.0.0.0)
       jruby-rack (>= 1.1.1, < 1.3)
       rake (>= 10.1.0)
       rubyzip (~> 1.0, < 1.4)
     warden (1.2.6)
       rack (>= 1.0)
-    will_paginate (3.1.0)
+    will_paginate (3.1.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -326,7 +328,7 @@ DEPENDENCIES
   jbuilder (~> 2.4.1)
   jquery-rails
   jquery-ui-rails (~> 5.0.5)
-  jruby-jars (= 9.1.5.0)
+  jruby-jars (= 9.1.6.0)
   kramdown (~> 1.10.0)
   launchy
   pg
@@ -346,11 +348,11 @@ DEPENDENCIES
   turbolinks
   tzinfo-data (= 1.2016.4)
   uglifier (>= 2.7.2)
-  warbler (>= 2.0.0)
+  warbler (>= 2.0.4)
   will_paginate
 
 RUBY VERSION
-   ruby 2.3.0p0 (jruby 9.1.2.0)
+   ruby 2.3.1p0 (jruby 9.1.6.0)
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
