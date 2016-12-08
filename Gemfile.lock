@@ -336,6 +336,7 @@ DEPENDENCIES
   puma
   rails (= 4.2.7.1)
   rails_12factor
+  rake
   roo
   rspec
   rspec-rails
