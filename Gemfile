@@ -3,8 +3,8 @@ server = ['sql', 'mysql', 'heroku', 'sqlite'][3] #remember to change config/data
 
 #ruby=jruby-9.1.6.0
 ruby '2.3.1', :engine => 'jruby',
-  :engine_version => '9.1.6.0'
-gem 'jruby-jars', '9.1.6.0' #Now explicitly calling jruby-jars version
+  :engine_version => '9.1.7.0'
+gem 'jruby-jars', '9.1.7.0' #Now explicitly calling jruby-jars version
 
 gem 'rails', '4.2.7.1' 
 
@@ -41,7 +41,7 @@ gem 'haml-rails'
 gem 'uglifier', '>= 2.7.2'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2' #'~> 4.1.0'
 
 # Use jquery as the JavaScript library jquery-ui as the widget library
 gem 'jquery-rails'
@@ -60,7 +60,7 @@ gem 'bcrypt'##, '~> 3.1.10'
 gem 'devise'##, '~> 3.5.6'
 
 # Time Zone info data (for Rails 4.1)
-gem 'tzinfo-data', '1.2016.4', platforms: :jruby
+gem 'tzinfo-data', '1.2016.10', platforms: :jruby
 
 # Markdown
 gem 'kramdown', '~> 1.10.0' 
