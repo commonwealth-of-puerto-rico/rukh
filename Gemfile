@@ -22,7 +22,7 @@ platforms :jruby do
     when 'mysql', 'mariadb'
       gem 'activerecord-jdbcmysql-adapter', '~> 1.3.20'
     when 'sqlite'
-      # gem 'activerecord-jdbcsqlite3-adapter'
+      # gem 'activerecord-jdbcsqlite3-adapter' 
     end
   end
   gem 'activerecord-jdbc-adapter', '~> 1.3.20'
