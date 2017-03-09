@@ -16,7 +16,7 @@ platforms :jruby do
     #ProcfileHeroku: web: bundle exec rails server puma -p $PORT -e $RACK_ENV
     case server
     when 'heroku', 'postgresql'
-      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.20'
+      gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.20' #TODO pull rails 5 version off github
     when 'sql'
       gem 'activerecord-jdbcmssql-adapter', '~> 1.3.20'
     when 'mysql', 'mariadb'
@@ -70,8 +70,8 @@ gem 'will_paginate'#, '~> 3.0.7'
 gem 'bootstrap-will_paginate'
 
 # Excel output
-gem 'rubyzip', '= 1.0.0'
-gem 'axlsx', '= 2.0.1'
+gem 'rubyzip'#, '= 1.0.0'
+gem 'axlsx'#, '= 2.0.1'
 gem 'axlsx_rails'
 
 # Excel importing

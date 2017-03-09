@@ -30,6 +30,7 @@
 config/secrets.yml
 config/database.yml
 .secret
+.gitconfig
 
 #Ignore Sample Data
 /spec/factories/*.csv
