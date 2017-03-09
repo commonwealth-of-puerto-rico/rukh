@@ -161,7 +161,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
-    jruby-jars (9.1.7.0)
+    jruby-jars (9.1.8.0)
     jruby-rack (1.1.20)
     json (1.8.6-java)
     kramdown (1.10.0)
@@ -336,7 +336,7 @@ DEPENDENCIES
   jbuilder (~> 2.4.1)
   jquery-rails
   jquery-ui-rails (~> 5.0.5)
-  jruby-jars (= 9.1.7.0)
+  jruby-jars (= 9.1.8.0)
   kramdown (~> 1.10.0)
   launchy
   pg
@@ -361,7 +361,7 @@ DEPENDENCIES
   will_paginate
 
 RUBY VERSION
-   ruby 2.3.1p0 (jruby 9.1.7.0)
+   ruby 2.3.1p0 (jruby 9.1.8.0)
 
 BUNDLED WITH
-   1.13.7
+   1.14.6
