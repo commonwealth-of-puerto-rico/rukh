@@ -2,7 +2,6 @@ language: ruby
 rvm:
   - jruby-9.1.7.0
 sudo: required
-dist: trusty
 addons:
   apt:
     packages:
@@ -22,7 +21,7 @@ before_script:
   - cat config/database.yml
   - bundle exec rake db:migrate RAILS_ENV=test
 script:
-  - bundle exec rspec spec RAILS_ENV=test
+  - bundle exec rspec spec
 
 
 # language: ruby
