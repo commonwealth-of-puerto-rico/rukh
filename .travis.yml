@@ -1,21 +1,28 @@
 language: ruby
 rvm:
   - jruby-9.1.7.0
+sudo: required
+dist: trusty
+addons:
+  apt:
+    packages:
+      - haveged
 jdk:
   - oraclejdk8
 gemfile:
   config/Gemfile.ci
 env:
   - DB=sqlite
+bundler_args: --without production
 before_script:
   - bundle exec rake setup:travis
   - bundle exec rake db:create RAILS_ENV=test
+  - bundle exec rake db:setup RAILS_ENV=test
   # - bundle exec rake db:schema:load RAILS_ENV=test
   - cat config/database.yml
   - bundle exec rake db:migrate RAILS_ENV=test
 script:
-  - bundle exec rspec spec
-
+  - bundle exec rspec spec RAILS_ENV=test
 
 
 # language: ruby
