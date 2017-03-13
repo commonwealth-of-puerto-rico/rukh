@@ -88,7 +88,7 @@ class Debtor < ActiveRecord::Base
     end
   end
   
-  protected
+  
   def last_four(ss_num)
     Debtor.remove_hyphens(ss_num).split('')[-4..-1].join('')
   end
