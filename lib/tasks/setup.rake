@@ -61,14 +61,10 @@ namespace :setup do
 "development:
   secret_key_base: 
   salt: 
-  secret_token: 
-  devise_secret_key:
 
 test:
   secret_key_base: 
   salt: 
-  secret_token: 
-  devise_secret_key:
 ",
 "development:
   secret_key_base: #{secret_key}
@@ -84,8 +80,8 @@ test:
 "
     edit "config/secrets.yml",
 "production:
-  secret_key_base: 
-  salt: 0",
+  secret_key_base: <%= ENV[\"SECRET_KEY_BASE\"] %>
+  salt: 192",
 "production:
   secret_key_base: #{secret_key}
   salt: #{rand 9}"
