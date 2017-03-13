@@ -41,7 +41,7 @@ gem 'haml-rails'
 gem 'uglifier', '>= 2.7.2'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.2' #'~> 4.1.0'
+gem 'coffee-rails'  , '~> 4.2' #'~> 4.1.0'
 
 # Use jquery as the JavaScript library jquery-ui as the widget library
 gem 'jquery-rails'
@@ -53,7 +53,7 @@ gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.4.1'
+gem 'jbuilder'#, '~> 2.4.1'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt'##, '~> 3.1.10'
@@ -63,7 +63,7 @@ gem 'devise'##, '~> 3.5.6'
 gem 'tzinfo-data', '1.2016.10', platforms: :jruby
 
 # Markdown
-gem 'kramdown', '~> 1.10.0' 
+gem 'kramdown', '>= 1.10.0' 
 
 # Pagination
 gem 'will_paginate'#, '~> 3.0.7' 
@@ -115,12 +115,3 @@ group :deploy do
   end
 end
 
-platforms :ruby do
-  group :development do
-    gem 'sqlite3'
-  end
-  group :production do
-    gem 'therubyracer' # JavaScript library
-    gem 'pg'           # Heroku db (PostgresQL)
-  end
-end

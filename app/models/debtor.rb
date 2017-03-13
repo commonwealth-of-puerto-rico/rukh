@@ -98,6 +98,8 @@ class Debtor < ActiveRecord::Base
     Digest::SHA1.hexdigest( Debtor.salt(Debtor.remove_hyphens(token) ).to_s)
   end
   def Debtor.salt(token, salt=Rails.application.secrets.salt) #salt stored in secrets.yml
+    fail(ArgumentError, "Nil propagation, token not set", caller) if token.nil? 
+    fail(ArgumentError, "Rails Salt not set", caller) if salt.nil? 
     token.to_i + salt
   end
   def Debtor.guard_length(token, length=9) #should be in lib
