@@ -56,7 +56,7 @@ class Debt < ActiveRecord::Base  #TODO create migration to prevent nulls on orig
     end
   end
 
-  private
+  protected
     #For portability of code only.
     def self.to_plain_csv(options = {}, &block) 
       require 'csv'

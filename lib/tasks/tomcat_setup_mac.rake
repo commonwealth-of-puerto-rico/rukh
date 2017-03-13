@@ -107,12 +107,12 @@ namespace :tomcat do
       tomcat_vers = Dir.entries("/etc/").select {|x| x.match(/tomcat[0-9]+/) }
       editor = "nano"
       tomcat_vers.each do |tomcat_ver|
-        if Dir.exists?("/usr/share/#{tomcat_ver}-admin")
+        if Dir.exist?("/usr/share/#{tomcat_ver}-admin")
           system "sudoedit /usr/share/#{tomcat_ver}-admin/manager/WEB-INF/web.xml"
         else
           puts "missing #{tomcat_ver}-admin package"
         end
-        if Dir.exists?("atom /etc/default/#{tomcat_ver}")
+        if Dir.exist?("atom /etc/default/#{tomcat_ver}")
           system "#{editor} /etc/default/#{tomcat_ver}/defaults.template"
         else
           puts "FYI: /etc/defalut/#{tomcat_ver} requires previledges."

@@ -14,22 +14,14 @@ Devise.setup do |config|
   end
   
   # To Keep Devise 3.5 behavior:
-  Devise.setup do |config|
-    config.email_regexp = /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
-  end
-  Devise.setup do |config|
-    config.reconfirmable = false
-  end
-  Devise.setup do |config|
-    config.sign_out_via = :get
-  end
-  Devise.setup do |config|
-    config.skip_session_storage = []
-  end
+  config.email_regexp = /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
+
+  config.reconfirmable = false
+  config.sign_out_via = :get
+  config.skip_session_storage = []
+  
   # New Devise 4.1 behavior 
-  Devise.setup do |config|
-    config.strip_whitespace_keys = [:email]
-  end
+  config.strip_whitespace_keys = [:email]
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,

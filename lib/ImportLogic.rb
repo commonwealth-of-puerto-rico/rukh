@@ -98,7 +98,7 @@ class ImportLogic
 
   ## Main import method. Uses an active record transaction (if it fails the whole thing
   ## is rolled back) to prevent partial importing
-  def process_CSV_file(file, total_lines=0, charset="bom|utf-8")
+  def process_CSV_file(file, _total_lines=0, charset="bom|utf-8")
     begin
       start_time = Time.now # setting up time keeping
       ActiveRecord::Base.transaction do
@@ -126,7 +126,7 @@ class ImportLogic
     end
   end
 
-  def process_record_row(record, options={})
+  def process_record_row(record, _options={})
     debtor_id = debtor_in_db_already(record)
     debt_id = record.fetch(:id, 0).to_i
     
@@ -194,10 +194,10 @@ class ImportLogic
       case
       when options[:debt]
         id = record[:id] 
-      when
+      else 
         id = record[:debtor_id]
       end
-      up_record = {id => clean_record}
+      # up_record = {id => clean_record}
       model.update(id, clean_record) 
     else
       fail "No valid option given"

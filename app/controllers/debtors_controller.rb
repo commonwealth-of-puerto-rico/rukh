@@ -74,9 +74,10 @@ class DebtorsController < ApplicationController
     @debtors = params[:search].blank? ?  
       Debtor.paginate(page: params[:page], per_page: 10) : 
       Debtor.search(params[:search])
-    @color_code_proc = ->(debtor_debts){debtor_debts.collect do |debt|
-      debt.paid_in_full ? 0 : debt.amount_owed_pending_balance
-      end.reduce(0){ |total, amount| amount + total}
+    @color_code_proc = ->(debtor_debts){ 
+      debtor_debts.collect do |debt|
+        debt.paid_in_full ? 0 : debt.amount_owed_pending_balance
+      end.reduce(0){ |total, amount| amount + total }
     }
   end
   

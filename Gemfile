@@ -21,7 +21,7 @@ platforms :jruby do
       gem 'activerecord-jdbcmssql-adapter', '~> 1.3.20'
     when 'mysql', 'mariadb'
       gem 'activerecord-jdbcmysql-adapter', '~> 1.3.20'
-    when 'sqlite'
+    # when 'sqlite'
       # gem 'activerecord-jdbcsqlite3-adapter' 
     end
   end

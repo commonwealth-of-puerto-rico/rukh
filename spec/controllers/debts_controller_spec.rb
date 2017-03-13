@@ -12,7 +12,7 @@ describe DebtsController do
     end
   
     it "returns expected value", slow: true do
-      expect(Debt.to_csv).to match /Pakistan Bank/
+      expect(Debt.to_csv).to match(/Pakistan Bank/)
     end
     
     it "returns a xls file", slow: true do

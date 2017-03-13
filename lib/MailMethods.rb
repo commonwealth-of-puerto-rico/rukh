@@ -21,7 +21,7 @@ module MailSupportMethods
     end
   end
   
-  def deliver_mail(debt, user, mailer, mail_preview, options={})
+  def deliver_mail(debt, user, mailer, mail_preview, _options={})
     require 'thread' 
     #TODO replace w/ actor?
     Thread.new {

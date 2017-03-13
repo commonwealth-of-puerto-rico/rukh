@@ -59,13 +59,14 @@ class Debtor < ActiveRecord::Base
   def self.search(search_term)
     search_term = clean_up_search_term(search_term)
     term_class = search_term.class
+    
     case
-    when term_class == Fixnum
-      result = where('employer_id_number LIKE ?', "%#{search_term}%")
+    when term_class == Integer
+      where('employer_id_number LIKE ?', "%#{search_term}%")
     when term_class == HexString #For API 
-      result = where('ss_hex_digest LIKE ?', "%#{search_term}%")
+      where('ss_hex_digest LIKE ?', "%#{search_term}%")
     when term_class == String
-      result = where('LOWER(name) LIKE ? OR employer_id_number LIKE ? OR email LIKE ?', 
+      where('LOWER(name) LIKE ? OR employer_id_number LIKE ? OR email LIKE ?', 
                      "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
     else
       fail "search term of unknown type (find me in debtor model)"
@@ -87,19 +88,19 @@ class Debtor < ActiveRecord::Base
     end
   end
   
-  private
+  protected
   def last_four(ss_num)
     Debtor.remove_hyphens(ss_num).split('')[-4..-1].join('')
   end
   def Debtor.remove_hyphens(term)
-    term.to_s.each_char.select{|x| x.match /[0-9]/}.join('')
+    term.to_s.each_char.select{|x| x.match(/[0-9]/)}.join('')
   end
   def Debtor.encrypt(token)
     Digest::SHA1.hexdigest( Debtor.salt(Debtor.remove_hyphens(token) ).to_s)
   end
   def Debtor.salt(token, salt=Rails.application.secrets.salt) #salt stored in secrets.yml
     fail(ArgumentError, "Nil propagation, token not set", caller) if token.nil? 
-    fail(ArgumentError, "Rails Salt not set", caller) if salt.nil? 
+    fail(ArgumentError, "Rails Salt (config/secret.yml) not set", caller) if salt.nil? 
     token.to_i + salt
   end
   def Debtor.guard_length(token, length=9) #should be in lib

@@ -39,7 +39,7 @@ module ImportSupport
   ##
   def find_number_lines(opened_file)
       start_time       = Time.now
-    total_file_lines = opened_file.each_line.inject(0){|total, amount| total += 1} 
+    total_file_lines = opened_file.each_line.inject(0){|total, _amount| total + 1} 
     opened_file.rewind
     if Rails.env.development?
       end_time         = Time.now

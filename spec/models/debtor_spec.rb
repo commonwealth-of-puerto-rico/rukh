@@ -104,7 +104,7 @@ describe Debtor do
       expect(Debtor.clean_up_search_term('123-12-1234')).to be_a_kind_of(HexString)
     end
     it 'should return FixNum for ein xx-xxxxxxx number' do
-      expect(Debtor.clean_up_search_term('12-1234567')).to be_a_kind_of(Fixnum)
+      expect(Debtor.clean_up_search_term('12-1234567')).to be_a_kind_of(Integer)
     end
     it 'should return String for anything else' do
       expect(Debtor.clean_up_search_term('Miguel Rios')).to be_a_kind_of(String)
