@@ -100,7 +100,7 @@ class ImportLogic
   ## is rolled back) to prevent partial importing
   def process_CSV_file(file, _total_lines=0, charset="bom|utf-8")
     begin
-      start_time = Time.now # setting up time keeping
+      start_time = Time.now.to_i # setting up time keeping
       ActiveRecord::Base.transaction do
         SmarterCSV.process(file, {:chunk_size => 10, verbose: true, file_encoding: "#{charset}" } ) do |file_chunk|
           file_chunk.each do |record_row|
@@ -113,7 +113,7 @@ class ImportLogic
           end
         end
         # finishing up time keeping and reporting:
-        total_count, end_time = @counter.size, Time.now
+        total_count, end_time = @counter.size, Time.now.to_i
         total_count_hash = { total_lines: total_count, time: ((end_time - start_time) / 60 ).round(2) }
         puts "\033[32m#{total_count_hash}\033[0m\n" #green
         @exit_status = 0

@@ -38,11 +38,11 @@ module ImportSupport
   ## When called on a block from an opened file returns the number of lines 
   ##
   def find_number_lines(opened_file)
-      start_time       = Time.now
+      start_time       = Time.now.to_i
     total_file_lines = opened_file.each_line.inject(0){|total, _amount| total + 1} 
     opened_file.rewind
     if Rails.env.development?
-      end_time         = Time.now
+      end_time         = Time.now.to_i
       puts("1. Lines ==> #{total_file_lines} in #{((end_time - start_time) / 60).round(2)}")
     end
     total_file_lines
