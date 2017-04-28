@@ -4,10 +4,10 @@
 
 #TODO add code for progress bar updates here
 
-source = new EventSource('/update')
-source.onmessage = (event)->
-  console.log event.data
-  percentage = 25
-  $('#progress-bar').style.width = percentage+'%'
-  $('#progress-bar').html(event.data)
+# source = new EventSource('/update')
+# source.onmessage = (event)->
+#   console.log event.data
+#   percentage = 25
+#   $('#progress-bar').style.width = percentage+'%'
+#   $('#progress-bar').html(event.data)
   
