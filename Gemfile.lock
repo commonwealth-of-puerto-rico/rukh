@@ -135,7 +135,7 @@ GEM
       guard-rspec (>= 0.7.3, < 4.0.0)
     guard-rspec (1.2.2)
       guard (>= 1.1)
-    haml (5.0.0)
+    haml (5.0.1)
       temple (>= 0.8.0)
       tilt
     hitimes (1.2.4-java)
