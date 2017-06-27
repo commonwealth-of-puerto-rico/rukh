@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 server = ['sql', 'mysql', 'heroku', 'sqlite'][3] #remember to change config/database.yml
 
-#ruby=jruby-9.1.8.0
-ruby '2.3.1', :engine => 'jruby',
-  :engine_version => '9.1.8.0'
-gem 'jruby-jars', '9.1.8.0' #Now explicitly calling jruby-jars version
+#ruby=jruby-9.1.12.0
+ruby '2.3.3', :engine => 'jruby',
+  :engine_version => '9.1.12.0'
+gem 'jruby-jars', '9.1.12.0' #Now explicitly calling jruby-jars version
 
 gem 'rails', '4.2.7.1' 
 
