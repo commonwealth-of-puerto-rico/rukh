@@ -2,7 +2,9 @@ require: rubocop-rspec
 
 Metrics/LineLength:
   Enabled: false 
-  
+
+Style/AndOr:
+  Enabled: false 
 
 # remove fail vs raise rule
 # remove || vs or  
