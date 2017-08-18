@@ -247,5 +247,3 @@ class DebtsController < ApplicationController
   end
 end
 
-__END__
-

@@ -1,7 +1,8 @@
 # -*- encoding : utf-8 -*-
-require "spec_helper"
 
-# TODO redo mailer tests, outdated
+require 'spec_helper'
+
+# TODO: redo mailer tests, outdated
 # describe NotificationsMailer do
 #   describe "first" do
 #     let(:mail) { NotificationsMailer.first } #This needs a factory
