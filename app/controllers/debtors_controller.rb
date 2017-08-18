@@ -71,9 +71,12 @@ class DebtorsController < ApplicationController
   
   def index
     assign_current_user
-    @debtors = params[:search].blank? ?  
-      Debtor.paginate(page: params[:page], per_page: 10) : 
-      Debtor.search(params[:search])
+    @debtors = 
+      if params[:search].blank? then 
+        Debtor.paginate(page: params[:page], per_page: 10) 
+      else 
+        Debtor.search(params[:search])
+      end
     @color_code_proc = ->(debtor_debts){ 
       debtor_debts.collect do |debt|
         debt.paid_in_full ? 0 : debt.amount_owed_pending_balance

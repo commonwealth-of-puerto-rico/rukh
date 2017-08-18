@@ -99,6 +99,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   # Guard
   gem 'guard-jruby-rspec', require: false, platform: :jruby
+  # Rubocop
+  gem 'rubocop', '~> 0.49.1', require: false 
 end
 
 group :test do
