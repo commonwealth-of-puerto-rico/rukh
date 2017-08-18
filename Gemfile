@@ -101,6 +101,7 @@ group :development, :test do
   gem 'guard-jruby-rspec', require: false, platform: :jruby
   # Rubocop
   gem 'rubocop', '~> 0.49.1', require: false 
+  gem 'rubocop-rspec', require: false
 end
 
 group :test do
