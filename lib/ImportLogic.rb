@@ -141,7 +141,7 @@ class ImportLogic
         store_debt_record(record)
       else
         # TODO: change fails into Flash message by using ImportError
-        raise "Can't Update Record without matching IDs"
+        fail "Can't Update Record without matching IDs"
       end
     elsif record[:debtor_id] &&
           !record.fetch(:debtor_id).strip.downcase['null']

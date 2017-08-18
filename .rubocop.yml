@@ -5,6 +5,10 @@ Metrics/LineLength:
 
 Style/AndOr:
   Enabled: false 
+  
+Style/SignalException: 
+  EnforcedStyle: semantic
 
 # remove fail vs raise rule
 # remove || vs or  
+# exclude .rake for formatting spaces 
