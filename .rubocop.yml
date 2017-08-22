@@ -1,5 +1,8 @@
 require: rubocop-rspec
 
+AllCops:
+  TargetRubyVersion: 2.3
+
 Metrics/LineLength:
   Enabled: false 
 
@@ -8,7 +11,9 @@ Style/AndOr:
   
 Style/SignalException: 
   EnforcedStyle: semantic
+  
+Metrics/MethodLength:
+  Max: 15
 
-# remove fail vs raise rule
-# remove || vs or  
-# exclude .rake for formatting spaces 
+Metrics/BlockLength:
+  Max: 30
