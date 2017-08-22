@@ -72,40 +72,13 @@ namespace :tomcat do
 
     ## Task logic:
     version = idenfity_version
+    
     ## Below step may not be nescessary.
     create "/usr/local/Cellar/tomcat/#{version}/libexec/bin/setenv.sh",
            'CATALINA_OPTS="-XX:MaxPermSize=256M -XX:PermSize=256M -Xmx1024m"'
 
-    ## Preserve the strange spacing below for matching purposes.
-    #     edit "/usr/local/Cellar/tomcat/#{version}/libexec/conf/tomcat-users.xml",
-    # '<!--
-    #   <role rolename="tomcat"/>
-    #   <role rolename="role1"/>
-    #   <user username="tomcat" password="tomcat" roles="tomcat"/>
-    #   <user username="both" password="tomcat" roles="tomcat,role1"/>
-    #   <user username="role1" password="tomcat" roles="role1"/>
-    # -->',
-    # '<role rolename="tomcat"/>
-    # <role rolename="role1"/>
-    # <user username="tomcat" password="tomcat" roles="tomcat, manager-gui"/>
-    # <user username="both" password="tomcat" roles="tomcat,role1"/>
-    # <user username="role1" password="tomcat" roles="role1"/>'
     edit "/usr/local/Cellar/tomcat/#{version}/libexec/conf/tomcat-users.xml",
          tomcat_default_options, tomcat_new_options
-
-    #     edit "/usr/local/Cellar/tomcat/#{version}/libexec/conf/tomcat-users.xml",
-    # '<!--
-    #   <role rolename="tomcat"/>
-    #   <role rolename="role1"/>
-    #   <user username="tomcat" password="<must-be-changed>" roles="tomcat"/>
-    #   <user username="both" password="<must-be-changed>" roles="tomcat,role1"/>
-    #   <user username="role1" password="<must-be-changed>" roles="role1"/>
-    # -->',
-    # '<role rolename="tomcat"/>
-    # <role rolename="role1"/>
-    # <user username="tomcat" password="tomcat" roles="tomcat, manager-gui"/>
-    # <user username="both" password="tomcat" roles="tomcat,role1"/>
-    # <user username="role1" password="tomcat" roles="role1"/>'
 
     edit "/usr/local/Cellar/tomcat/#{version}/libexec/conf/tomcat-users.xml",
          tomcat_default_users, tomcat_new_users
