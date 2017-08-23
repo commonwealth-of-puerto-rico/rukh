@@ -81,6 +81,7 @@ gem 'roo'
 gem 'smarter_csv', require: false #, '~> 1.0.19' #1.0.19 is out...
 gem 'cmess', require: false #, '~> 0.4.1'
 gem 'celluloid', '~> 0.17.3', require: false
+gem 'sucker_punch', require: false 
 
 # Console
 gem 'pry'

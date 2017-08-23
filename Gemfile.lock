@@ -291,6 +291,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sucker_punch (2.0.2)
+      concurrent-ruby (~> 1.0.0)
     temple (0.8.0)
     therubyrhino (2.0.4)
       therubyrhino_jar (>= 1.7.3)
@@ -360,6 +362,7 @@ DEPENDENCIES
   rubyzip (~> 1.2.1)
   sass-rails
   smarter_csv
+  sucker_punch
   therubyrhino
   turbolinks
   tzinfo-data (= 1.2016.10)

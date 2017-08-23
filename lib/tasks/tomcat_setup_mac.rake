@@ -129,7 +129,7 @@ namespace :tomcat do
     def open_editor_tomcat(tomcat_ver)
       editor = 'nano'
       # Possibly use File.stat().writeable?
-      if Dir.exist?("/etc/default/#{tomcat_ver}")
+      if File.stat("/etc/default/#{tomcat_ver}").writable?
         system "#{editor} /etc/default/#{tomcat_ver}/defaults.template"
       else
         puts "FYI: /etc/defalut/#{tomcat_ver} requires previledges."
