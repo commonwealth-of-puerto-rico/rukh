@@ -47,8 +47,7 @@ module ImportSupport
   end
 
   ## To clean up a hash with only permited keys
-  def delete_all_keys_except(hash_record,
-                             except_array = [])
+  def delete_all_keys_except(hash_record, except_array = [])
     hash_record.select do |key|
       except_array.include?(key)
     end
