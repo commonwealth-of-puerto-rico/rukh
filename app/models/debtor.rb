@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 
 require 'HexString'
+
+# rubocop:disable Metrics/LineLength
 class Debtor < ActiveRecord::Base
   has_many :debts, dependent: :restrict_with_exception
 
@@ -64,7 +66,7 @@ class Debtor < ActiveRecord::Base
       where('LOWER(name) LIKE ? OR employer_id_number LIKE ? OR email LIKE ?',
             "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
     else
-      raise 'search term of unknown type (find me in debtor model)'
+      fail 'search term of unknown type (find me in debtor model)'
     end
   end
 
@@ -97,12 +99,12 @@ class Debtor < ActiveRecord::Base
 
   def self.salt(token, salt = Rails.application.secrets.salt)
     # salt stored in secrets.yml
-    raise(ArgumentError, 'Nil propagation, token not set', caller) if token.nil?
-    raise(ArgumentError, 'Rails Salt (config/secret.yml) not set', caller) if salt.nil?
+    fail(ArgumentError, 'Nil propagation, token not set', caller) if token.nil?
+    fail(ArgumentError, 'Rails Salt (config/secret.yml) not set', caller) if salt.nil?
     token.to_i + salt
   end
 
   def self.guard_length(token, length = 9) # should be in lib
-    raise unless token.to_s.split('').size == length
+    fail unless token.to_s.split('').size == length
   end
 end

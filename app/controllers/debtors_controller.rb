@@ -72,17 +72,20 @@ class DebtorsController < ApplicationController
 
   def index
     assign_current_user
+
     @debtors =
       if params[:search].blank?
         Debtor.paginate(page: params[:page], per_page: 10)
       else
         Debtor.search(params[:search])
       end
-    @color_code_proc = lambda { |debtor_debts|
-      debtor_debts.collect do |debt|
-        debt.paid_in_full ? 0 : debt.amount_owed_pending_balance
-      end.reduce(0) { |total, amount| amount + total }
-    }
+
+    @color_code_proc =
+      lambda do |debtor_debts|
+        debtor_debts.collect do |debt|
+          debt.paid_in_full ? 0 : debt.amount_owed_pending_balance
+        end.reduce(0) { |total, amount| amount + total }
+      end
   end
 
   ## Additional Methods ##
@@ -112,10 +115,13 @@ class DebtorsController < ApplicationController
       # Can be determined by role
       # TODO add last SS permit and logic above
       params.require(:debtor).permit(:name, :email, :tel, :ext, :address,
-                                     :location, :contact_person, :contact_person_email, :employer_id_number, :ss_hex_digest)
+                                     :location,
+                                     :contact_person,
+                                     :contact_person_email,
+                                     :employer_id_number,
+                                     :ss_hex_digest)
     else
       redirect_to new_user_session_path
     end
   end
 end
-

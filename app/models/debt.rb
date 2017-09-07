@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 
+# rubocop:disable Metrics/LineLength
 class Debt < ActiveRecord::Base # TODO: create migration to prevent nulls on originating debt
   ## Hooks
   belongs_to :debtor, touch: true
@@ -15,11 +16,11 @@ class Debt < ActiveRecord::Base # TODO: create migration to prevent nulls on ori
   VALID_PERMIT_OR_INFRACTION_REGEX = \
     /\A([[:alpha:]]{2}-?[[:alpha:]]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{1})|([[:alpha:]]-?[0-9]{2}-?[0-9]{2}-?[0-9]{3}-?[[:alpha:]]{2})\z/i
   VALID_DATE_REGEX = \
-    /([0-9]{1,2}(\/?|-?)[0-9]{1,2}(\/?|-?)[0-9]{4}|[0-9]{4}(\/?|-?)[0-9]{1,2}(\/?|-?)[0-9]{1,2})/
+    %r~([0-9]{1,2}(\/?|-?)[0-9]{1,2}(\/?|-?)[0-9]{4}|[0-9]{4}(\/?|-?)[0-9]{1,2}(\/?|-?)[0-9]{1,2})~
   VALID_ROUTING_NUM_REGEX = /\A([0-9]{9}\z|\z)/
 
   ## Validations
-  validates :debtor_id, presence: true
+  validates :debtor_id,          presence: true
   validates :original_debt_date, presence: true, format: { with: VALID_DATE_REGEX,
                                                            message: 'Debe ser una fecha.' }
   validates :amount_owed_pending_balance,        format: { with: VALID_NUM_REGEX,
@@ -47,23 +48,25 @@ class Debt < ActiveRecord::Base # TODO: create migration to prevent nulls on ori
   def self.to_csv(options = {})
     require 'csv'
     CSV.generate(options) do |csv|
-      csv << column_names + %i[debtor_name contact_person]
+      csv.add_row(column_names + %i[debtor_name contact_person])
       all.each do |debt_record|
-        debtor_name, contact_person = debt_record.find_debtor_attr(debt_record.attributes['debtor_id'],
-                                                                   %i[name contact])
-        csv << (debt_record.attributes.values_at(*column_names) << debtor_name << contact_person)
+        csv.add_row(
+          debt_record.attributes.values_at(*column_names)
+          .concat(debt_record.find_debtor_attr(debt_record.attributes['debtor_id'], %i[name contact]))
+          .flatten
+        )
       end
     end
   end
 
-  # For portability of code only.
-  def self.to_plain_csv(options = {}, &block)
+  ## Export to Plain CSV. For portability of code only.
+  def self.to_plain_csv(extra_column_names = [], options = {}, &block)
     require 'csv'
     CSV.generate(options) do |csv|
-      csv << column_names # no additional columns
+      csv.add_row(column_names + extra_column_names)
       all.each do |record|
-        csv << record.attributes.values_at(*column_names)
         yield(csv, record) if block
+        csv.add_row record.attributes.values_at(*column_names)
       end
     end
   end

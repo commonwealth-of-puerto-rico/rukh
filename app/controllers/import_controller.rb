@@ -16,18 +16,18 @@ class ImportController < ApplicationController
   end
 
   def status
-  #   response.headers['Content-Type'] = 'text/event-stream'
-  #   sse = SSE.new(response.stream)
-  #   begin
-  #     # on_change is a method to listen to notifications
-  #     ProgressBarUpdater.on_change do |data|
-  #       sse.write(data)
-  #     end
-  #   rescue IOError
-  #     # Client Disconnected
-  #   ensure
-  #     sse.close
-  #   end
+    #   response.headers['Content-Type'] = 'text/event-stream'
+    #   sse = SSE.new(response.stream)
+    #   begin
+    #     # on_change is a method to listen to notifications
+    #     ProgressBarUpdater.on_change do |data|
+    #       sse.write(data)
+    #     end
+    #   rescue IOError
+    #     # Client Disconnected
+    #   ensure
+    #     sse.close
+    #   end
     render nothing: true
   end
 
@@ -43,7 +43,7 @@ class ImportController < ApplicationController
         ImportLogic2.import_csv(file)
 
         # flash[:notice] = "#{result[:total_lines]} Records Importados en: #{result[:time]} segundos"
-        flash[:notice] = " Records Importados en: #{} segundos"
+        flash[:notice] = " Records Importados en:  segundos"
         redirect_to debts_path
       else
         flash[:error] = 'No es un CSV'

@@ -1,32 +1,31 @@
 # -*- encoding : utf-8 -*-
+
 class NotificationsMailer < ActionMailer::Base
   # default from: "from@example.com"
-  # after_action :update_debt 
+  # after_action :update_debt
   # after_action :log_mail # Does after send exist?
-  
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
   #   en.notifications_mailer.first.subject
   #
-  def first(debt, user, options={})
+  def first(debt, user, options = {})
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
-    
-    @debt = debt 
-    @user = user 
+
+    @debt = debt
+    @user = user
     add_return_receipt headers, @user.email
     @display_attachments = options[:display_attachments]
     add_signature!
-    
+
     mail(from: @user.email,
-         to:   @debt.debtor.email, 
-         cc:   @debt.debtor.contact_person_email, 
-         bcc:  @user.email, 
-         subject: "Primera Notificación") do |format|
-      format.html
-    end
+         to:   @debt.debtor.email,
+         cc:   @debt.debtor.contact_person_email,
+         bcc:  @user.email,
+         subject: "Primera Notificación", &:html)
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -34,26 +33,24 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.second.subject
   #
-  def second(debt, user, options={})
+  def second(debt, user, options = {})
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
-    
-    @debt = debt 
-    @user = user 
+
+    @debt = debt
+    @user = user
     add_return_receipt headers, @user.email
-    
+
     @date_first_email_sent = options[:date_first_email_sent]
     @display_attachments = options[:display_attachments]
     add_signature!
 
     mail(from: @user.email,
-         to:   @debt.debtor.email, 
-         cc:   @debt.debtor.contact_person_email, 
-         bcc:  @user.email, 
-         subject: "Segunda Notificación") do |format|
-      format.html
-    end
+         to:   @debt.debtor.email,
+         cc:   @debt.debtor.contact_person_email,
+         bcc:  @user.email,
+         subject: "Segunda Notificación", &:html)
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -61,40 +58,39 @@ class NotificationsMailer < ActionMailer::Base
   #
   #   en.notifications_mailer.third.subject
   #
-  def third(debt, user, options={})
+  def third(debt, user, options = {})
     # Guards:
     fail if user.nil? # user is definded
     fail if debt.nil? # but not debt.
-    
-    @debt = debt 
+
+    @debt = debt
     @user = user
     add_return_receipt headers, @user.email
-    
+
     @date_first_email_sent = options[:date_first_email_sent]
     @display_attachments = options[:display_attachments]
     add_signature!
 
     mail(from: @user.email,
-         to:   @debt.debtor.email, 
-         cc:   @debt.debtor.contact_person_email, 
+         to:   @debt.debtor.email,
+         cc:   @debt.debtor.contact_person_email,
          bcc:  @user.email,
-         subject: "Tercera Notificación") do |format|
-      format.html
-    end
+         subject: "Tercera Notificación", &:html)
   end
-  
-  private
-    def add_return_receipt(headers, email)
-      headers[:'Return-Receipt-To'] = email
-      headers[:'Disposition-Notification'] = email
-      headers[:'X-Confirm-Reading-To'] = email 
-    end
-  
-    def add_logo! 
-      attachments.inline['logo.png'] = File.read("#{Rails.root}/app/assets/images/57.png")
-    end
-    def add_signature!
-      attachments.inline['signature.jpg'] = File.read("#{Rails.root}/app/assets/images/signature.jpg")
-    end
-end
 
+  private
+
+  def add_return_receipt(headers, email)
+    headers[:'Return-Receipt-To'] = email
+    headers[:'Disposition-Notification'] = email
+    headers[:'X-Confirm-Reading-To'] = email
+  end
+
+  def add_logo!
+    attachments.inline['logo.png'] = File.read("#{Rails.root}/app/assets/images/57.png")
+  end
+
+  def add_signature!
+    attachments.inline['signature.jpg'] = File.read("#{Rails.root}/app/assets/images/signature.jpg")
+  end
+end

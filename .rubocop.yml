@@ -1,19 +1,48 @@
-require: rubocop-rspec
+# require: rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 2.3
+  Exclude:
+    - 'db/schema.rb'
 
 Metrics/LineLength:
-  Enabled: false 
+  # Enabled: false 
+  Max: 108
+  Details: >-
+    Longer lines require scrolling when reviewing on Github.
 
 Style/AndOr:
   Enabled: false 
   
 Style/SignalException: 
   EnforcedStyle: semantic
-  
-Metrics/MethodLength:
-  Max: 15
 
 Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
   Max: 30
+  
+Metrics/MethodLength:
+  Max: 50
+  Details: >-
+    This is the max that will fit in one screen.   
+  
+Style/FrozenStringLiteralComment:
+  Enabled: false 
+  
+Style/StringLiterals:
+  Enabled: false 
+  
+Style/Documentation:
+  Enabled: false 
+  Details: >-
+    This would be ideal in a multi-person project. 
+    
+Style/GuardClause:
+  Details: >-
+    This should remain active as it flags methods that do not return if nothing is done.
+    
+Metrics/AbcSize:
+  Max: 18
+  Details: >-
+    Increased this to give more wiggle room for my code.

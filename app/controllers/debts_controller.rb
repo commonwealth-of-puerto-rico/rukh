@@ -25,7 +25,7 @@ class DebtsController < ApplicationController
   def create
     assign_current_user
     @debtor = Debtor.find_by_id(params[:debtor_id])
-    raise if @debtor.nil?
+    fail if @debtor.nil?
     params[:debt][:debtor_id] = @debtor.id
     @debt = Debt.new(debt_params)
     @debt.permit_infraction_number = strip_hyphens(@debt.permit_infraction_number)
@@ -177,7 +177,8 @@ class DebtsController < ApplicationController
 
     if guard_mailer(mailer)
       @mail_preview = NotificationsMailer.public_send(mailer, debt, user,
-                                                      date_first_email_sent: date_first_email_sent, display_attachments: display_attachments)
+                                                      date_first_email_sent: date_first_email_sent,
+                                                      display_attachments: display_attachments)
       if options.fetch :send, false
         deliver_mail(debt, user, mailer, @mail_preview)
       end
@@ -241,9 +242,13 @@ class DebtsController < ApplicationController
       mailer_subject: mail.subject.to_s, # slightly vulnerable to SQL injection
       datetime_sent: DateTime.now,
       email_sent_to: Base64.encode64(mail.header.to_s),
-      mailer_content: mail.multipart? ? Base64.encode64(mail.html_part.body.to_s) : Base64.encode64(mail.body.to_s)
+      mailer_content:
+        if mail.multipart?
+          Base64.encode64(mail.html_part.body.to_s)
+        else
+          Base64.encode64(mail.body.to_s)
+        end
     )
-    mail_log.save or raise('Unable to log email.')
+    mail_log.save or fail('Unable to log email.')
   end
 end
-
