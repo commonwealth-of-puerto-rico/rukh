@@ -45,28 +45,22 @@ class Debt < ActiveRecord::Base # TODO: create migration to prevent nulls on ori
   end
 
   ## Export to CSV
-  def self.to_csv(options = {})
-    require 'csv'
-    CSV.generate(options) do |csv|
-      csv.add_row(column_names + %i[debtor_name contact_person])
-      all.each do |debt_record|
-        csv.add_row(
-          debt_record.attributes.values_at(*column_names)
-          .concat(debt_record.find_debtor_attr(debt_record.attributes['debtor_id'], %i[name contact]))
-          .flatten
-        )
-      end
+  ## Calls to_plan_csv w/ correct options
+  def self.to_csv(_options = {})
+    to_plain_csv(%i[debtor_name contact_person]) do |extra_items, record|
+      extra_items.push(record.find_debtor_attr(record.attributes['debtor_id'], %i[name contact]))
     end
   end
 
-  ## Export to Plain CSV. For portability of code only.
+  ## Export to Plain CSV.
   def self.to_plain_csv(extra_column_names = [], options = {}, &block)
     require 'csv'
     CSV.generate(options) do |csv|
       csv.add_row(column_names + extra_column_names)
       all.each do |record|
-        yield(csv, record) if block
-        csv.add_row record.attributes.values_at(*column_names)
+        extra_items = []
+        yield(extra_items, record) if block
+        csv.add_row record.attributes.values_at(*column_names).concat(extra_items).flatten
       end
     end
   end

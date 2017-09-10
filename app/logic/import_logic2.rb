@@ -86,7 +86,7 @@ class ProcessRecord
   def debtor_id_process(record, debtor_id, debt_id)
     ## Store record when Debtor in already in db.
     if !record.fetch(:id).strip.downcase['null'] &&
-       Debt.find_by_id(debt_id)
+       Debt.find_by(id: debt_id)
       ## Update action overwrites
       ## Update Debt
       record[:debtor_id] = debtor_id.to_i
@@ -149,13 +149,24 @@ class ProcessRecord
     ## returns 0 (if not found) or debtor id (integer) if found.
     if record[:debtor_id] &&
        record[:debtor_id].strip.casecmp('null').zero? &&
-       db_Debtor.find_by_id(record.fetch(:debtor_id))
+       db_Debtor.find_by(id: record.fetch(:debtor_id))
       puts 'Searching db by ID'
       db_Debtor.find(record.fetch(:debtor_id))
-    elsif record[:employer_id_number] &&
-          db_Debtor.find_by_employee_id_number(record.fetch(:employer_id_number))
+    else
+      check_debtor_via_name_ein(record, db_Debtor)
+    end
+  end
+
+  def check_debtor_via_name_ein(record, db_Debtor = Debtor)
+    if record[:employer_id_number]
+      debtor_by_ein = db_Debtor.find_by employer_id_number: record.fetch(:employer_id_number)
+    else
+      debtor_by_ein = nil
+    end
+
+    if debtor_by_ein
       puts "Searching db by EIN (Employer ID Number): #{record[:employer_id_number]}"
-      db_Debtor.find_by_employee_id_number(record.fetch(:employer_id_number))
+      debtor_by_ein.to_i
     elsif record[:debtor_name]
       puts "Searching db for debtor by NAME for #{record[:debtor_name]}"
       search_debtor_db_by_name(record.fetch(:debtor_name), db_Debtor)
@@ -166,7 +177,7 @@ class ProcessRecord
 
   def search_debtor_db_by_name(string, db_Debtor = Debtor)
     return 0 if string.strip.casecmp('null').zero?
-    debtor = db_Debtor.find_by_name(string)
+    debtor = db_Debtor.find_by name: string
     if debtor.blank?
       0
     else
