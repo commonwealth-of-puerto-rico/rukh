@@ -6,7 +6,7 @@ ruby '2.3.3', :engine => 'jruby',
   :engine_version => '9.1.13.0'
 gem 'jruby-jars', '9.1.13.0' #Now explicitly calling jruby-jars version
 
-gem 'rails', '4.2.7.1' 
+gem 'rails', '~> 4.2.10' 
 
 platforms :jruby do
   group :development,:test do
