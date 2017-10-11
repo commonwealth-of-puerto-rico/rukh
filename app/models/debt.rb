@@ -16,8 +16,8 @@ class Debt < ActiveRecord::Base # TODO: create migration to prevent nulls on ori
   VALID_PERMIT_OR_INFRACTION_REGEX = \
     /\A([[:alpha:]]{2}-?[[:alpha:]]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{2}-?[0-9]{1})|([[:alpha:]]-?[0-9]{2}-?[0-9]{2}-?[0-9]{3}-?[[:alpha:]]{2})\z/i
   VALID_DATE_REGEX = \
-    %r~([0-9]{1,2}(\/?|-?)[0-9]{1,2}(\/?|-?)[0-9]{4}|[0-9]{4}(\/?|-?)[0-9]{1,2}(\/?|-?)[0-9]{1,2})~
-  VALID_ROUTING_NUM_REGEX = /\A([0-9]{9}\z|\z)/
+    %r~\A([0-9]{1,2}(\/?|-?)[0-9]{1,2}(\/?|-?)[0-9]{4}|[0-9]{4}(\/?|-?)[0-9]{1,2}(\/?|-?)[0-9]{1,2})\z~
+  VALID_ROUTING_NUM_REGEX = /(\A\z|\A[0-9]{9}\z)/
 
   ## Validations
   validates :debtor_id,          presence: true

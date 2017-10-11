@@ -66,6 +66,7 @@ GEM
       sass (>= 3.3.4)
     bootstrap-will_paginate (1.0.0)
       will_paginate
+    brakeman (4.0.1)
     builder (3.2.3)
     capybara (2.15.1)
       addressable
@@ -331,6 +332,7 @@ DEPENDENCIES
   bcrypt
   bootstrap-sass
   bootstrap-will_paginate
+  brakeman
   capybara
   celluloid (~> 0.17.3)
   cmess

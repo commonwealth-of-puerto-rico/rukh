@@ -100,9 +100,11 @@ group :development, :test do
   gem 'factory_girl_rails'
   # Guard
   gem 'guard-jruby-rspec', require: false, platform: :jruby
-  # Rubocop
+  # Rubocop (Style-guide and linter)
   gem 'rubocop', '~> 0.49.1', require: false 
   gem 'rubocop-rspec', require: false
+  # Breakman (Static Code Analysis)
+  gem 'brakeman', :require => false
 end
 
 group :test do
